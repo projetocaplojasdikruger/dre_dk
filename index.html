@@ -295,6 +295,150 @@ td.item-l{white-space:normal}
 .tabwrap.congela table.dre thead th:first-child,.tabwrap.congela table.facum thead th:first-child{left:0;z-index:5}
 .tabwrap.congela td.l{z-index:1}
 
+/* ---------- lançamentos (novo layout) ---------- */
+.lk{display:flex;align-items:stretch;gap:8px;margin:2px 0 10px}
+.lk-i{flex:1;background:#fff;border:1px solid var(--line);border-radius:10px;padding:10px 14px;position:relative;overflow:hidden}
+.lk-i::before{content:'';position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--teal)}
+.lk-i.rec::before{background:var(--green)}.lk-i.desp::before{background:var(--red)}
+.lk-i.fim{background:linear-gradient(135deg,#3e3f44,#2a2b2f);color:#fff;border-color:#2a2b2f}
+.lk-i.fim::before{background:var(--orange)}
+.lk-i .l{font-size:11px;font-weight:700;letter-spacing:.4px;text-transform:uppercase;color:var(--muted)}
+.lk-i.fim .l,.lk-i.fim .s{color:#c9cacf}
+.lk-i .v{font-size:20px;font-weight:800;margin-top:2px;font-variant-numeric:tabular-nums}
+.lk-i.fim .v.neg{color:#ff8a80}
+.lk-i .s{font-size:11px;margin-top:2px}
+.lk-i.fim .s b.pos{color:#7ee08a}.lk-i.fim .s b.neg{color:#ff8a80}
+.lk-op{display:flex;align-items:center;font-size:20px;font-weight:300;color:var(--muted)}
+.bk-chips{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin-bottom:12px}
+.bk-chips .lbl{font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.4px;margin-right:4px}
+.bk-chip{display:inline-flex;align-items:center;gap:7px;background:#fff;border:1px solid var(--line);border-radius:20px;padding:3px 12px 3px 4px;font-size:12px;font-weight:600}
+.bk-chip:hover{border-color:var(--orange)}
+.bk-chip.on{border-color:var(--orange);box-shadow:0 0 0 2px var(--orange-l);background:var(--orange-l)}
+.bk-chip b{font-variant-numeric:tabular-nums}
+.lanc-form{background:#fff;border:1px solid var(--line);border-top:4px solid var(--ec,var(--orange));border-radius:10px;padding:12px 16px 14px;margin-bottom:14px;box-shadow:0 2px 8px rgba(0,0,0,.04);transition:border-color .2s}
+.lanc-form.t-rec{border-top-color:var(--green)}.lanc-form.t-desp{border-top-color:var(--red)}
+.lanc-form.editando-f{background:var(--amber);border-color:var(--orange)}
+.lf-h{display:flex;align-items:center;gap:12px;margin-bottom:10px;flex-wrap:wrap}
+.lf-h>b{font-size:15px}
+.lf-tipo{display:inline-flex;align-items:center;gap:7px;font-size:12px;color:var(--muted);background:#f3f3f5;border-radius:20px;padding:3px 12px}
+.lf-tipo i{width:9px;height:9px;border-radius:2px;display:inline-block}
+.lf-tipo b{font-size:10px;letter-spacing:.6px;padding:1px 6px;border-radius:3px;color:#fff;background:var(--muted)}
+.lf-tipo.rec{color:var(--text)}.lf-tipo.rec b{background:var(--green)}
+.lf-tipo.desp{color:var(--text)}.lf-tipo.desp b{background:var(--red)}
+.lf-dica{margin-left:auto;font-size:11px;color:var(--muted)}
+.lf-grid{display:grid;grid-template-columns:minmax(170px,1.1fr) 140px minmax(260px,2fr) minmax(180px,1.6fr) 130px 140px 140px auto;gap:10px;align-items:end}
+.lf-grid label{display:flex;flex-direction:column;gap:4px;font-size:11px;font-weight:700;color:#55565b;text-transform:uppercase;letter-spacing:.3px;min-width:0}
+.lf-grid input,.lf-grid .bsel-btn{border:1px solid #cfd0d4;border-radius:6px;padding:8px 10px;font-size:13px;font-weight:500;text-transform:none;letter-spacing:0;background:#fff;min-height:38px;width:100%;min-width:0}
+.lf-grid input:focus,.lf-grid .bsel-btn:focus-visible{outline:2px solid var(--orange);outline-offset:-1px;border-color:var(--orange)}
+.lf-grid #e_valor{text-align:right;font-weight:700;font-size:15px}
+.lanc-form.t-rec #e_valor{color:var(--pos)}.lanc-form.t-desp #e_valor{color:var(--neg)}
+.f-acoes{display:flex;flex-direction:column;gap:4px}
+.f-acoes .salvar{padding:10px 18px;font-size:14px;border-radius:6px;min-height:38px}
+.f-acoes .cancelar{margin:0}
+.lanc-tool{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-bottom:8px}
+.lt-tit{font-size:14px}
+.lanc-tool .filtros{margin-left:auto}
+.busca-ic{padding-left:28px !important;background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%2374757b' stroke-width='2.5'%3E%3Ccircle cx='11' cy='11' r='7'/%3E%3Cpath d='m20 20-3.5-3.5'/%3E%3C/svg%3E") no-repeat 9px center}
+table.lanc td{height:38px;border-right:0;border-bottom:1px solid #eeeef0}
+table.lanc thead th{background:#4a4b50;font-size:12px;letter-spacing:.3px;padding:9px 8px;text-align:left}
+table.lanc th.c-valor,table.lanc th.c-acum{text-align:right}
+table.lanc th.c-data,table.lanc th.c-dprog,table.lanc th.c-dpag{text-align:center}
+table.lanc th.c-banco{width:175px}table.lanc th.c-data{width:96px}table.lanc th.c-grupo{width:200px}table.lanc th.c-plano{width:260px}
+table.lanc th.c-valor{width:130px}table.lanc th.c-dprog,table.lanc th.c-dpag{width:104px}table.lanc th.c-acum{width:130px}table.lanc th.c-acoes{width:66px}
+table.lanc tr.lin:hover td{background:#fff8f2}
+table.lanc tr.lin.rec td:first-child{box-shadow:inset 3px 0 0 var(--green)}
+table.lanc tr.lin.desp td:first-child{box-shadow:inset 3px 0 0 #f3a29c}
+table.lanc tr.lin.tem-aj td:first-child{box-shadow:inset 4px 0 0 var(--aj)}
+table.lanc td.banco{font-size:12px;font-weight:700}
+table.lanc td.plano{white-space:normal;line-height:1.25;font-size:12px}
+table.lanc td.plano .cod{color:var(--muted);font-variant-numeric:tabular-nums;margin-right:2px}
+table.lanc td.item{text-align:left;white-space:normal;line-height:1.25}
+table.lanc td.valor{font-weight:700;font-size:13px}
+table.lanc td.acc{font-weight:600;color:var(--teal-d)}
+table.lanc td.acc.neg{color:var(--neg)}
+table.lanc td.grupo{white-space:normal}
+.pill{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:600;line-height:1.2;color:#2a2b2f;background:color-mix(in srgb,var(--c) 13%,#fff);border:1px solid color-mix(in srgb,var(--c) 35%,#fff);border-radius:12px;padding:3px 9px}
+.pill::before{content:'';width:7px;height:7px;border-radius:50%;background:var(--c);flex:none}
+.pill.aj-b{box-shadow:0 0 0 2px var(--aj)}
+tr.dia-sep td{background:#f6f6f8 !important;height:30px;border-bottom:1px solid var(--line);padding:0 10px}
+tr.dia-sep div{display:flex;align-items:center;gap:14px;font-size:12px;color:var(--muted);white-space:nowrap}
+tr.dia-sep b{color:var(--text);font-size:13px}
+tr.dia-sep .dsem{text-transform:capitalize;margin-left:-8px}
+tr.dia-sep .pos,tr.dia-sep .neg{font-weight:600;font-variant-numeric:tabular-nums}
+tr.dia-sep .dacc{margin-left:auto}
+tr.dia-sep .dacc b{font-variant-numeric:tabular-nums}
+.tabwrap.congela table.lanc tr.dia-sep td{position:static}
+/* busca no plano de contas */
+select.cb-ok{display:none}
+.cb-inp{text-overflow:ellipsis}
+td.emedicao .cb-inp{border:0;padding:5px 4px;font-size:12px;width:100%;min-width:220px;outline:none}
+.cb-pop{max-height:360px}
+.cb-g{display:flex;align-items:center;gap:7px;font-size:10px;font-weight:800;letter-spacing:.6px;color:var(--muted);padding:8px 10px 4px;position:sticky;top:-5px;background:#fff;text-transform:uppercase}
+.cb-g i{width:8px;height:8px;border-radius:2px}
+.cb-pop .bsel-op{font-weight:500;padding:6px 10px}
+.cb-pop .bsel-op .cod{color:var(--muted);font-variant-numeric:tabular-nums;min-width:44px}
+.cb-vazio{padding:14px;color:var(--muted);font-size:13px}
+
+/* ---------- markup ---------- */
+.mk-topo{display:grid;grid-template-columns:280px minmax(0,1fr);gap:12px;margin-bottom:12px}
+.mk-par{background:#fff;border:1px solid var(--line);border-top:4px solid var(--orange);border-radius:10px;padding:12px 14px;display:flex;flex-direction:column;gap:10px}
+.mk-par .pt{font-weight:800;font-size:13px}
+.mk-par label{display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:12px;font-weight:600;color:#55565b}
+.mk-par .suf{display:inline-flex;align-items:center;gap:4px;font-weight:700}
+.mk-par input{width:84px;border:1px solid #cfd0d4;border-radius:6px;padding:6px 8px;text-align:right;font-weight:700;font-size:14px}
+.mk-par input:focus,.mk-in:focus{outline:2px solid var(--orange);outline-offset:-1px}
+.mk-kpis{margin:0}
+.mk-kpis .kp .v{font-size:22px}
+.mk-alerta{border-radius:8px;padding:10px 14px;margin-bottom:12px;font-size:13px;border-left:5px solid}
+.mk-alerta.ruim{background:#fdecea;border-color:var(--red);color:#7a1f1a}
+.mk-alerta.bom{background:#eaf5ea;border-color:var(--green);color:#1f5a23}
+.mk-alerta.neutro{background:#f3f3f5;border-color:var(--muted);color:var(--muted)}
+#mkGraf{margin-bottom:14px}
+table.mkt td.l{min-width:300px}
+table.mkt th .parc{display:block;font-size:9px;font-weight:600;opacity:.75;letter-spacing:.3px;text-transform:uppercase}
+.mk-par .mk-chk{justify-content:flex-start;font-weight:500;font-size:12px;line-height:1.3}
+table.mkt tr.par td,table.mkt tr.par td.l{background:var(--orange-l)}
+table.mkt tr.sub td,table.mkt tr.sub td.l{background:#eef0f2;font-weight:700;font-size:12px;color:var(--text);height:30px}
+table.mkt tr.mk td,table.mkt tr.mk td.l{font-weight:800;font-size:13px}
+table.mkt tr.nec td,table.mkt tr.nec td.l{background:#e8f1fb;font-weight:800;color:#1c5cab}
+table.mkt tr.usado td,table.mkt tr.usado td.l{background:#fff4ec;font-weight:700}
+table.mkt tr.dif td.bom{color:var(--pos);font-weight:700}table.mkt tr.dif td.ruim{color:var(--neg);font-weight:700}
+table.mkt tr.proj td,table.mkt tr.proj td.l{font-weight:700}
+table.mkt tr.real td{color:#127a55}
+.mk-in{width:74px;border:1px solid #f0c9ad;border-radius:5px;padding:4px 6px;text-align:right;font-weight:700;font-size:12px;background:#fff}
+.mk-in.proprio{border-color:var(--orange);background:#fff;box-shadow:inset 0 -2px 0 var(--orange)}
+.mk-baixo{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:14px;margin-top:14px}
+.mk-baixo .graf{margin:0;border-radius:10px;padding:14px 16px}
+.sim-in{display:flex;gap:10px;margin:10px 0}
+.sim-in label{display:flex;flex-direction:column;gap:4px;font-size:11px;font-weight:700;color:#55565b;text-transform:uppercase}
+.sim-in input,.sim-in select{border:1px solid #cfd0d4;border-radius:6px;padding:8px 10px;font-size:14px;font-weight:600;background:#fff;min-width:160px}
+.sim-res{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.sim-res div{background:#f6f6f8;border-radius:8px;padding:10px 12px;display:flex;flex-direction:column;gap:2px}
+.sim-res span{font-size:11px;color:var(--muted);font-weight:600}
+.sim-res b{font-size:18px;font-variant-numeric:tabular-nums}
+.sim-res small{font-size:11px;color:var(--muted)}
+.sim-res .ruim b{color:var(--neg)}.sim-res .bom b{color:var(--pos)}
+.sim-vazio{padding:10px 0;font-size:13px}
+.mk-form ol{margin:8px 0 0;padding-left:20px;font-size:13px;line-height:1.6;color:#44454a}
+
+/* ---------- seletor de banco com ícone ---------- */
+select.bsel-ok{display:none}
+.bsel-btn{display:inline-flex;align-items:center;gap:7px;border:1px solid #bfc8ce;border-radius:3px;background:#fff;padding:4px 8px;min-width:170px;max-width:100%;text-align:left;cursor:pointer;font-size:13px;line-height:1.2;min-height:32px}
+.bsel-btn:hover{border-color:var(--orange)}
+.bsel-btn:focus-visible,.bsel-btn.aberto{outline:2px solid var(--orange);outline-offset:-1px;border-color:var(--orange)}
+.bsel-btn .t{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-weight:600}
+.bsel-btn .t.mut{font-weight:400}
+.bsel-btn .car{color:var(--muted);font-size:10px;flex:none}
+tr.entrada .bsel-btn{width:100%;max-width:200px;min-width:150px;font-size:12px;border-color:#d5c9a6;min-height:30px;padding:3px 6px}
+td.emedicao .bsel-btn{width:100%;min-width:160px;border:0;min-height:28px}
+.bsel-pop{position:fixed;z-index:200;background:#fff;border:1px solid var(--line);border-top:3px solid var(--orange);border-radius:8px;box-shadow:0 14px 34px rgba(0,0,0,.2);padding:5px;max-height:340px;overflow:auto}
+.bsel-op{display:flex;align-items:center;gap:10px;padding:7px 10px;border-radius:6px;cursor:pointer;font-weight:600;font-size:13px;white-space:nowrap}
+.bsel-op .n{flex:1}
+.bsel-op.foco{background:var(--orange-l)}
+.bsel-op.on::after{content:'✓';color:var(--orange-d);font-weight:800}
+.bsel-op.vazio{color:var(--muted);font-weight:400}
+.bsel-op .sem-ic{display:inline-block;width:24px;height:24px;flex:none}
+
 /* ---------- dashboard ---------- */
 .dtop{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:10px;margin-bottom:6px}
 .dtop .sub{margin-bottom:6px}
@@ -369,12 +513,22 @@ table.facum .z{color:#b7bcc0}
 .tip b.pos{color:var(--pos)}.tip b.neg{color:var(--neg)}
 .tip div{color:var(--muted);line-height:1.6}
 
+@media (max-width:1350px){
+  .lf-grid{grid-template-columns:repeat(4,minmax(0,1fr))}
+  .lf-grid .f-plano,.lf-grid .f-item{grid-column:span 2}
+}
 @media (max-width:1100px){
+  .mk-topo,.mk-baixo{grid-template-columns:1fr}
+  .lk{flex-wrap:wrap}.lk-op{display:none}.lk-i{flex:1 1 45%}
   .kpis{grid-template-columns:repeat(2,minmax(0,1fr))}
   .kp.hero{grid-column:span 2}
   .dcard.s6{grid-column:span 12}
 }
 @media (max-width:900px){
+  .lf-grid{grid-template-columns:1fr 1fr}
+  .lf-grid .f-plano,.lf-grid .f-item{grid-column:span 2}
+  .sim-res{grid-template-columns:1fr}
+  .lf-dica{display:none}
   .tabwrap.congela{max-height:calc(100vh - 120px)}
   table.facum td.l{min-width:170px}
   .pers{position:fixed;left:12px;right:12px;top:80px;width:auto}
@@ -653,6 +807,12 @@ class LocalStore {
       if ((pid == null || l.planilha_id === pid) && l.data_lancamento < data) s += this.sinal(l) * Number(l.valor);
     return r2(s);
   }
+  async getParam(chave) { return (this.db.parametros || []).find(p => p.chave === chave)?.valor ?? null; }
+  async setParam(chave, valor) {
+    const l = (this.db.parametros ||= []), i = l.findIndex(p => p.chave === chave);
+    if (i >= 0) l[i].valor = valor; else l.push({ chave, valor });
+    this.salvar();
+  }
   async saldosBancos(data) {
     const s = Object.fromEntries(this.db.bancos.map(b => [b.id, Number(b.saldo_inicial) || 0]));
     for (const l of this.db.lancamentos) if (l.data_lancamento < data) s[l.banco_id] += this.sinal(l) * Number(l.valor);
@@ -709,6 +869,14 @@ class SupaStore {
     const { data: v, error } = await this.c.rpc('saldo_ate', { p_planilha: pid, p_data: data });
     this.erro(error); return Number(v) || 0;
   }
+  async getParam(chave) {
+    const { data, error } = await this.c.from('parametros').select('valor').eq('chave', chave).maybeSingle();
+    this.erro(error); return data?.valor ?? null;
+  }
+  async setParam(chave, valor) {
+    const { error } = await this.c.from('parametros').upsert({ chave, valor, updated_at: new Date().toISOString() }, { onConflict: 'chave' });
+    this.erro(error);
+  }
   async saldosBancos(data) {
     const { data: rows, error } = await this.c.rpc('saldos_bancos', { p_data: data });
     this.erro(error); return Object.fromEntries(rows.map(r => [r.banco_id, Number(r.saldo) || 0]));
@@ -764,7 +932,7 @@ const gruposOrdenados = () => [...S.grupos].sort((a, b) => {
 
 /* ============================== LAYOUT ============================== */
 const VIEWS = [
-  ['dash', 'Dashboard'], ['lancamentos', 'Lançamentos'], ['fluxo', 'Fluxo de Caixa'], ['fluxoAcum', 'Fluxo Acumulado'], ['dre', 'DRE'],
+  ['dash', 'Dashboard'], ['lancamentos', 'Lançamentos'], ['fluxo', 'Fluxo de Caixa'], ['fluxoAcum', 'Fluxo Acumulado'], ['dre', 'DRE'], ['markup', 'Markup'],
   ['bancos', 'Bancos'], ['transferencias', 'Transferências'], ['cadastros', 'Cadastros'],
 ];
 const CAD_TABS = [['plano_contas', 'Plano de Contas'], ['grupos', 'Grupos (Classificação)'], ['grupos_dre', 'Grupos DRE'], ['bancos', 'Bancos'], ['planilhas', 'Empresas']];
@@ -797,6 +965,7 @@ async function irPara(v) {
 async function rerender() {
   const v = S.view;
   if (v === 'dash') return viewDash();
+  if (v === 'markup') return viewMarkup();
   if (v === 'lancamentos') return viewLancamentos();
   if (v === 'fluxo') return viewFluxo();
   if (v === 'fluxoAcum') return viewFluxoAcum();
@@ -876,6 +1045,7 @@ function botaoPers(t) {
 function renderLocal() {
   const v = S.view;
   if (v === 'dash') renderDash();
+  else if (v === 'markup') renderMarkup();
   else if (v === 'lancamentos') renderLancamentos();
   else if (v === 'fluxo') renderFluxo();
   else if (v === 'fluxoAcum') renderFluxoAcum();
@@ -929,8 +1099,8 @@ function iniciarEdicao(td) {
   if (!reg) return;
   const v = reg[f.c], A = reg.ajustes || {};
   let ctrl;
-  if (f.t === 'banco') ctrl = `<select class="ied">${opcoes(S.bancos, v, b => b.nome)}</select>`;
-  else if (f.t === 'plano') ctrl = `<select class="ied">${opcoesPlano(v)}</select>`;
+  if (f.t === 'banco') ctrl = `<select class="ied" data-banco>${opcoes(S.bancos, v, b => b.nome)}</select>`;
+  else if (f.t === 'plano') ctrl = `<select class="ied" data-busca>${opcoesPlano(v)}</select>`;
   else if (f.t === 'date') ctrl = `<input type="date" class="ied" value="${esc(v ?? '')}">`;
   else if (f.t === 'money') ctrl = `<input class="ied" inputmode="decimal" style="text-align:right" value="${num2(v)}">`;
   else ctrl = `<input class="ied" value="${esc(v ?? '')}">`;
@@ -950,6 +1120,18 @@ function iniciarEdicao(td) {
     else if (e.key === 'Escape') { e.preventDefault(); e.stopPropagation(); fim(false); }
   });
   if (el.tagName === 'SELECT') el.addEventListener('change', () => fim(true));
+  if (f.t === 'plano') {                      // conta com busca: já abre a lista
+    prepararBuscaPlano();
+    el.addEventListener('bsel-cancelou', () => fim(false));
+    el.addEventListener('bsel-mesmo', () => fim(false));
+    el._inp.focus();
+  }
+  if (f.t === 'banco') {                      // seletor com ícones: já abre a lista
+    prepararSeletoresBanco();
+    el.addEventListener('bsel-cancelou', () => fim(false));
+    el.addEventListener('bsel-mesmo', () => fim(false));
+    abrirBsel(el);
+  }
   el.addEventListener('blur', () => setTimeout(() => fim(true), 150));
   const rev = td.querySelector('.ied-rev');
   if (rev) {
@@ -998,51 +1180,52 @@ async function viewLancamentos() {
 function renderLancamentos() {
   const cfg = cfgTela('lancamentos');
   const dataPadrao = (hoje.getFullYear() === S.ano && hoje.getMonth() === S.mes) ? HOJE : `${S.ano}-${pad(S.mes + 1)}-01`;
-  const ENTRADA = {
-    banco: `<td><select id="e_banco">${opcoes(S.bancos, '', b => b.nome)}</select></td>`,
-    data: `<td><input type="date" id="e_data" value="${dataPadrao}"></td>`,
-    grupo: `<td><span class="e-badge" id="e_grupo" style="background:#c9cbd0">—</span></td>`,
-    plano: `<td><select id="e_plano" data-chg="ePlano">${opcoesPlano('')}</select></td>`,
-    item: `<td><input id="e_item" placeholder="Descrição"></td>`,
-    valor: `<td><input id="e_valor" placeholder="0,00" inputmode="decimal" style="text-align:right"></td>`,
-    dprog: `<td><input type="date" id="e_dprog"></td>`,
-    dpag: `<td><input type="date" id="e_dpag"></td>`,
-    acum: `<td></td>`,
-  };
-  const nAj = qtdAjustados(S.lancs);
+  const nAj = qtdAjustados(S.lancs), cor = corEmpresa(S.planilhaId);
   $('main').innerHTML = `
     ${bannerEmpresa(S.planilhaId)}
     <div class="barra">${abasEmpresa(S.planilhaId, 'planilha', false)}</div>
-    <div class="barra">
-      ${barraAno()}${barraMeses(corEmpresa(S.planilhaId))}
+    <div class="barra">${barraAno()}${barraMeses(cor)}</div>
+    <div id="painel"></div>
+
+    <section class="lanc-form" id="lancForm" style="--ec:${esc(cor)}">
+      <div class="lf-h">
+        <b id="lf-tit">Novo lançamento</b>
+        <span class="lf-tipo" id="e_grupo">Escolha o plano de contas</span>
+        <span class="lf-dica">Enter lança · Esc cancela edição</span>
+      </div>
+      <div class="lf-grid">
+        <label class="f-banco">Banco<select id="e_banco" data-banco>${opcoes(S.bancos, '', b => b.nome)}</select></label>
+        <label class="f-data">Data do lançamento<input type="date" id="e_data" value="${dataPadrao}"></label>
+        <label class="f-plano">Plano de contas<select id="e_plano" data-busca data-chg="ePlano">${opcoesPlano('')}</select></label>
+        <label class="f-item">Descrição<input id="e_item" placeholder="Ex.: Pix parcelas, pagamento fornecedor…"></label>
+        <label class="f-valor">Valor (R$)<input id="e_valor" placeholder="0,00" inputmode="decimal"></label>
+        <label class="f-dp">Data programada<input type="date" id="e_dprog"></label>
+        <label class="f-dp">Data de pagamento<input type="date" id="e_dpag"></label>
+        <div class="f-acoes">
+          <button class="salvar" id="e_salvar" data-act="salvarLanc" title="Lançar (Enter)">+ Lançar</button>
+          <button class="cancelar" id="e_cancelar" data-act="cancelarLanc" hidden>Cancelar</button>
+        </div>
+      </div>
+    </section>
+
+    <div class="lanc-tool">
+      <div class="lt-tit"><b>Lançamentos de ${MESES_NOME[S.mes]}</b> <span class="mut" id="lt-cont"></span></div>
       <div class="filtros">
-        <input id="f_texto" placeholder="Buscar item ou conta…" value="${esc(S.filtro.texto)}">
-        <select id="f_banco" data-chg="fBanco">${opcoes(S.bancos, S.filtro.banco, b => b.nome, 'Todos os bancos')}</select>
+        <input id="f_texto" class="busca-ic" placeholder="Buscar item ou conta…" value="${esc(S.filtro.texto)}">
+        <select id="f_banco" data-chg="fBanco" data-banco>${opcoes(S.bancos, S.filtro.banco, b => b.nome, 'Todos os bancos')}</select>
         <select id="f_grupo" data-chg="fGrupo">${opcoes(gruposOrdenados(), S.filtro.grupo, g => g.nome, 'Todos os grupos')}</select>
         <label class="chk"><input type="checkbox" data-chg="fAj" ${S.filtro.aj ? 'checked' : ''}> Só ajustados${nAj ? ` <span class="cont-aj">${nAj}</span>` : ''}</label>
         ${botaoPers('lancamentos')}
       </div>
     </div>
-    <div class="faixa" style="--ec:${esc(corEmpresa(S.planilhaId))}"></div>
-    <div class="grade">
-      <div>
-        <div class="tabwrap congela">
-          <table class="zebra ${cfg.compacto ? 'compacto' : ''}">
-            <thead><tr>${cfg.cols.map(k => `<th>${colDef('lancamentos', k).h}</th>`).join('')}<th></th></tr></thead>
-            <tbody id="entrada">
-              <tr class="entrada">${cfg.cols.map(k => ENTRADA[k]).join('')}
-                <td><button class="salvar" id="e_salvar" data-act="salvarLanc" title="Adicionar (Enter)">+ Lançar</button>
-                  <button class="cancelar" id="e_cancelar" data-act="cancelarLanc" hidden>Cancelar</button></td>
-              </tr>
-            </tbody>
-            <tbody id="linhas"></tbody>
-          </table>
-        </div>
-        <p class="dica">Digite na linha amarela e tecle <b>Enter</b> para adicionar. Para corrigir um lançamento, <b>clique na célula</b>, altere e tecle Enter (Esc cancela).
-          <span class="leg-aj">célula ajustada</span> = valor alterado depois de lançado; passe o mouse para ver o original.</p>
-      </div>
-      <aside class="painel" id="painel"></aside>
-    </div>`;
+    <div class="tabwrap congela">
+      <table class="lanc ${cfg.compacto ? 'compacto' : ''}">
+        <thead><tr>${cfg.cols.map(k => `<th class="c-${k}">${colDef('lancamentos', k).h}</th>`).join('')}<th class="c-acoes"></th></tr></thead>
+        <tbody id="linhas"></tbody>
+      </table>
+    </div>
+    <p class="dica">Para corrigir um lançamento, <b>clique na célula</b>, altere e tecle Enter (Esc cancela) — ou use ✎ para editar tudo no formulário.
+      <span class="leg-aj">célula ajustada</span> = alterada depois de lançada; passe o mouse para ver o valor original.</p>`;
   renderLinhas(); renderPainel();
 }
 
@@ -1050,6 +1233,8 @@ function renderLinhas() {
   const cfg = cfgTela('lancamentos');
   let acum = 0;
   const comAcum = S.lancs.map(l => (acum += sinal(l) * Number(l.valor), { ...l, acum }));
+  const fimDoDia = {};                                   // acumulado ao fim de cada dia (sempre cronológico)
+  for (const l of comAcum) fimDoDia[l.data_lancamento] = l.acum;
   const f = S.filtro, t = f.texto.trim().toLowerCase();
   let vis = comAcum.filter(l => {
     const pc = M.plano[l.plano_conta_id];
@@ -1060,23 +1245,39 @@ function renderLinhas() {
     return true;
   });
   if (cfg.desc) vis = vis.reverse();
-  $('linhas').innerHTML = vis.length ? vis.map(l => {
-    const g = grupoDoPlano(l.plano_conta_id), A = l.ajustes || {};
+  const filtrado = !!(f.banco || f.grupo || f.aj || t);
+  if ($('lt-cont')) $('lt-cont').textContent = `· ${vis.length} ${vis.length === 1 ? 'lançamento' : 'lançamentos'}${filtrado ? ` (de ${S.lancs.length})` : ''}`;
+  const nCol = cfg.cols.length + 1;
+  // totais de cada dia (dos lançamentos visíveis)
+  const dia = {};
+  for (const l of vis) { const d = (dia[l.data_lancamento] ||= { ent: 0, sai: 0, n: 0 }); d.n++; sinal(l) > 0 ? d.ent += Number(l.valor) : d.sai += Number(l.valor); }
+  let ultimo = null, html = '';
+  for (const l of vis) {
+    if (l.data_lancamento !== ultimo) {
+      ultimo = l.data_lancamento;
+      const d = dia[ultimo], [a, m, dd] = ultimo.split('-').map(Number), dow = new Date(a, m - 1, dd).getDay();
+      html += `<tr class="dia-sep"><td colspan="${nCol}"><div>
+        <b>${pad(dd)}/${pad(m)}</b><span class="dsem">${['domingo', 'segunda', 'terça', 'quarta', 'quinta', 'sexta', 'sábado'][dow]}</span>
+        <span class="dn">${d.n} ${d.n === 1 ? 'lançamento' : 'lançamentos'}</span>
+        ${d.ent ? `<span class="pos">entradas ${num2(d.ent)}</span>` : ''}${d.sai ? `<span class="neg">saídas ${num2(d.sai)}</span>` : ''}
+        <span class="dacc">acumulado no fim do dia <b class="${fimDoDia[ultimo] < 0 ? 'neg' : ''}">${brl(fimDoDia[ultimo])}</b></span></div></td></tr>`;
+    }
+    const g = grupoDoPlano(l.plano_conta_id), A = l.ajustes || {}, s = sinal(l);
     const C = {
-      banco: celEd('lanc', l, 'banco', 'banco', bancoTag(M.banco[l.banco_id], 18)),
-      data: celEd('lanc', l, 'data', 'c', fmtData(l.data_lancamento)),
-      grupo: `<td class="badge ${'plano_conta_id' in A ? 'aj-b' : ''}" style="background:${esc(corGrupo(g))}">${esc(g?.nome ?? '')}</td>`,
-      plano: celEd('lanc', l, 'plano', 'plano', esc(planoLabel(l.plano_conta_id))),
-      item: celEd('lanc', l, 'item', 'item', esc(l.item)),
-      valor: celEd('lanc', l, 'valor', 'r', `R$${num2(l.valor)}`),
-      dprog: celEd('lanc', l, 'dprog', 'c', fmtData(l.data_programada)),
-      dpag: celEd('lanc', l, 'dpag', 'c', fmtData(l.data_pagamento)),
-      acum: `<td class="acum" style="background:${l.acum >= 0 ? 'var(--green)' : 'var(--red)'}">${l.acum < 0 ? '-' : ''}R$ ${num2(Math.abs(l.acum))}</td>`,
+      banco: celEd('lanc', l, 'banco', 'banco', bancoTag(M.banco[l.banco_id], 20)),
+      data: celEd('lanc', l, 'data', 'c mut', fmtData(l.data_lancamento)),
+      grupo: `<td class="grupo"><span class="pill ${'plano_conta_id' in A ? 'aj-b' : ''}" style="--c:${esc(corGrupo(g))}">${esc(g?.nome ?? '')}</span></td>`,
+      plano: celEd('lanc', l, 'plano', 'plano', `<span class="cod">${esc(M.plano[l.plano_conta_id]?.codigo ?? '')}</span> ${esc(M.plano[l.plano_conta_id]?.nome ?? '')}`),
+      item: celEd('lanc', l, 'item', 'item', esc(l.item) || '<span class="mut">—</span>'),
+      valor: celEd('lanc', l, 'valor', 'r valor', `<span class="${s > 0 ? 'pos' : 'neg'}">${s > 0 ? '+' : '−'} ${num2(l.valor)}</span>`),
+      dprog: celEd('lanc', l, 'dprog', 'c mut', fmtData(l.data_programada) || '—'),
+      dpag: celEd('lanc', l, 'dpag', 'c mut', fmtData(l.data_pagamento) || '—'),
+      acum: `<td class="r acc ${l.acum < 0 ? 'neg' : ''}">${l.acum < 0 ? '−' : ''}${num2(Math.abs(l.acum))}</td>`,
     };
-    return `<tr class="${S.editId === l.id ? 'editando' : ''} ${Object.keys(A).length ? 'tem-aj' : ''}">${cfg.cols.map(k => C[k]).join('')}
-      <td class="acoes"><button class="ib" title="Editar tudo na linha amarela" data-act="editarLanc" data-id="${l.id}">✎</button><button class="ib del" title="Excluir" data-act="excluirLanc" data-id="${l.id}">✕</button></td>
-    </tr>`;
-  }).join('') : `<tr><td colspan="${cfg.cols.length + 1}" class="vazio">Nenhum lançamento ${f.aj ? 'ajustado ' : ''}em ${MESES_NOME[S.mes]} de ${S.ano}.</td></tr>`;
+    html += `<tr class="lin ${S.editId === l.id ? 'editando' : ''} ${Object.keys(A).length ? 'tem-aj' : ''} ${s > 0 ? 'rec' : 'desp'}">${cfg.cols.map(k => C[k]).join('')}
+      <td class="acoes"><button class="ib" title="Editar no formulário" data-act="editarLanc" data-id="${l.id}">✎</button><button class="ib del" title="Excluir" data-act="excluirLanc" data-id="${l.id}">✕</button></td></tr>`;
+  }
+  $('linhas').innerHTML = html || `<tr><td colspan="${nCol}" class="vazio">Nenhum lançamento ${f.aj ? 'ajustado ' : ''}em ${MESES_NOME[S.mes]} de ${S.ano}.</td></tr>`;
 }
 
 function renderPainel() {
@@ -1088,22 +1289,31 @@ function renderPainel() {
     porBanco[l.banco_id] = (porBanco[l.banco_id] || 0) + s * v;
   }
   const res = rec - desp, acum = S.saldoAnt + res;
+  const usados = S.bancos.filter(b => porBanco[b.id]);
   $('painel').innerHTML = `
-    <div class="kpi res"><div class="l">Resultado Mês</div><div class="v ${res >= 0 ? 'g' : 'r'}">${brl(res)}</div></div>
-    <div class="kpi"><div class="l">Saldo de ${MESES_NOME[(S.mes + 11) % 12]}</div><div class="v">${brl(S.saldoAnt)}</div></div>
-    <div class="kpi"><div class="l">Total de Receitas</div><div class="v g">${brl(rec)}</div></div>
-    <div class="kpi"><div class="l">Total de Despesas</div><div class="v r">${brl(desp)}</div></div>
-    <div class="kpi"><div class="l">Acumulado</div><div class="v b">${brl(acum)}</div></div>
-    <div class="lista"><h4>Movimento do mês por banco</h4>
-      ${S.bancos.map(b => { const v = porBanco[b.id] || 0; return `<div class="b">${bancoTag(b, 18)}<span class="${clsSinal(v)}">${brl(v)}</span></div>`; }).join('') || '<div class="b">Nenhum banco cadastrado</div>'}
-    </div>`;
+    <div class="lk">
+      <div class="lk-i"><div class="l">Saldo de ${MESES_NOME[(S.mes + 11) % 12]}</div><div class="v ${S.saldoAnt < 0 ? 'neg' : ''}">${brl(S.saldoAnt)}</div></div>
+      <div class="lk-op">+</div>
+      <div class="lk-i rec"><div class="l">Receitas do mês</div><div class="v">${brl(rec)}</div></div>
+      <div class="lk-op">−</div>
+      <div class="lk-i desp"><div class="l">Despesas do mês</div><div class="v">${brl(desp)}</div></div>
+      <div class="lk-op">=</div>
+      <div class="lk-i fim"><div class="l">Saldo acumulado</div><div class="v ${acum < 0 ? 'neg' : ''}">${brl(acum)}</div>
+        <div class="s">resultado do mês <b class="${res < 0 ? 'neg' : 'pos'}">${res < 0 ? '−' : '+'} ${brl(Math.abs(res))}</b></div></div>
+    </div>
+    ${usados.length ? `<div class="bk-chips"><span class="lbl">Movimento por banco</span>${usados.map(b => {
+      const v = porBanco[b.id];
+      return `<button class="bk-chip ${String(b.id) === S.filtro.banco ? 'on' : ''}" data-act="filtroBanco" data-id="${b.id}" title="Filtrar ${esc(b.nome)}">${iconeBanco(b, 18)}<span>${esc(b.nome)}</span><b class="${v < 0 ? 'neg' : 'pos'}">${v < 0 ? '−' : '+'}${num2(Math.abs(v))}</b></button>`;
+    }).join('')}</div>` : ''}`;
 }
 
 function atualizarBadgeEntrada() {
   const el = $('e_grupo'); if (!el) return;
   const g = grupoDoPlano(Number($('e_plano').value));
-  el.textContent = g?.nome ?? '—';
-  el.style.background = g ? corGrupo(g) : '#c9cbd0';
+  el.innerHTML = g ? `<i style="background:${esc(corGrupo(g))}"></i>${esc(g.nome)} <b>${g.tipo === 'RECEITA' ? 'RECEITA' : 'DESPESA'}</b>` : 'Escolha o plano de contas';
+  el.className = 'lf-tipo ' + (g ? (g.tipo === 'RECEITA' ? 'rec' : 'desp') : '');
+  $('lancForm')?.classList.toggle('t-rec', g?.tipo === 'RECEITA');
+  $('lancForm')?.classList.toggle('t-desp', g?.tipo === 'DESPESA');
 }
 const valCampo = id => $(id)?.value ?? '';
 
@@ -1151,9 +1361,11 @@ function editarLanc(id) {
   put('e_banco', l.banco_id); put('e_data', l.data_lancamento); put('e_plano', l.plano_conta_id); put('e_item', l.item ?? '');
   put('e_valor', num2(l.valor)); put('e_dprog', l.data_programada ?? ''); put('e_dpag', l.data_pagamento ?? '');
   $('e_salvar').textContent = 'Salvar alteração'; $('e_cancelar').hidden = false;
+  $('lf-tit').textContent = `Editando lançamento de ${fmtData(l.data_lancamento)}`;
+  $('lancForm').classList.add('editando-f');
   atualizarBadgeEntrada(); renderLinhas();
-  $('e_valor').focus();
-  $('entrada').scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+  $('lancForm').scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+  $('e_valor').focus(); $('e_valor').select();
 }
 
 async function excluirLanc(id) {
@@ -1336,6 +1548,191 @@ function renderDRE() {
       <div class="tile r"><div class="l">Ponto de equilíbrio / mês</div><div class="v">${n && Number.isFinite(tot.PE) ? brl(tot.PE / n) : '–'}</div><div class="s">faturamento mínimo</div></div>
     </div>
     <div class="tabwrap congela"><table class="dre ${cfg.compacto ? 'compacto' : ''}"><thead>${head}</thead><tbody>${body}</tbody></table></div>`;
+}
+
+/* ============================ MARKUP DE VENDA ============================ */
+// Mark-up (divisor) = 1 ÷ (1 − (impostos% + despesas fixas% + despesas com vendas% + despesas financeiras% + lucro%))
+// Multiplicador = Mark-up − 1. Percentuais tirados da DRE, sobre a Receita Operacional Bruta de cada mês.
+const MK_PADRAO = { lucro: 10, usado: 120, porMes: {}, ignorarAtual: true };
+const chaveMarkup = () => `markup:${S.empresaVis}:${S.ano}`;
+const CORM = { nec: '#2a78d6', usado: '#eb6834', real: '#1baf7a' };
+
+async function viewMarkup() {
+  const pid = S.empresaVis === 'all' ? null : S.empresaVis;
+  let lancs = [], prm = null;
+  try { lancs = await store.lancs({ ini: `${S.ano}-01-01`, fim: `${S.ano}-12-31`, planilha_id: pid }); } catch (e) { toast(e.message, true); }
+  try { prm = await store.getParam(chaveMarkup()); } catch (e) { toast(e.message, true); }
+  const z = () => Array(12).fill(0), pos = Object.fromEntries(DRE_POS.map(([k]) => [k, z()])), comDados = new Set();
+  for (const l of lancs) {
+    const m = Number(l.data_lancamento.slice(5, 7)) - 1, gd = M.gdre[M.plano[l.plano_conta_id]?.grupo_dre_id];
+    comDados.add(m);
+    if (gd) pos[gd.posicao][m] += sinal(l) * Number(l.valor);
+  }
+  S.mk = { prm: { ...MK_PADRAO, ...(prm || {}), porMes: { ...(prm?.porMes || {}) } }, pos, comDados };
+  renderMarkup();
+}
+
+function calcMarkup() {
+  const { prm, pos, comDados } = S.mk, L = prm.lucro / 100;
+  const meses = Array.from({ length: 12 }, (_, m) => {
+    const usado = (prm.porMes[m] ?? prm.usado) / 100, rob = pos.ROB[m];
+    if (!comDados.has(m) || rob <= 0) return { m, dados: false, usado };
+    const imp = -pos.IMP[m] / rob, fix = -pos.ADM[m] / rob, vend = -pos.DVV[m] / rob, fin = -pos.RFIN[m] / rob;
+    const soma = imp + fix + vend + fin + L;
+    const mk = soma < 1 ? 1 / (1 - soma) : NaN, mult = mk - 1;
+    const custos = imp + fix + vend + fin;
+    const lucroProj = 1 - 1 / (1 + usado) - custos;          // lucro se o preço = custo × (1 + multiplicador usado)
+    const cmv = -(pos.CMV[m] + pos.VEST[m]);
+    const real = cmv > 0 ? rob / cmv - 1 : NaN;              // multiplicador praticado: vendas ÷ custo das mercadorias − 1
+    const parcial = S.ano === hoje.getFullYear() && m === hoje.getMonth();
+    return { m, dados: true, parcial, imp, fix, vend, fin, lucro: L, soma, mk, mult, usado, dif: usado - mult, lucroProj, real };
+  });
+  const com = meses.filter(x => x.dados && !(x.parcial && prm.ignorarAtual));   // meses que entram na média
+  const media = k => { const v = com.map(x => x[k]).filter(Number.isFinite); return v.length ? v.reduce((a, b) => a + b, 0) / v.length : NaN; };
+  const med = Object.fromEntries(['imp', 'fix', 'vend', 'fin', 'lucro', 'soma', 'mk', 'mult', 'dif', 'lucroProj', 'real'].map(k => [k, media(k)]));
+  med.usado = meses.reduce((a, x) => a + x.usado, 0) / 12;
+  return { meses, med, com };
+}
+
+function graficoMarkup(meses) {
+  const com = meses.filter(x => x.dados);
+  if (!com.length) return '';
+  const W = 1000, H = 260, L = 56, R = 120, T = 14, B = 30;
+  const series = [
+    { k: 'mult', n: 'Necessário', c: CORM.nec },
+    { k: 'usado', n: 'Usado', c: CORM.usado },
+    { k: 'real', n: 'Praticado', c: CORM.real },
+  ];
+  const vals = com.flatMap(x => series.map(s => x[s.k] * 100)).filter(Number.isFinite);
+  const sc = escala(Math.min(0, ...vals), Math.max(...vals));
+  const x = m => L + (W - L - R) * (m + 0.5) / 12, y = v => T + (H - T - B) * (sc.hi - v) / (sc.hi - sc.lo);
+  let g = '';
+  for (let v = sc.lo; v <= sc.hi + sc.passo / 2; v += sc.passo)
+    g += `<line x1="${L}" x2="${W - R}" y1="${y(v)}" y2="${y(v)}" stroke="${Math.abs(v) < 1e-6 ? CORD.zero : CORD.grade}"/><text x="${L - 8}" y="${y(v) + 4}" font-size="12" fill="${CORD.mut}" text-anchor="end" ${FONTE}>${Math.round(v)}%</text>`;
+  MESES.forEach((mm, m) => { g += `<text x="${x(m)}" y="${H - 9}" font-size="12" fill="${meses[m].dados ? CORD.txt : CORD.mut}" text-anchor="middle" ${FONTE}>${mm}</text>`; });
+  const fins = [];
+  for (const s of series) {
+    const pts = com.filter(p => Number.isFinite(p[s.k])).map(p => [x(p.m), y(p[s.k] * 100)]);
+    if (!pts.length) continue;
+    g += `<polyline points="${pts.map(p => p.join(',')).join(' ')}" fill="none" stroke="${s.c}" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round" ${s.k === 'usado' ? 'stroke-dasharray="7 5"' : ''}/>`;
+    g += pts.map(([px, py]) => `<circle cx="${px}" cy="${py}" r="4.5" fill="${s.c}" stroke="#fff" stroke-width="2"/>`).join('');
+    fins.push({ y: pts.at(-1)[1], x: pts.at(-1)[0], n: s.n, c: s.c });
+  }
+  // rótulos no fim das linhas, afastados para não encavalar
+  fins.sort((a, b) => a.y - b.y);
+  for (let i = 1; i < fins.length; i++) if (fins[i].y - fins[i - 1].y < 16) fins[i].y = fins[i - 1].y + 16;
+  const xr = Math.max(...fins.map(f => f.x)) + 12;
+  g += fins.map(f => `<rect x="${xr}" y="${f.y - 5}" width="10" height="10" rx="2" fill="${f.c}"/><text x="${xr + 15}" y="${f.y + 4}" font-size="12" fill="${CORD.txt}" font-weight="600" ${FONTE}>${f.n}</text>`).join('');
+  g += meses.map(p => `<rect class="hit" x="${x(p.m) - (W - L - R) / 24}" y="${T}" width="${(W - L - R) / 12}" height="${H - T - B}" fill="transparent" tabindex="0" ${dt(`${MESES_NOME[p.m]} de ${S.ano}`,
+    p.dados ? [[pct(p.mult), 'multiplicador necessário', CORM.nec], [pct(p.usado), 'multiplicador usado', CORM.usado], [pct(p.real), 'multiplicador praticado', CORM.real], [pct(p.lucroProj), 'lucro projetado com o usado', '']] : [[pct(p.usado), 'multiplicador usado', CORM.usado], ['sem vendas', 'no mês', '']])}/>`).join('');
+  return `<section class="graf dcard s12" id="mkGraf">
+    <div class="dhead"><div><div class="graf-t">Multiplicador mês a mês</div><div class="dsub">necessário para o lucro desejado × usado na formação de preço × praticado nas vendas (vendas ÷ CMV)</div></div></div>
+    <div class="leg"><span><i style="background:${CORM.nec}"></i>Necessário</span><span><i style="background:${CORM.usado}"></i>Usado</span><span><i style="background:${CORM.real}"></i>Praticado</span></div>
+    <svg class="grafico" viewBox="0 0 ${W} ${H}" role="img" aria-label="Multiplicador necessário, usado e praticado por mês"><rect width="${W}" height="${H}" fill="#fff"/>${g}</svg>
+    <div class="tip" hidden></div></section>`;
+}
+
+function renderMarkup() {
+  const { prm } = S.mk, { meses, med, com } = calcMarkup();
+  const pc = v => Number.isFinite(v) ? (Math.abs(v) < 5e-5 ? 0 : v * 100).toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + '%' : '';
+  const mk3 = v => Number.isFinite(v) ? v.toLocaleString('pt-BR', { minimumFractionDigits: 3, maximumFractionDigits: 3 }) : '';
+  const cel = (x, k, f) => `<td class="${x.dados ? '' : 'fut'}">${x.dados ? f(x[k]) : ''}</td>`;
+  const linha = (rot, k, f, cls = '', dica = '') => `<tr class="${cls}"><td class="l" ${dica ? `title="${esc(dica)}"` : ''}>${rot}</td>${meses.map(x => cel(x, k, f)).join('')}<td class="tot">${f(med[k])}</td></tr>`;
+  const inviavel = com.some(x => !Number.isFinite(x.mk));
+  const abaixo = Number.isFinite(med.mult) && med.usado < med.mult - 1e-9;
+
+  const body = `
+    <tr class="sec"><td class="l">PERCENTUAIS SOBRE A RECEITA (DRE)</td><td colspan="13"></td></tr>
+    ${linha('Impostos (%)', 'imp', pc, '', 'Impostos ÷ Receita Operacional Bruta')}
+    ${linha('Despesas fixas (%)', 'fix', pc, '', 'Despesas Administrativas ÷ Receita Operacional Bruta')}
+    ${linha('Despesas com vendas (%)', 'vend', pc, '', 'Despesas Variáveis de Venda ÷ Receita Operacional Bruta')}
+    ${linha('Despesas financeiras (%)', 'fin', pc, '', 'Resultado Financeiro (negativo) ÷ Receita Operacional Bruta')}
+    <tr class="par"><td class="l">Lucro desejado (%)</td>${meses.map(x => `<td class="${x.dados ? '' : 'fut'}">${x.dados ? pc(x.lucro) : ''}</td>`).join('')}<td class="tot">${pc(prm.lucro / 100)}</td></tr>
+    ${linha('Soma dos percentuais', 'soma', pc, 'sub')}
+    <tr class="sec"><td class="l">MARKUP</td><td colspan="13"></td></tr>
+    ${linha('Mark-up (divisor)', 'mk', mk3, 'mk', '1 ÷ (1 − soma dos percentuais)')}
+    ${linha('Multiplicador necessário', 'mult', pc, 'nec', 'Mark-up − 1: quanto somar sobre o custo')}
+    <tr class="usado"><td class="l">Multiplicador (markup) usado</td>${meses.map(x => `<td><input class="mk-in ${prm.porMes[x.m] != null ? 'proprio' : ''}" data-chg="mkMes" data-m="${x.m}" inputmode="decimal" value="${num2(x.usado * 100)}" title="${prm.porMes[x.m] != null ? 'Valor próprio deste mês' : 'Valor padrão'} · altere para este mês"></td>`).join('')}<td class="tot">${pc(med.usado)}</td></tr>
+    <tr class="dif"><td class="l">Diferença (usado − necessário)</td>${meses.map(x => `<td class="${x.dados ? (x.dif < 0 ? 'ruim' : 'bom') : 'fut'}">${x.dados && Number.isFinite(x.dif) ? `${x.dif < 0 ? '▼' : '▲'} ${(x.dif * 100).toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} p.p.` : ''}</td>`).join('')}<td class="tot ${med.dif < 0 ? 'ruim' : 'bom'}">${Number.isFinite(med.dif) ? `${(med.dif * 100).toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} p.p.` : ''}</td></tr>
+    <tr class="sec"><td class="l">RESULTADO</td><td colspan="13"></td></tr>
+    ${linha('Lucro projetado com o markup usado', 'lucroProj', pc, 'proj', '1 − 1 ÷ (1 + multiplicador usado) − (impostos + fixas + vendas + financeiras)')}
+    ${linha('Multiplicador praticado (vendas ÷ CMV − 1)', 'real', pc, 'real', 'Quanto as vendas ficaram acima do custo das mercadorias vendidas, pela DRE')}`;
+
+  const alerta = !com.length ? `<div class="mk-alerta neutro">Sem vendas lançadas em ${S.ano} para ${esc(nomeEmpresa(S.empresaVis))}. Os percentuais aparecem assim que houver lançamentos.</div>`
+    : inviavel ? `<div class="mk-alerta ruim"><b>Atenção:</b> em algum mês a soma dos percentuais passou de 100% — com esses custos não existe markup que gere o lucro desejado.</div>`
+    : abaixo ? `<div class="mk-alerta ruim"><b>Markup abaixo do necessário.</b> Para ter ${pc(prm.lucro / 100)} de lucro, o multiplicador médio precisa ser <b>${pc(med.mult)}</b>, mas o usado é <b>${pc(med.usado)}</b>. Com ele, o lucro projetado é <b>${pc(med.lucroProj)}</b>.</div>`
+    : `<div class="mk-alerta bom"><b>Markup adequado.</b> O multiplicador usado (${pc(med.usado)}) cobre o necessário (${pc(med.mult)}) para ${pc(prm.lucro / 100)} de lucro. Lucro projetado: <b>${pc(med.lucroProj)}</b>.</div>`;
+
+  $('main').innerHTML = `
+    ${bannerEmpresa(S.empresaVis)}
+    <h2 class="tit">Markup de Venda</h2>
+    <p class="sub">${S.ano} · calculado com os percentuais da DRE de cada mês. Os parâmetros ficam salvos por empresa e ano.</p>
+    <div class="barra">${abasEmpresa(S.empresaVis, 'empresaVis', true)}</div>
+    <div class="barra">${barraAno()}</div>
+    <div class="mk-topo">
+      <div class="mk-par">
+        <div class="pt">Parâmetros</div>
+        <label>Lucro desejado<span class="suf"><input id="mk_lucro" data-chg="mkLucro" inputmode="decimal" value="${num2(prm.lucro)}">%</span></label>
+        <label>Multiplicador usado (padrão)<span class="suf"><input id="mk_usado" data-chg="mkUsado" inputmode="decimal" value="${num2(prm.usado)}">%</span></label>
+        ${S.ano === hoje.getFullYear() ? `<label class="chk mk-chk"><input type="checkbox" data-chg="mkIgnorar" ${prm.ignorarAtual ? 'checked' : ''}> Ignorar ${MESES_NOME[hoje.getMonth()].toLowerCase()} (mês incompleto) na média</label>` : ''}
+        ${Object.keys(prm.porMes).length ? `<button class="mini" data-act="mkLimparMeses" title="Remove os valores próprios dos meses">Usar o padrão em todos os meses</button>` : ''}
+      </div>
+      <div class="kpis mk-kpis">
+        <div class="kp"><div class="l">Mark-up necessário</div><div class="v">${mk3(med.mk) || '–'}</div><div class="d">média dos meses com vendas</div></div>
+        <div class="kp rec"><div class="l">Multiplicador necessário</div><div class="v">${pc(med.mult) || '–'}</div><div class="d">para ${pc(prm.lucro / 100)} de lucro</div></div>
+        <div class="kp desp"><div class="l">Multiplicador usado</div><div class="v">${pc(med.usado)}</div><div class="d ${abaixo ? 'ruim' : 'bom'}"><b>${Number.isFinite(med.dif) ? `${med.dif < 0 ? '▼' : '▲'} ${Math.abs(med.dif * 100).toLocaleString('pt-BR', { maximumFractionDigits: 2 })} p.p.` : ''}</b> ${Number.isFinite(med.dif) ? 'vs necessário' : ''}</div></div>
+        <div class="kp hero"><div class="l">Lucro projetado</div><div class="v ${med.lucroProj < 0 ? 'neg' : ''}">${pc(med.lucroProj) || '–'}</div><div class="d">com o multiplicador usado</div></div>
+        <div class="kp"><div class="l">Multiplicador praticado</div><div class="v">${pc(med.real) || '–'}</div><div class="d">vendas ÷ CMV na DRE</div></div>
+      </div>
+    </div>
+    ${alerta}
+    ${graficoMarkup(meses)}
+    <div class="tabwrap congela"><table class="facum mkt">
+      <thead><tr><th style="text-align:left">Formação do markup ${S.ano}</th>${MESES.map((m, i) => `<th>${m}${meses[i].parcial && meses[i].dados ? '<small class="parc">parcial</small>' : ''}</th>`).join('')}<th>MÉDIA</th></tr></thead>
+      <tbody>${body}</tbody>
+    </table></div>
+    <div class="mk-baixo">
+      <section class="graf mk-sim">
+        <div class="graf-t">Simulador de preço</div>
+        <div class="dsub">Informe o custo de um produto para ver o preço de venda.</div>
+        <div class="sim-in">
+          <label>Custo do produto (R$)<input id="mk_custo" inputmode="decimal" placeholder="0,00" value="${esc(S.mkCusto || '')}"></label>
+          <label>Base<select id="mk_base" data-chg="mkBase"><option value="media">Média do ano</option>${meses.filter(x => x.dados).map(x => `<option value="${x.m}" ${String(S.mkBase) === String(x.m) ? 'selected' : ''}>${MESES_NOME[x.m]}</option>`).join('')}</select></label>
+        </div>
+        <div id="mkSimRes"></div>
+      </section>
+      <section class="graf mk-form">
+        <div class="graf-t">Como é calculado</div>
+        <ol>
+          <li><b>Percentuais</b> de cada mês, sobre a Receita Operacional Bruta da DRE: impostos, despesas fixas (administrativas), despesas com vendas (variáveis) e despesas financeiras.</li>
+          <li><b>Mark-up</b> = 1 ÷ (1 − (impostos + fixas + vendas + financeiras + lucro desejado)).</li>
+          <li><b>Multiplicador necessário</b> = Mark-up − 1. Preço = custo × Mark-up.</li>
+          <li><b>Lucro projetado</b> = 1 − 1 ÷ (1 + multiplicador usado) − (impostos + fixas + vendas + financeiras).</li>
+          <li><b>Média</b> = média dos meses com vendas.</li>
+        </ol>
+      </section>
+    </div>`;
+  atualizarSimulador();
+}
+
+function atualizarSimulador() {
+  const out = $('mkSimRes'); if (!out) return;
+  const custo = parseValor($('mk_custo').value);
+  const { meses, med } = calcMarkup();
+  const base = S.mkBase == null || S.mkBase === 'media' ? med : meses[Number(S.mkBase)];
+  if (!(custo > 0) || !base) { out.innerHTML = '<div class="mut sim-vazio">Digite um custo para simular.</div>'; return; }
+  const pNec = custo * base.mk, pUs = custo * (1 + base.usado);
+  out.innerHTML = `<div class="sim-res">
+    <div><span>Preço para ${pct(S.mk.prm.lucro / 100)} de lucro</span><b>${Number.isFinite(pNec) ? brl(pNec) : '–'}</b><small>custo × ${base.mk?.toLocaleString('pt-BR', { maximumFractionDigits: 3 }) ?? '–'}</small></div>
+    <div><span>Preço com o multiplicador usado</span><b>${brl(pUs)}</b><small>custo × ${(1 + base.usado).toLocaleString('pt-BR', { maximumFractionDigits: 3 })} · lucro ${pct(base.lucroProj)}</small></div>
+    <div class="${pUs < pNec ? 'ruim' : 'bom'}"><span>Diferença por unidade</span><b>${brl(pUs - pNec)}</b><small>${pUs < pNec ? 'abaixo do preço ideal' : 'acima do preço ideal'}</small></div>
+  </div>`;
+}
+
+async function salvarMarkup(msg) {
+  try { await store.setParam(chaveMarkup(), S.mk.prm); toast(msg); }
+  catch (e) { toast(e.message, true); }
+  renderMarkup();
 }
 
 /* ============================== DASHBOARD ============================== */
@@ -1855,8 +2252,8 @@ function renderTransferencias() {
   const total = lista.reduce((a, t) => a + Number(t.valor), 0);
   const ENTRADA = {
     data: `<td><input type="date" id="t_data" value="${ed?.data ?? dataPadrao}"></td>`,
-    origem: `<td><select id="t_origem">${opcoes(S.bancos, ed?.banco_origem_id ?? '', b => b.nome, 'Sai de…')}</select></td>`,
-    destino: `<td><select id="t_destino">${opcoes(S.bancos, ed?.banco_destino_id ?? '', b => b.nome, 'Entra em…')}</select></td>`,
+    origem: `<td><select id="t_origem" data-banco>${opcoes(S.bancos, ed?.banco_origem_id ?? '', b => b.nome, 'Sai de…')}</select></td>`,
+    destino: `<td><select id="t_destino" data-banco>${opcoes(S.bancos, ed?.banco_destino_id ?? '', b => b.nome, 'Entra em…')}</select></td>`,
     desc: `<td><input id="t_desc" placeholder="Ex.: Depósito do caixa" value="${esc(ed?.descricao ?? '')}"></td>`,
     valor: `<td><input id="t_valor" placeholder="0,00" inputmode="decimal" style="text-align:right" value="${ed ? num2(ed.valor) : ''}"></td>`,
   };
@@ -1948,6 +2345,7 @@ const hexRgb = h => { const x = h.replace('#', ''); return [0, 2, 4].map(i => pa
 function infoRelatorio() {
   const per = `${MESES_NOME[S.mes]} de ${S.ano}`, v = S.view;
   if (v === 'lancamentos') return { t: 'Lançamentos', emp: nomeEmpresa(S.planilhaId), per, cor: corEmpresa(S.planilhaId) };
+  if (v === 'markup') return { t: 'Markup de Venda', emp: nomeEmpresa(S.empresaVis), per: String(S.ano), cor: corEmpresa(S.empresaVis) };
   if (v === 'dash') { const P = periodoDash(); return { t: 'Dashboard', emp: nomeEmpresa(S.empresaVis), per: `${P.rot} de ${S.ano}`, cor: corEmpresa(S.empresaVis) }; }
   if (v === 'fluxoAcum') return { t: 'Fluxo de Caixa Acumulado', emp: nomeEmpresa(S.empresaVis), per: String(S.ano), cor: corEmpresa(S.empresaVis) };
   if (v === 'fluxo') return { t: 'Fluxo de Caixa Diário', emp: nomeEmpresa(S.empresaVis), per, cor: corEmpresa(S.empresaVis) };
@@ -1984,6 +2382,8 @@ function tabelasParaPDF() {
     // selects/inputs viram texto
     const so = t.querySelectorAll('select'), sc = c.querySelectorAll('select');
     sc.forEach((s, i) => s.replaceWith(document.createTextNode(so[i].selectedOptions[0]?.text ?? '')));
+    const io = t.querySelectorAll('input'), ic = c.querySelectorAll('input');
+    ic.forEach((x, i) => { if (!io[i].closest('tr.entrada') && io[i].type !== 'checkbox') x.replaceWith(document.createTextNode(io[i].value + (io[i].classList.contains('mk-in') ? '%' : ''))); });
     c.querySelectorAll('tr.entrada, .caret, img, button, input').forEach(e => e.remove());
     if (t.querySelector('td.acoes')) {           // tira a coluna de ações
       c.querySelectorAll('td.acoes').forEach(e => e.remove());
@@ -2332,6 +2732,8 @@ const ACOES = {
   excluirLanc: d => excluirLanc(Number(d.id)),
   fluxoDia: d => { const a = S.fluxo.abertos; a.has(d.d) ? a.delete(d.d) : a.add(d.d); renderFluxo(); },
   dreAbrir: d => { const a = S.dre.abertos; a.has(d.k) ? a.delete(d.k) : a.add(d.k); renderDRE(); },
+  filtroBanco: d => { S.filtro.banco = S.filtro.banco === d.id ? '' : d.id; renderLancamentos(); },
+  mkLimparMeses: () => { S.mk.prm.porMes = {}; salvarMarkup('Todos os meses usam o multiplicador padrão.'); },
   dashTab: d => { const t = S.dash.tabelas; t.has(d.id) ? t.delete(d.id) : t.add(d.id); renderDash(); },
   faAbrir: d => { const a = S.fa.abertos, g = Number(d.g); a.has(g) ? a.delete(g) : a.add(g); renderFluxoAcum(); },
   faTodos: () => { const a = S.fa.abertos; if (a.size) a.clear(); else S.grupos.forEach(g => a.add(g.id)); renderFluxoAcum(); },
@@ -2389,6 +2791,16 @@ const MUDANCAS = {
   fBanco: el => { S.filtro.banco = el.value; renderLinhas(); },
   fGrupo: el => { S.filtro.grupo = el.value; renderLinhas(); },
   fluxoVazios: el => { S.fluxo.ocultarVazios = el.checked; renderFluxo(); },
+  mkLucro: el => { const v = parseValor(el.value); if (!(v >= 0 && v < 100)) return toast('Informe um lucro entre 0 e 99%.', true); S.mk.prm.lucro = v; salvarMarkup(`Lucro desejado: ${num2(v)}%`); },
+  mkUsado: el => { const v = parseValor(el.value); if (!(v >= 0)) return toast('Informe um multiplicador válido.', true); S.mk.prm.usado = v; salvarMarkup(`Multiplicador padrão: ${num2(v)}%`); },
+  mkMes: el => {
+    const v = parseValor(el.value), m = Number(el.dataset.m);
+    if (!(v >= 0)) return toast('Informe um multiplicador válido.', true);
+    if (Math.abs(v - S.mk.prm.usado) < 0.005) delete S.mk.prm.porMes[m]; else S.mk.prm.porMes[m] = v;
+    salvarMarkup(`${MESES_NOME[m]}: multiplicador ${num2(v)}%`);
+  },
+  mkIgnorar: el => { S.mk.prm.ignorarAtual = el.checked; salvarMarkup(el.checked ? 'Mês atual fora da média.' : 'Mês atual incluído na média.'); },
+  mkBase: el => { S.mkBase = el.value; atualizarSimulador(); },
   dashPer: el => { S.dash.per = el.value; viewDash(); },
   fAj: el => { S.filtro.aj = el.checked; renderLinhas(); },
   persCol: el => {
@@ -2442,18 +2854,193 @@ document.addEventListener('pointerover', e => { if (e.target.closest?.('#grafSal
 document.addEventListener('pointerout', e => { if (e.target.closest?.('#grafSaldo') && !e.relatedTarget?.closest?.('#grafSaldo')) dicaGrafico(null); });
 document.addEventListener('focusin', e => { if (e.target.matches?.('[data-fa-m]')) dicaGrafico(e.target); });
 // altura do cabeçalho congelado (a linha amarela de digitação fica logo abaixo dele)
+/* ================= PLANO DE CONTAS COM BUSCA ================= */
+// Campo de texto: digite parte do código ou do nome e escolha na lista (agrupada por classificação).
+let cbAberto = null;
+const semAcento = t => String(t).normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();
+function prepararBuscaPlano() {
+  document.querySelectorAll('select[data-busca]:not(.cb-ok)').forEach(sel => {
+    sel.classList.add('cb-ok');
+    const inp = document.createElement('input');
+    inp.type = 'text'; inp.className = 'cb-inp' + (sel.classList.contains('ied') ? ' ied' : '');
+    inp.placeholder = 'Digite código ou nome…'; inp.autocomplete = 'off'; inp.spellcheck = false;
+    inp.setAttribute('role', 'combobox'); inp.setAttribute('aria-autocomplete', 'list');
+    sel.after(inp); sel._inp = inp;
+    Object.defineProperty(sel, 'value', { configurable: true, get() { return valorSelect.get.call(this); }, set(v) { valorSelect.set.call(this, v); textoCb(sel); } });
+    sel.focus = () => inp.focus();
+    sel.addEventListener('change', () => textoCb(sel));
+    inp.addEventListener('focus', () => { inp.select(); abrirCb(sel, ''); });
+    inp.addEventListener('click', () => { if (cbAberto?.sel !== sel) abrirCb(sel, ''); });
+    inp.addEventListener('input', () => abrirCb(sel, inp.value));
+    inp.addEventListener('keydown', e => teclaCb(sel, e));
+    inp.addEventListener('blur', () => setTimeout(() => { if (cbAberto?.sel === sel) fecharCb(false); textoCb(sel); }, 150));
+    textoCb(sel);
+  });
+}
+function textoCb(sel) {
+  const o = sel.selectedOptions[0];
+  if (!sel._inp) return;
+  sel._inp.value = o && o.value ? o.text : '';
+  const g = o && o.value ? grupoDoPlano(Number(o.value)) : null;
+  sel._inp.style.boxShadow = g ? `inset 4px 0 0 ${corGrupo(g)}` : '';
+}
+function abrirCb(sel, q) {
+  if (cbAberto && cbAberto.sel !== sel) fecharCb(false);
+  const termo = semAcento(q.trim());
+  const itens = [];
+  for (const og of sel.querySelectorAll('optgroup')) {
+    const doGrupo = [...og.querySelectorAll('option')].filter(o => !termo || semAcento(o.text + ' ' + og.label).includes(termo));
+    if (doGrupo.length) itens.push({ g: og.label }, ...doGrupo.map(o => ({ v: o.value, t: o.text })));
+  }
+  let pop = cbAberto?.pop;
+  if (!pop) {
+    pop = document.createElement('div'); pop.className = 'bsel-pop cb-pop'; pop.setAttribute('role', 'listbox');
+    pop.addEventListener('pointerdown', e => e.preventDefault());
+    pop.addEventListener('click', e => { const o = e.target.closest('.bsel-op'); if (o) escolherCb(sel, o.dataset.v); });
+    document.body.appendChild(pop);
+  }
+  const opcoesV = itens.filter(i => i.v);
+  pop.innerHTML = opcoesV.length ? itens.map(i => i.g
+    ? `<div class="cb-g"><i style="background:${esc(corGrupo(S.grupos.find(g => g.nome === i.g)))}"></i>${esc(i.g)}</div>`
+    : `<div class="bsel-op ${i.v === sel.value ? 'on' : ''}" role="option" data-v="${esc(i.v)}"><span class="cod">${esc(i.t.split(' ')[0])}</span><span class="n">${esc(i.t.split(' ').slice(1).join(' '))}</span></div>`).join('')
+    : '<div class="cb-vazio">Nenhuma conta encontrada</div>';
+  const r = sel._inp.getBoundingClientRect(), w = Math.max(r.width, 380);
+  pop.style.minWidth = w + 'px'; pop.style.left = Math.max(8, Math.min(r.left, innerWidth - w - 8)) + 'px';
+  let top = r.bottom + 4;
+  if (top + pop.offsetHeight > innerHeight - 8) top = Math.max(8, r.top - pop.offsetHeight - 4);
+  pop.style.top = top + 'px';
+  const ops = [...pop.querySelectorAll('.bsel-op')];
+  cbAberto = { sel, pop, ops, ativo: termo ? 0 : Math.max(0, ops.findIndex(o => o.dataset.v === sel.value)) };
+  marcarCb(cbAberto.ativo);
+}
+function marcarCb(i) {
+  const c = cbAberto; if (!c || !c.ops.length) return;
+  c.ativo = (i + c.ops.length) % c.ops.length;
+  c.ops.forEach((o, j) => o.classList.toggle('foco', j === c.ativo));
+  c.ops[c.ativo].scrollIntoView({ block: 'nearest' });
+}
+function teclaCb(sel, e) {
+  const c = cbAberto?.sel === sel ? cbAberto : null;
+  if (e.key === 'ArrowDown' || e.key === 'ArrowUp') { e.preventDefault(); if (!c) abrirCb(sel, ''); else marcarCb(c.ativo + (e.key === 'ArrowDown' ? 1 : -1)); }
+  else if (e.key === 'Enter' && c) {
+    e.preventDefault(); e.stopPropagation();
+    if (c.ops.length) escolherCb(sel, c.ops[c.ativo].dataset.v);
+  }
+  else if (e.key === 'Tab' && c && sel._inp.value.trim() && c.ops.length && sel._inp.value !== sel.selectedOptions[0]?.text) escolherCb(sel, c.ops[c.ativo].dataset.v, false);
+  else if (e.key === 'Escape' && c) { e.preventDefault(); e.stopPropagation(); fecharCb(false); textoCb(sel); }
+}
+function escolherCb(sel, v, avancar = true) {
+  const mudou = v !== sel.value;
+  fecharCb(true);
+  if (mudou) { sel.value = v; sel.dispatchEvent(new Event('change', { bubbles: true })); }
+  else { textoCb(sel); sel.dispatchEvent(new Event('bsel-mesmo')); }
+  if (avancar && sel.id === 'e_plano') $('e_item')?.focus();
+}
+function fecharCb(escolheu) {
+  if (!cbAberto) return;
+  const { sel, pop } = cbAberto;
+  cbAberto = null; pop.remove();
+  if (!escolheu) sel.dispatchEvent(new Event('bsel-cancelou'));
+}
+document.addEventListener('scroll', e => { if (cbAberto && !(e.target instanceof Element && e.target.closest('.cb-pop'))) { const s = cbAberto.sel; fecharCb(false); textoCb(s); } }, true);
+
+/* ================= SELETOR DE BANCO COM ÍCONE ================= */
+// O <select> nativo não mostra imagens: ele continua existindo (escondido) e guarda o valor;
+// um botão com o ícone do banco mostra a escolha e abre a lista com os ícones.
+let bselAberto = null;
+const valorSelect = Object.getOwnPropertyDescriptor(HTMLSelectElement.prototype, 'value');
+function prepararSeletoresBanco() {
+  document.querySelectorAll('select[data-banco]:not(.bsel-ok)').forEach(sel => {
+    sel.classList.add('bsel-ok');
+    const bt = document.createElement('button');
+    bt.type = 'button'; bt.className = 'bsel-btn'; bt.setAttribute('aria-haspopup', 'listbox');
+    sel.after(bt); sel._bt = bt;
+    Object.defineProperty(sel, 'value', { configurable: true, get() { return valorSelect.get.call(this); }, set(v) { valorSelect.set.call(this, v); desenharBsel(sel); } });
+    sel.focus = () => bt.focus();
+    sel.addEventListener('change', () => desenharBsel(sel));
+    bt.addEventListener('click', e => { e.stopPropagation(); bselAberto?.sel === sel ? fecharBsel() : abrirBsel(sel); });
+    bt.addEventListener('keydown', e => {
+      if (['Enter', ' ', 'ArrowDown', 'ArrowUp'].includes(e.key)) { e.preventDefault(); e.stopPropagation(); abrirBsel(sel); }
+    });
+    desenharBsel(sel);
+  });
+}
+function desenharBsel(sel) {
+  const bt = sel._bt; if (!bt) return;
+  const v = valorSelect.get.call(sel), b = M.banco[v], txt = sel.selectedOptions[0]?.text ?? '';
+  bt.innerHTML = `${b ? iconeBanco(b, 20) : ''}<span class="t ${v ? '' : 'mut'}">${esc(txt)}</span><span class="car">▾</span>`;
+  bt.title = txt;
+}
+function abrirBsel(sel) {
+  fecharBsel(true);
+  const bt = sel._bt, r = bt.getBoundingClientRect(), ops = [...sel.options];
+  const pop = document.createElement('div');
+  pop.className = 'bsel-pop'; pop.setAttribute('role', 'listbox');
+  pop.innerHTML = ops.map((o, i) => `<div class="bsel-op ${o.value === sel.value ? 'on' : ''} ${o.value ? '' : 'vazio'}" role="option" data-i="${i}">
+    ${o.value && M.banco[o.value] ? iconeBanco(M.banco[o.value], 24) : '<span class="sem-ic"></span>'}<span class="n">${esc(o.text)}</span></div>`).join('');
+  document.body.appendChild(pop);
+  const w = Math.max(r.width, 230);
+  pop.style.minWidth = w + 'px';
+  let top = r.bottom + 4;
+  if (top + pop.offsetHeight > innerHeight - 8) top = Math.max(8, r.top - pop.offsetHeight - 4);
+  pop.style.left = Math.max(8, Math.min(r.left, innerWidth - w - 8)) + 'px';
+  pop.style.top = top + 'px';
+  let ativo = Math.max(0, ops.findIndex(o => o.value === sel.value));
+  const marcar = i => { ativo = (i + ops.length) % ops.length; [...pop.children].forEach((el, j) => el.classList.toggle('foco', j === ativo)); pop.children[ativo].scrollIntoView({ block: 'nearest' }); };
+  const escolher = i => {
+    const v = ops[i].value, mudou = v !== sel.value;
+    fecharBsel(true);
+    if (mudou) { sel.value = v; sel.dispatchEvent(new Event('change', { bubbles: true })); }
+    else sel.dispatchEvent(new Event('bsel-mesmo'));
+    if (document.body.contains(bt)) bt.focus();
+  };
+  pop.addEventListener('pointerdown', e => e.preventDefault());
+  pop.addEventListener('click', e => { const o = e.target.closest('.bsel-op'); if (o) escolher(Number(o.dataset.i)); });
+  pop.addEventListener('pointermove', e => { const o = e.target.closest('.bsel-op'); if (o && Number(o.dataset.i) !== ativo) marcar(Number(o.dataset.i)); });
+  const tecla = e => {
+    if (e.key === 'ArrowDown') { e.preventDefault(); marcar(ativo + 1); }
+    else if (e.key === 'ArrowUp') { e.preventDefault(); marcar(ativo - 1); }
+    else if (e.key === 'Enter') { e.preventDefault(); escolher(ativo); }
+    else if (e.key === 'Tab') escolher(ativo);
+    else if (e.key === 'Escape') { e.preventDefault(); fecharBsel(); bt.focus(); }
+    else if (e.key.length === 1) {
+      const k = e.key.toLowerCase(), comeca = o => o.text.toLowerCase().startsWith(k);
+      const j = ops.findIndex((o, x) => x > ativo && comeca(o)), j2 = j >= 0 ? j : ops.findIndex(comeca);
+      if (j2 >= 0) marcar(j2);
+    }
+    e.stopPropagation();
+  };
+  document.addEventListener('keydown', tecla, true);
+  bselAberto = { sel, pop, tecla };
+  bt.classList.add('aberto'); bt.setAttribute('aria-expanded', 'true');
+  marcar(ativo); bt.focus();
+}
+function fecharBsel(escolheu = false) {
+  if (!bselAberto) return;
+  const { sel, pop, tecla } = bselAberto;
+  bselAberto = null;
+  document.removeEventListener('keydown', tecla, true);
+  pop.remove();
+  sel._bt?.classList.remove('aberto'); sel._bt?.setAttribute('aria-expanded', 'false');
+  if (!escolheu) sel.dispatchEvent(new Event('bsel-cancelou'));
+}
+document.addEventListener('pointerdown', e => { if (bselAberto && !e.target.closest('.bsel-pop') && !bselAberto.sel._bt.contains(e.target)) fecharBsel(); }, true);
+document.addEventListener('scroll', e => { if (bselAberto && !(e.target instanceof Element && e.target.closest('.bsel-pop'))) fecharBsel(); }, true);
+window.addEventListener('resize', () => fecharBsel());
+
 function medirCabecalhos() { document.querySelectorAll('.tabwrap.congela').forEach(w => { const h = w.querySelector('thead'); if (h) w.style.setProperty('--thh', h.offsetHeight + 'px'); }); }
-new MutationObserver(() => requestAnimationFrame(medirCabecalhos)).observe(document.getElementById('app'), { childList: true, subtree: true });
+new MutationObserver(() => requestAnimationFrame(() => { medirCabecalhos(); prepararSeletoresBanco(); prepararBuscaPlano(); })).observe(document.getElementById('app'), { childList: true, subtree: true });
 window.addEventListener('resize', medirCabecalhos);
 document.addEventListener('input', e => {
   const id = e.target.id;
+  if (id === 'mk_custo') { S.mkCusto = e.target.value; atualizarSimulador(); }
   if (id === 'f_texto') { S.filtro.texto = e.target.value; renderLinhas(); }
   if (id === 'cadBusca') buscaViva(e.target, v => S.buscaCad = v, renderCadastros);
   if (id === 'gdreBusca') buscaViva(e.target, v => S.gdre.busca = v, renderCadastros);
   if (id === 'bk_busca') { S.bk.busca = e.target.value; clearTimeout(bkT); bkT = setTimeout(buscaBancos, 250); }
 });
 document.addEventListener('keydown', e => {
-  if (e.key === 'Enter' && e.target.closest('tr.entrada')) {
+  if (e.key === 'Enter' && e.target.closest('tr.entrada, .lanc-form') && !e.target.matches('button')) {
     e.preventDefault();
     if (S.view === 'transferencias') salvarTransf(); else salvarLanc();
   }
