@@ -550,7 +550,107 @@ table.lanc tr.lin.aberto td.valor span{border-bottom:1px dashed currentColor}
 .opc{font-weight:500;text-transform:none;letter-spacing:0;color:#9a9ba0;font-size:10.5px}
 .lf-nota{margin:10px 0 0;font-size:12px;color:var(--muted)}
 .lf-nota a{color:var(--orange-d);font-weight:700}
-.lf-grid.lf-fixo{grid-template-columns:minmax(260px,2fr) minmax(180px,1.6fr) 140px 110px 150px 170px auto}
+.lf-grid.lf-fixo{grid-template-columns:minmax(240px,2fr) minmax(180px,1.6fr) 140px 84px 160px 160px auto}
+.lf-grid.lf-fixo label{white-space:nowrap}
+.lf-grid.lf-fixo .opc{display:inline;margin-left:2px}
+/* ---------- números clicáveis ---------- */
+td.clk{cursor:pointer;transition:background .12s}
+td.clk:hover{background:#fff1e7 !important;box-shadow:inset 0 -2px 0 var(--orange)}
+table.dre td.clk:hover,table.facum td.clk:hover{color:var(--orange-d)}
+.abt[data-act]{cursor:pointer;transition:.15s}
+.abt[data-act]:hover{border-color:var(--orange);box-shadow:0 4px 12px rgba(0,0,0,.08);transform:translateY(-1px)}
+/* ---------- janela: lista de lançamentos ---------- */
+.modal.m-lista{width:min(1180px,100%)}
+.modal.m-ed{width:min(620px,100%)}
+.mcorpo>.span2{grid-column:1/-1}
+.mcorpo [hidden]{display:none !important}
+.p-div-tg{grid-column:1/-1}
+.p-div{grid-column:1/-1;display:flex;flex-direction:column;gap:6px}
+.pp-cab,.pp{display:grid;grid-template-columns:1.1fr 1.3fr 130px 30px;gap:8px;align-items:center}
+.pp-cab span{font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:.3px;color:var(--muted)}
+.pp{background:#f7f7f9;border:1px solid var(--line);border-radius:8px;padding:6px 8px}
+.pp select:not(.bsel-ok),.pp input{border:1px solid #cfd0d4;border-radius:6px;padding:7px 8px;font-size:13px;background:#fff;min-height:36px;width:100%}
+.pp input{text-align:right;font-weight:700}
+.pp .bsel-btn{width:100%;min-width:0;min-height:36px;border-radius:6px}
+.pp-f{display:flex;align-items:center;gap:10px;margin-top:2px}
+.pp-tot{margin-left:auto;font-size:12.5px}
+.pp-tot em{font-style:normal;font-weight:700;margin-left:6px;padding:2px 8px;border-radius:10px}
+.pp-tot .ok{background:#eaf6ec;color:#22702b}.pp-tot .falta{background:#fff4e5;color:#b45309}.pp-tot .passa{background:#fdecea;color:var(--neg)}
+.modal.m-pag{width:min(640px,100%)}
+.mcorpo .m-val{text-align:right;font-weight:700 !important}
+.ls-tot{display:grid;grid-template-columns:repeat(4,1fr);border-bottom:1px solid var(--line);background:#f7f7f9}
+.ls-tot>div{padding:12px 20px;border-right:1px solid var(--line)}.ls-tot>div:last-child{border-right:0}
+.ls-tot span{display:block;font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:.4px;color:var(--muted)}
+.ls-tot b{font-size:19px;font-weight:800;font-variant-numeric:tabular-nums}
+.ls-tot em{font-style:normal;font-size:11px;color:#c2410c;margin-left:8px;font-weight:700}
+.ls-tot .e b{color:#1667b7}.ls-tot .s b{color:#c2410c}
+.ls-busca{display:flex;align-items:center;gap:14px;padding:12px 20px 8px}
+.ls-busca input{border:1px solid #cfd0d4;border-radius:6px;padding:8px 10px;width:340px;max-width:100%}
+.ls-busca .mut{font-size:11.5px}
+.ls-tab{padding:0 20px 6px;max-height:min(56vh,560px);overflow:auto}
+table.ls{border:1px solid var(--line);border-radius:8px}
+table.ls th{position:sticky;top:0;z-index:1;background:#4a4b50;font-size:11.5px}
+table.ls td{height:44px;border-right:0;border-bottom:1px solid #efeff1}
+table.ls tr:hover td{background:#fffaf6}
+table.ls tr.rec td:first-child{box-shadow:inset 3px 0 0 #2a78d6}table.ls tr.desp td:first-child{box-shadow:inset 3px 0 0 #eb6834}
+.ls-c{white-space:normal;min-width:240px}
+.ls-c b{display:block;font-size:12.5px}.ls-c small{display:flex;align-items:center;gap:6px;font-size:11px;color:var(--muted)}
+.ls-c small i{width:7px;height:7px;border-radius:50%;display:inline-block}
+/* ---------- janela: pendências do dia ---------- */
+.modal.m-pend{width:min(760px,100%)}
+.modal-bg.fixo{background:rgba(32,33,36,.62)}
+.pd-top{background:radial-gradient(circle at 95% -30%,rgba(243,112,33,.55),transparent 55%),linear-gradient(120deg,#2a2b2f,#3e3f44);color:#fff;padding:22px 26px 18px;border-radius:14px 14px 0 0;border-bottom:4px solid var(--orange)}
+.pd-top small{font-size:11.5px;letter-spacing:.8px;text-transform:uppercase;color:#c9cacf;font-weight:700}
+.pd-top h2{margin:6px 0 2px;font-size:28px;font-weight:800}
+.pd-top p{margin:0 0 14px;color:#e2e2e6;font-size:14px}
+.pd-kpi{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.pd-kpi>div{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);border-radius:10px;padding:10px 14px}
+.pd-kpi span{display:block;font-size:10.5px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;color:#c9cacf}
+.pd-kpi b{font-size:20px;font-weight:800;font-variant-numeric:tabular-nums}
+.pd-kpi .desp b{color:#ffb38a}.pd-kpi .rec b{color:#9cc8ff}.pd-kpi .venc.on{background:rgba(198,40,40,.35);border-color:rgba(255,138,128,.6)}.pd-kpi .venc.on b{color:#fff}
+.pd-corpo{padding:14px 22px;display:flex;flex-direction:column;gap:12px;max-height:48vh;overflow:auto}
+.pd-b{border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.pd-bh{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:8px 14px;background:#f7f7f9;border-bottom:1px solid var(--line)}
+.pd-bh b{font-size:13px}.pd-bh span{font-size:11.5px;color:var(--muted)}
+.pd-b.atraso .pd-bh{background:#fff5f4}.pd-b.atraso .pd-bh b{color:var(--neg)}
+.pd-b.hoje .pd-bh{background:var(--orange-l)}.pd-b.hoje .pd-bh b{color:var(--orange-d)}
+.pd-l{display:grid;grid-template-columns:48px auto 1fr auto;align-items:center;gap:10px;padding:7px 14px;border-bottom:1px solid #f2f2f4;font-size:12.5px}
+.pd-l:last-child{border-bottom:0}
+.pd-l .d{font-weight:700;font-variant-numeric:tabular-nums}.pd-l .n{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.pd-l b{font-variant-numeric:tabular-nums;font-size:12.5px}
+.pd-vz{padding:12px 14px;color:var(--muted);font-size:12.5px}
+.pd-mais{padding:6px 14px;font-size:11.5px;color:var(--muted)}
+/* ---------- bancos: fluxo de caixa diário ---------- */
+.bk-fx-emb{background:#fff;border:1px solid var(--line);border-top:4px solid var(--orange);border-radius:12px;padding:12px 14px 4px;margin-bottom:16px;box-shadow:0 2px 8px rgba(0,0,0,.04)}
+.bk-fx-emb .bfx-top{border:0;padding:0 0 10px;margin-bottom:10px;border-bottom:1px solid var(--line);border-radius:0}
+.bfx-nome{display:flex;align-items:center;gap:10px}.bfx-nome b{font-size:16px}.bfx-nome .mut{font-size:12px}
+.bfx-top{display:flex;flex-wrap:wrap;align-items:center;gap:12px;background:#fff;border:1px solid var(--line);border-radius:10px;padding:10px 14px;margin-bottom:12px}
+.bfx-top label{display:flex;align-items:center;gap:8px;font-weight:700;color:#44454a;font-size:12px}
+.bfx-top select{border:1px solid #bfc8ce;border-radius:4px;padding:6px 8px;background:#fff;font-weight:600;min-width:240px}
+.bfx-top .ano select{border:0;min-width:0;font-weight:800;padding:4px;background:transparent}
+.bfx-ana{display:flex;align-items:center;gap:12px;margin-left:auto;font-size:12.5px}
+.bfx-ana>span{background:#f1f1f3;border-radius:6px;padding:6px 10px;font-weight:700;color:#55565b}
+.bfx-ana b{color:#8a1538}.bfx-ana em{font-style:normal}
+.bfx-tiles .tile{border-radius:10px}
+.bfx-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;align-items:start}
+.bfx-col3{display:flex;flex-direction:column;gap:14px}
+table.bfx{background:#fff;border:1px solid var(--line);border-radius:10px;overflow:hidden;border-collapse:separate;border-spacing:0}
+table.bfx th{background:#ececee;color:#2a2b2f;font-size:12px;padding:8px 6px;border-right:0}
+table.bfx th.rec{color:#22702b}table.bfx th.desp{color:#c62828}
+table.bfx td{height:31px;border-right:0;border-bottom:1px solid #f0f0f2;font-variant-numeric:tabular-nums;font-size:12.5px;text-align:right;padding:0 8px}
+table.bfx td span{float:left;opacity:.75;font-size:11px;margin-right:4px}
+table.bfx td.dia{text-align:left;font-weight:700;width:58px;background:#f7f7f9}
+table.bfx td.dia small{font-weight:500;color:var(--muted);margin-left:5px;font-size:10.5px}
+table.bfx tr.fds td.dia{color:#9a9ba0}
+table.bfx tr.hoje td{box-shadow:inset 0 2px 0 var(--orange),inset 0 -2px 0 var(--orange)}
+table.bfx td.rec{color:#22702b}table.bfx td.desp{color:#c62828}
+table.bfx td.z{color:#b5b6bb}
+table.bfx td.res.bom{background:#4caa4a;color:#fff;font-weight:700}
+table.bfx td.res.ruim{background:#f0483e;color:#fff;font-weight:700}
+table.bfx td.res.bom.clk:hover,table.bfx td.res.ruim.clk:hover{filter:brightness(.92);color:#fff}
+table.bfx td.res.bom:hover{background:#4caa4a !important}table.bfx td.res.ruim:hover{background:#f0483e !important}
+table.bfx-tot td{height:48px;font-weight:800;font-size:13.5px;border-bottom:0}
+table.bfx-tot td.dia{width:58px}
 .lf-grid.lf-parc{grid-template-columns:minmax(260px,2fr) minmax(180px,1.6fr) 140px auto 110px 150px}
 .f-tipo-v .seg{align-self:flex-start;text-transform:none;letter-spacing:0;font-weight:600}
 .lanc-form.modo-fixo{border-top-color:#7c4dff}
@@ -699,6 +799,7 @@ table.lanc tr.lin.aberto td.valor span{border-bottom:1px dashed currentColor}
   .ab-grid{grid-template-columns:1fr}
   .lf-grid.lf-fixo,.lf-grid.lf-parc{grid-template-columns:repeat(3,minmax(0,1fr))}
 }
+@media (max-width:1100px){ .bfx-grid{grid-template-columns:1fr} .ls-tot{grid-template-columns:1fr 1fr} .pd-kpi{grid-template-columns:1fr} }
 @media (max-width:640px){
   .formas{grid-template-columns:repeat(2,1fr)}.mcorpo{grid-template-columns:1fr}.mresumo{grid-template-columns:1fr}
   .kpis-4{grid-template-columns:1fr 1fr}.cf-ed .cf-ed-g{grid-template-columns:1fr 1fr}
@@ -1120,9 +1221,9 @@ const nomeEmpresa = id => id === 'all' ? 'Consolidado' : (M.planilha[id]?.nome ?
 const corEmpresa = id => id === 'all' ? '#2f3034' : (M.planilha[id]?.cor || '#f37021');
 // sigla da empresa (KF, DK…) e nome da empresa dentro de cada tela (ex.: "DRE DK", "FLUXO ACUMULADO KF")
 const siglaEmpresa = id => id === 'all' ? 'CONSOLIDADO' : (M.planilha[id]?.nome ?? '').replace(/^LAN[ÇC]AMENTOS\s+/i, '').toUpperCase();
-const nomeNaTela = (id, prefixo) => prefixo ? `${prefixo} ${siglaEmpresa(id)}` : (id === 'all' ? 'CONSOLIDADO' : nomeEmpresa(id));
-const bannerEmpresa = (id, prefixo) => `<div class="emp-banner ${id === 'all' ? 'cons' : ''} ${prefixo ? 'tela' : ''}" style="--ec:${esc(corEmpresa(id))}">
-  ${prefixo ? '' : `<span class="lbl">${id === 'all' ? 'VISÃO' : 'EMPRESA'}</span>`}<b>${esc(nomeNaTela(id, prefixo))}</b>
+const nomeNaTela = (id, prefixo, cons) => id === 'all' && cons ? cons : prefixo ? `${prefixo} ${siglaEmpresa(id)}` : (id === 'all' ? 'CONSOLIDADO' : nomeEmpresa(id));
+const bannerEmpresa = (id, prefixo, cons) => `<div class="emp-banner ${id === 'all' ? 'cons' : ''} ${prefixo ? 'tela' : ''}" style="--ec:${esc(corEmpresa(id))}">
+  ${prefixo ? '' : `<span class="lbl">${id === 'all' ? 'VISÃO' : 'EMPRESA'}</span>`}<b>${esc(nomeNaTela(id, prefixo, cons))}</b>
   ${id === 'all' ? `<em>${esc(S.planilhas.map(p => siglaEmpresa(p.id)).join(' + '))}</em>` : ''}</div>`;
 // bancos que aparecem para uma empresa: os ligados a ela e os sem empresa definida
 const bancosDaEmpresa = pid => pid == null || pid === 'all' ? S.bancos : S.bancos.filter(b => !b.planilha_id || b.planilha_id === pid);
@@ -1180,8 +1281,8 @@ async function rerender() {
 
 const barraAno = () => `<div class="ano"><button data-act="ano" data-d="-1" aria-label="Ano anterior">‹</button><span>${S.ano}</span><button data-act="ano" data-d="1" aria-label="Próximo ano">›</button></div>`;
 const barraMeses = cor => `<div class="abas meses ${cor ? 'tema' : ''}" style="--ec:${cor || ''}">${MESES.map((m, i) => `<button class="aba ${i === S.mes ? 'on' : ''}" data-act="mes" data-m="${i}">${m}</button>`).join('')}</div>`;
-const abasEmpresa = (sel, act, consolidado, prefixo) => `<div class="abas">${S.planilhas.map(p => `<button class="aba plan ${p.id === sel ? 'on' : ''}" style="--ec:${esc(corEmpresa(p.id))}" data-act="${act}" data-id="${p.id}"><i class="pt"></i>${esc(nomeNaTela(p.id, prefixo))}</button>`).join('')}
-  ${consolidado ? `<button class="aba plan cons ${sel === 'all' ? 'on' : ''}" style="--ec:#2f3034" data-act="${act}" data-id="all">${esc(prefixo ? nomeNaTela('all', prefixo) : 'Consolidado')}</button>` : ''}</div>`;
+const abasEmpresa = (sel, act, consolidado, prefixo, cons) => `<div class="abas">${S.planilhas.map(p => `<button class="aba plan ${p.id === sel ? 'on' : ''}" style="--ec:${esc(corEmpresa(p.id))}" data-act="${act}" data-id="${p.id}"><i class="pt"></i>${esc(nomeNaTela(p.id, prefixo))}</button>`).join('')}
+  ${consolidado ? `<button class="aba plan cons ${sel === 'all' ? 'on' : ''}" style="--ec:#2f3034" data-act="${act}" data-id="all">${esc(prefixo ? nomeNaTela('all', prefixo, cons) : 'Consolidado')}</button>` : ''}</div>`;
 
 function opcoes(lista, sel, rotulo, vazio = 'Selecione…') {
   return `<option value="">${vazio}</option>` + lista.map(x => `<option value="${x.id}" ${String(x.id) === String(sel) ? 'selected' : ''}>${esc(rotulo(x))}</option>`).join('');
@@ -1203,7 +1304,7 @@ const TELAS = {
   lancamentos: { nome: 'Lançamentos', cols: [
     { k: 'banco', h: 'Banco', fixo: true }, { k: 'data', h: 'Data Lanç.', fixo: true }, { k: 'grupo', h: 'Classificação' },
     { k: 'plano', h: 'Plano de Contas', fixo: true }, { k: 'item', h: 'Item' }, { k: 'valor', h: 'Valor', fixo: true },
-    { k: 'status', h: 'Situação', fixo: true }, { k: 'dprog', h: 'Vencimento' }, { k: 'dpag', h: 'Data Pagto.' }, { k: 'acum', h: 'Acumulado' }] },
+    { k: 'status', h: 'Situação', fixo: true }, { k: 'dprog', h: 'Vencimento' }, { k: 'dpag', h: 'Data Pagto.' }, { k: 'forma', h: 'Forma Pagto.' }, { k: 'acum', h: 'Acumulado' }] },
   fluxoAcum: { nome: 'Fluxo Acumulado', ordemTxt: ['JAN → DEZ', 'DEZ → JAN'], cols: [{ k: 'total', h: 'Total' }, { k: 'media', h: 'Média' }] },
   fluxo: { nome: 'Fluxo de Caixa', cols: [
     { k: 'ini', h: 'Saldo inicial' }, { k: 'ent', h: 'Entradas' }, { k: 'sai', h: 'Saídas' },
@@ -1254,7 +1355,7 @@ function renderLocal() {
   else if (v === 'fluxo') renderFluxo();
   else if (v === 'fluxoAcum') renderFluxoAcum();
   else if (v === 'dre') renderDRE();
-  else if (v === 'bancos') renderBancos();
+  else if (v === 'bancos') { if (S.bk.aba === 'fluxo') renderBancosShell(renderBkFluxo()); else renderBancos(); }
   else if (v === 'transferencias') renderTransferencias();
 }
 
@@ -1263,7 +1364,8 @@ function renderLocal() {
 const EDIT = {
   lanc: { tab: 'lancamentos', get: id => S.lancs.find(x => x.id === id), reload: () => viewLancamentos(),
     campos: { banco: { c: 'banco_id', t: 'banco' }, data: { c: 'data_lancamento', t: 'date', req: 1 }, plano: { c: 'plano_conta_id', t: 'plano' },
-              item: { c: 'item', t: 'text' }, valor: { c: 'valor', t: 'money' }, dprog: { c: 'data_programada', t: 'date' }, dpag: { c: 'data_pagamento', t: 'date' } } },
+              item: { c: 'item', t: 'text' }, valor: { c: 'valor', t: 'money' }, dprog: { c: 'data_programada', t: 'date' }, dpag: { c: 'data_pagamento', t: 'date' },
+              forma: { c: 'forma_pagamento', t: 'forma' } } },
   tr: { tab: 'transferencias', get: id => S.trLista.find(x => x.id === id), reload: () => viewTransferencias(),
     campos: { data: { c: 'data', t: 'date', req: 1 }, origem: { c: 'banco_origem_id', t: 'banco' }, destino: { c: 'banco_destino_id', t: 'banco' },
               desc: { c: 'descricao', t: 'text' }, valor: { c: 'valor', t: 'money' } } },
@@ -1306,6 +1408,7 @@ function iniciarEdicao(td) {
   if (f.t === 'banco') ctrl = `<select class="ied" data-banco>${opcoes(ed === 'lanc' ? bancosDaEmpresa(reg.planilha_id) : S.bancos, v, b => b.nome)}</select>`;
   else if (f.t === 'plano') ctrl = `<select class="ied" data-busca>${opcoesPlano(v)}</select>`;
   else if (f.t === 'date') ctrl = `<input type="date" class="ied" value="${esc(v ?? '')}">`;
+  else if (f.t === 'forma') ctrl = `<select class="ied"><option value="">—</option>${FORMAS_PAG.map(x => `<option ${x === v ? 'selected' : ''}>${esc(x)}</option>`).join('')}</select>`;
   else if (f.t === 'money') ctrl = `<input class="ied" inputmode="decimal" style="text-align:right" value="${num2(v)}">`;
   else ctrl = `<input class="ied" value="${esc(v ?? '')}">`;
   const antes = td.innerHTML;
@@ -1349,6 +1452,7 @@ async function salvarCelula(ed, reg, k, bruto, desfazer) {
   if (f.t === 'money') { v = parseValor(bruto); if (!(v > 0)) { toast('Informe um valor maior que zero.', true); return desfazer(); } }
   else if (f.t === 'banco' || f.t === 'plano') { v = Number(bruto) || null; if (!v) { toast('Escolha uma opção.', true); return desfazer(); } }
   else if (f.t === 'date') { v = bruto || null; if (f.req && !v) { toast('Informe a data.', true); return desfazer(); } }
+  else if (f.t === 'forma') v = bruto || null;
   else v = String(bruto).trim() || null;
   if (mesmoValor(reg[f.c], v)) return desfazer();
   if (ed === 'tr') {
@@ -1357,12 +1461,15 @@ async function salvarCelula(ed, reg, k, bruto, desfazer) {
   }
   let msg = `Ajustado: ${fmtCampo(f.t, reg[f.c])} → ${fmtCampo(f.t, v)}`;
   if (f.t === 'date' && f.req && v && v.slice(0, 7) !== `${S.ano}-${pad(S.mes + 1)}`) msg += ` (movido para ${MESES_NOME[Number(v.slice(5, 7)) - 1]}/${v.slice(0, 4)})`;
-  await gravarAjuste(ed, reg, f.c, v, msg, desfazer);
+  // banco num lançamento em aberto = pago/recebido na data do lançamento
+  const extra = ed === 'lanc' && f.c === 'banco_id' && !reg.data_pagamento ? { data_pagamento: reg.data_lancamento } : null;
+  if (extra) msg += ' · marcado como ' + (sinal(reg) > 0 ? 'recebido' : 'pago');
+  await gravarAjuste(ed, reg, f.c, v, msg, desfazer, extra);
 }
-async function gravarAjuste(ed, reg, campo, v, msg, desfazer) {
+async function gravarAjuste(ed, reg, campo, v, msg, desfazer, extra = null) {
   const cfg = EDIT[ed], y = window.scrollY;
   try {
-    await store.update(cfg.tab, reg.id, comAjuste(reg, { [campo]: v }));
+    await store.update(cfg.tab, reg.id, { ...comAjuste(reg, { [campo]: v }), ...(extra || {}) });
     toast(msg); await cfg.reload(); window.scrollTo(0, y);
   } catch (e) { toast(e.message, true); desfazer(); }
 }
@@ -1410,7 +1517,7 @@ function renderLancamentos() {
         <tbody id="linhas"></tbody>
       </table>
     </div>
-    <p class="dica">Para corrigir um lançamento, <b>clique na célula</b>, altere e tecle Enter (Esc cancela) — ou use ✎ para editar tudo no formulário.
+    <p class="dica">Para corrigir um lançamento, <b>clique em qualquer célula</b> (banco, data, conta, descrição, valor, vencimento, pagamento, forma), altere e tecle Enter (Esc cancela) — ou use ✎ para editar todos os campos de uma vez.
       <span class="leg-aj">célula ajustada</span> = alterada depois de lançada; passe o mouse para ver o valor original.</p>`;
   renderLinhas(); renderPainel();
   if (S.lf.modo === 'parcelado') desenharParcelas();
@@ -1452,7 +1559,8 @@ function renderLinhas() {
     }
     const g = grupoDoPlano(l.plano_conta_id), A = l.ajustes || {}, s = sinal(l);
     const C = {
-      banco: l.banco_id ? celEd('lanc', l, 'banco', 'banco', bancoTag(M.banco[l.banco_id], 20)) : `<td class="banco"><span class="a-def">a definir</span></td>`,
+      banco: celEd('lanc', l, 'banco', 'banco', l.banco_id ? bancoTag(M.banco[l.banco_id], 20) : '<span class="a-def">a definir</span>'),
+      forma: celEd('lanc', l, 'forma', 'c mut', l.forma_pagamento ? esc(l.forma_pagamento) : '—'),
       status: `<td class="c st">${seloSituacao(l)}</td>`,
       data: celEd('lanc', l, 'data', 'c mut', fmtData(l.data_lancamento)),
       grupo: `<td class="grupo"><span class="pill ${'plano_conta_id' in A ? 'aj-b' : ''}" style="--c:${esc(corGrupo(g))}">${esc(g?.nome ?? '')}</span></td>`,
@@ -1464,7 +1572,7 @@ function renderLinhas() {
       acum: `<td class="r acc ${l.acum < 0 ? 'neg' : ''}">${l.acum < 0 ? '−' : ''}${num2(Math.abs(l.acum))}</td>`,
     };
     html += `<tr class="lin ${S.editId === l.id ? 'editando' : ''} ${Object.keys(A).length ? 'tem-aj' : ''} ${s > 0 ? 'rec' : 'desp'} ${situacao(l) !== 'pago' ? 'aberto' : ''}">${cfg.cols.map(k => C[k]).join('')}
-      <td class="acoes"><button class="ib" title="Editar no formulário" data-act="editarLanc" data-id="${l.id}">✎</button><button class="ib del" title="Excluir" data-act="excluirLanc" data-id="${l.id}">✕</button></td></tr>`;
+      <td class="acoes"><button class="ib" title="Editar todos os campos" data-act="editarLancJanela" data-id="${l.id}">✎</button><button class="ib del" title="Excluir" data-act="excluirLanc" data-id="${l.id}">✕</button></td></tr>`;
   }
   $('linhas').innerHTML = html || `<tr><td colspan="${nCol}" class="vazio">Nenhum lançamento ${f.aj ? 'ajustado ' : ''}${f.sit ? 'nessa situação ' : ''}em ${MESES_NOME[S.mes]} de ${S.ano}.</td></tr>`;
 }
@@ -1554,12 +1662,12 @@ function formLancamento(cor, dataPadrao) {
         ${plano}
         <label class="f-item">Descrição<input id="e_item" placeholder="Ex.: Aluguel da loja, Contabilidade…"></label>
         <label class="f-valor">Valor mensal (R$)<input id="e_valor" placeholder="0,00" inputmode="decimal"></label>
-        <label class="f-dia">Dia do vencimento<input id="e_dia" type="number" min="1" max="31" value="10"></label>
-        <label class="f-mes">Início da vigência<input type="month" id="e_ini" value="${S.ano}-${pad(S.mes + 1)}"></label>
-        <label class="f-mes"><span>Fim da vigência <span class="opc">vazio = sem fim</span></span><input type="month" id="e_fim"></label>
+        <label class="f-dia">Vence dia<input id="e_dia" type="number" min="1" max="31" value="10"></label>
+        <label class="f-mes">Vigência de<input type="month" id="e_ini" value="${S.ano}-${pad(S.mes + 1)}"></label>
+        <label class="f-mes"><span>Até <span class="opc">(opcional)</span></span><input type="month" id="e_fim" title="Deixe em branco para um custo fixo sem data para terminar"></label>
         <div class="f-acoes"><button class="salvar" data-act="criarCustoFixo">+ Criar custo fixo</button></div>
       </div>
-      <p class="lf-nota">Gera um lançamento <b>em aberto</b> por mês dentro da vigência${''} (sem fim: até dezembro do ano que vem, renovado automaticamente). Para mudar valor ou período depois, use a tela <a href="#" data-act="view" data-v="custos">Custos Fixos</a>.</p>`;
+      <p class="lf-nota">Gera um lançamento <b>em aberto</b> por mês, no dia do vencimento. Deixe <b>Até</b> em branco para um custo sem data para terminar (gerado até dezembro do ano que vem e renovado automaticamente). Para reajustar ou mudar o período depois, use a tela <a href="#" data-act="view" data-v="custos">Custos Fixos</a>.</p>`;
   else corpo = `
       <div class="lf-grid lf-parc">
         ${plano}
@@ -1638,27 +1746,37 @@ function editarLanc(id) {
 }
 
 /* ---------- janela (modal) ---------- */
-function abrirModal(html, cls = '') {
-  fecharModal();
+// aoFechar: chamado quando a pessoa fecha (✕, Cancelar, Esc, clique fora); não é chamado quando outra janela substitui esta.
+// fixo: só fecha pelo botão (sem Esc e sem clique fora).
+let MODAL_CB = null;
+function abrirModal(html, cls = '', aoFechar = null, fixo = false) {
+  fecharBsel(true); $('modal')?.remove();
+  MODAL_CB = aoFechar;
   const w = document.createElement('div');
-  w.className = 'modal-bg'; w.id = 'modal';
+  w.className = 'modal-bg' + (fixo ? ' fixo' : ''); w.id = 'modal';
   w.innerHTML = `<div class="modal ${cls}" role="dialog" aria-modal="true">${html}</div>`;
-  w.addEventListener('pointerdown', e => { if (e.target === w) fecharModal(); });
+  if (!fixo) w.addEventListener('pointerdown', e => { if (e.target === w) fecharModal(); });
   document.body.appendChild(w);
   prepararSeletoresBanco(); prepararBuscaPlano();
   setTimeout(() => (w.querySelector('[autofocus]') || w.querySelector('input:not([type=radio]):not([type=checkbox]),select'))?.focus(), 30);
 }
-function fecharModal() { fecharBsel(true); $('modal')?.remove(); }
+function fecharModal(semVoltar = false) {
+  if (cbAberto) fecharCb(false);
+  fecharBsel(true); $('modal')?.remove();
+  const cb = MODAL_CB; MODAL_CB = null;
+  if (!semVoltar) cb?.();
+}
 
 /* ---------- pagar / receber ---------- */
-const FORMAS_PAG = ['PIX', 'Boleto', 'Transferência / TED', 'Cartão de crédito', 'Cartão de débito', 'Dinheiro', 'Débito automático', 'Cheque'];
+const FORMAS_PAG = ['PIX', 'Dinheiro', 'Cheque', 'Cheque pré-datado', 'Boleto', 'Transferência / TED', 'Cartão de crédito', 'Cartão de débito', 'Depósito', 'Débito automático', 'Crediário', 'Outros'];
 let PAG = null;             // { l, depois }
-function abrirPagamento(l, depois) {
+function abrirPagamento(l, depois, voltar) {
   if (!l) return;
-  PAG = { l, depois };
+  const parcela = /^PAR:/.test(l.origem || '');          // empréstimos/parcelas ficam sempre no vencimento
   const rec = sinal(l) > 0, pago = !emAberto(l), st = situacao(l), cor = corEmpresa(l.planilha_id);
   const g = grupoDoPlano(l.plano_conta_id), formaAtual = l.forma_pagamento || (pago ? '' : 'PIX');
   const verbo = rec ? 'recebimento' : 'pagamento';
+  PAG = { l, depois, dividir: false, partes: [{ forma: rec ? 'Dinheiro' : 'PIX', banco: l.banco_id ?? '', valor: Number(l.valor) }] };
   abrirModal(`
     <div class="mh ${rec ? 'rec' : 'desp'}" style="--ec:${esc(cor)}">
       <div><small>${pago ? (rec ? 'Recebido' : 'Pago') : rec ? 'Receber' : 'Pagar'} · ${esc(siglaEmpresa(l.planilha_id))}</small><b>${esc(l.item || M.plano[l.plano_conta_id]?.nome || 'Lançamento')}</b></div>
@@ -1670,33 +1788,94 @@ function abrirPagamento(l, depois) {
       <div class="mv"><span>Valor</span><b class="${rec ? 'pos' : 'neg'}">${brl(l.valor)}</b></div>
     </div>
     <div class="mcorpo">
-      <label>Data do ${verbo} <i>*</i><input type="date" id="p_data" value="${l.data_pagamento || HOJE}"></label>
-      <label>Banco <i>*</i><select id="p_banco" data-banco>${opcoes(bancosDaEmpresa(l.planilha_id), l.banco_id ?? '', b => b.nome, 'Escolha o banco…')}</select></label>
-      <div class="mlbl">Forma de ${verbo} <i>*</i></div>
-      <div class="formas">${FORMAS_PAG.map(f => `<label class="fp"><input type="radio" name="p_forma" value="${esc(f)}" ${f === formaAtual ? 'checked' : ''}><span>${esc(f)}</span></label>`).join('')}</div>
-      <label class="chk mchk"><input type="checkbox" id="p_mover" ${pago ? '' : 'checked'}> Levar o lançamento para a data do ${verbo} (fluxo de caixa, bancos e DRE)</label>
+      <label><span>Data do ${verbo} <i>*</i></span><input type="date" id="p_data" value="${l.data_pagamento || HOJE}"></label>
+      <label class="p-un"><span>Banco <i>*</i></span><select id="p_banco" data-banco>${opcoes(bancosDaEmpresa(l.planilha_id), l.banco_id ?? '', b => b.nome, 'Escolha o banco…')}</select></label>
+      <div class="mlbl p-un">Forma de ${verbo} <i>*</i></div>
+      <div class="formas p-un">${FORMAS_PAG.map(f => `<label class="fp"><input type="radio" name="p_forma" value="${esc(f)}" ${f === formaAtual ? 'checked' : ''}><span>${esc(f)}</span></label>`).join('')}</div>
+      ${pago ? '' : `<div class="p-div-tg"><button type="button" class="mini" data-act="pagDividir">⇄ <span id="p_tg">${rec ? 'Receber' : 'Pagar'} em mais de uma forma (ex.: parte em cheque, parte em dinheiro)</span></button></div>
+      <div class="p-div" id="p_div" hidden>
+        <div class="mlbl">Formas de ${verbo} <span class="mut">— cada forma vira um lançamento ${rec ? 'recebido' : 'pago'} no banco escolhido</span></div>
+        <div id="p_partes"></div>
+      </div>`}
+      <label class="chk mchk"><input type="checkbox" id="p_mover" ${pago || parcela ? '' : 'checked'}> Levar o lançamento para a data do ${verbo} (fluxo de caixa, bancos e DRE)${parcela ? ' — <b>parcela: fica no vencimento</b>' : ''}</label>
     </div>
     <div class="mf">
       ${pago ? `<button class="btn sec perigo" data-act="estornarPag">↺ Desfazer ${verbo}</button>` : ''}
       <span class="sp"></span>
       <button class="btn sec" data-act="fecharModal">Cancelar</button>
       <button class="btn ${rec ? 'ok' : ''}" data-primary data-act="confirmarPag">${pago ? 'Salvar alteração' : `Confirmar ${verbo}`}</button>
-    </div>`, 'm-pag');
+    </div>`, 'm-pag', voltar);
+}
+// ---- várias formas de pagamento no mesmo lançamento ----
+function lerPartes() {
+  document.querySelectorAll('#p_partes .pp').forEach((row, i) => {
+    const p = PAG.partes[i]; if (!p) return;
+    p.forma = row.querySelector('[data-pp=forma]').value;
+    p.banco = Number(row.querySelector('[data-pp=banco]').value) || '';
+    p.valor = parseValor(row.querySelector('[data-pp=valor]').value) || 0;
+  });
+}
+function desenharPartes() {
+  const box = $('p_partes'); if (!box) return;
+  const { l, partes } = PAG, tot = r2(partes.reduce((a, p) => a + (Number(p.valor) || 0), 0)), resta = r2(Number(l.valor) - tot);
+  box.innerHTML = `<div class="pp-cab"><span>Forma</span><span>Banco</span><span>Valor (R$)</span><span></span></div>
+    ${partes.map((p, i) => `<div class="pp">
+      <select data-pp="forma">${FORMAS_PAG.map(f => `<option ${f === p.forma ? 'selected' : ''}>${esc(f)}</option>`).join('')}</select>
+      <select data-pp="banco" data-banco id="p_pb${i}">${opcoes(bancosDaEmpresa(l.planilha_id), p.banco, b => b.nome, 'Escolha o banco…')}</select>
+      <input data-pp="valor" inputmode="decimal" value="${num2(p.valor)}">
+      ${partes.length > 1 ? `<button type="button" class="ib del" data-act="pagParteDel" data-i="${i}" title="Remover">✕</button>` : '<span></span>'}
+    </div>`).join('')}
+    <div class="pp-f"><button type="button" class="mini" data-act="pagParteAdd">+ Adicionar forma</button>
+      <span class="pp-tot">Informado <b>${brl(tot)}</b> de ${brl(l.valor)}
+      ${Math.abs(resta) < 0.005 ? '<em class="ok">✓ fecha o valor</em>' : resta > 0 ? `<em class="falta">faltam ${brl(resta)} — ficam em aberto</em>` : `<em class="passa">passou ${brl(-resta)}</em>`}</span></div>`;
+  prepararSeletoresBanco();
 }
 async function confirmarPagamento() {
   const { l, depois } = PAG || {}; if (!l) return;
-  const data = $('p_data').value, banco = Number($('p_banco').value) || null;
-  const forma = document.querySelector('#modal input[name=p_forma]:checked')?.value;
-  const verbo = sinal(l) > 0 ? 'recebimento' : 'pagamento';
+  const data = $('p_data').value, verbo = sinal(l) > 0 ? 'recebimento' : 'pagamento';
   if (!data) return toast(`Informe a data do ${verbo}.`, true), $('p_data').focus();
+  const dataLanc = $('p_mover').checked ? data : l.data_lancamento;
+  const venc = l.data_programada || l.data_lancamento;
+  if (PAG.dividir) {
+    lerPartes();
+    const partes = PAG.partes;
+    for (const [i, p] of partes.entries()) {
+      if (!p.forma) return toast(`Forma ${i + 1}: escolha a forma de ${verbo}.`, true);
+      if (!p.banco) return toast(`Forma ${i + 1} (${p.forma}): escolha o banco.`, true);
+      if (!(p.valor > 0)) return toast(`Forma ${i + 1} (${p.forma}): informe o valor.`, true);
+    }
+    const tot = r2(partes.reduce((a, p) => a + p.valor, 0)), resta = r2(Number(l.valor) - tot);
+    if (resta < -0.004) return toast(`As formas somam ${brl(tot)}, mais que o valor do lançamento (${brl(l.valor)}).`, true);
+    if (resta > 0.004 && !confirm(`As formas somam ${brl(tot)}. Os ${brl(resta)} restantes continuam em aberto. Confirmar?`)) return;
+    const pagoRow = p => ({ banco_id: p.banco, forma_pagamento: p.forma, data_pagamento: data, data_lancamento: dataLanc, data_programada: venc, valor: r2(p.valor) });
+    const copia = p => {
+      const r = { planilha_id: l.planilha_id, plano_conta_id: l.plano_conta_id, item: l.item, ...pagoRow(p) };
+      if (l.origem) r.origem = l.origem; if (l.parcela) r.parcela = l.parcela;
+      return r;
+    };
+    try {
+      if (resta > 0.004) {                                   // parcial: as partes viram lançamentos pagos e o original fica em aberto com o restante
+        await store.insertMany('lancamentos', partes.map(copia));
+        await store.update('lancamentos', l.id, comAjuste(l, { valor: resta }));
+      } else {                                               // fecha o valor: o original fica com a 1ª forma, as outras viram lançamentos novos
+        await store.update('lancamentos', l.id, pagoRow(partes[0]));
+        if (partes.length > 1) await store.insertMany('lancamentos', partes.slice(1).map(copia));
+      }
+    } catch (e) { return toast(e.message, true); }
+    fecharModal(true);
+    toast(`${sinal(l) > 0 ? 'Recebido' : 'Pago'}: ${partes.map(p => `${p.forma} ${brl(p.valor)}`).join(' + ')}${resta > 0.004 ? ` · ${brl(resta)} em aberto` : ''}`);
+    return (depois || rerender)();
+  }
+  const banco = Number($('p_banco').value) || null;
+  const forma = document.querySelector('#modal input[name=p_forma]:checked')?.value;
   if (!forma) return toast(`Escolha a forma de ${verbo}.`, true);
   if (!banco) return toast('Escolha o banco.', true), abrirBsel($('p_banco'));
   const row = { data_pagamento: data, forma_pagamento: forma, banco_id: banco };
   if (!l.data_programada) row.data_programada = l.data_lancamento;          // guarda o vencimento original
-  if ($('p_mover').checked && data !== l.data_lancamento) row.data_lancamento = data;
+  if (dataLanc !== l.data_lancamento) row.data_lancamento = dataLanc;
   try { await store.update('lancamentos', l.id, row); }
   catch (e) { return toast(e.message, true); }
-  fecharModal();
+  fecharModal(true);
   toast(`${sinal(l) > 0 ? 'Recebido' : 'Pago'}: ${brl(l.valor)} · ${forma} · ${M.banco[banco]?.nome ?? ''}`);
   await (depois || rerender)();
 }
@@ -1706,8 +1885,149 @@ async function estornarPagamento() {
   const row = { data_pagamento: null, forma_pagamento: null, banco_id: null };
   if (l.data_programada && l.data_programada !== l.data_lancamento) row.data_lancamento = l.data_programada;   // volta para o vencimento
   try { await store.update('lancamentos', l.id, row); } catch (e) { return toast(e.message, true); }
-  fecharModal(); toast('Pagamento desfeito — lançamento em aberto.');
+  fecharModal(true); toast('Pagamento desfeito — lançamento em aberto.');
   await (depois || rerender)();
+}
+
+/* ---------- janela com a lista de lançamentos (abre ao clicar nos números) ---------- */
+// cfg: { titulo, sub, cor, ini, fim, pid, banco, pred, ordem }
+// Busca os lançamentos no período, aplica o filtro e mostra com editar, excluir e pagar/receber.
+let LST = null;
+async function abrirLista(cfg) { LST = { ...cfg, q: '', mudou: false }; await desenharLista(); }
+async function desenharLista() {
+  if (!LST) return;
+  let lancs = [];
+  try { lancs = await store.lancs({ ini: LST.ini, fim: LST.fim, planilha_id: LST.pid ?? null, banco_id: LST.banco ?? null }); }
+  catch (e) { toast(e.message, true); }
+  LST.lancs = lancs.filter(LST.pred || (() => true));
+  if (LST.ordem === 'venc') LST.lancs.sort((a, b) => vencimento(a).localeCompare(vencimento(b)));
+  const L = LST.lancs, ent = L.filter(l => sinal(l) > 0).reduce((a, l) => a + Number(l.valor), 0), sai = L.filter(l => sinal(l) < 0).reduce((a, l) => a + Number(l.valor), 0);
+  const ab = L.filter(l => situacao(l) !== 'pago').length;
+  abrirModal(`
+    <div class="mh" style="--ec:${esc(LST.cor || '#f37021')}">
+      <div><small>${esc(LST.sub || '')}</small><b>${esc(LST.titulo)}</b></div>
+      <button class="ib x" data-act="fecharModal" title="Fechar (Esc)">✕</button>
+    </div>
+    <div class="ls-tot">
+      <div><span>Lançamentos</span><b>${L.length}</b>${ab ? `<em>${ab} em aberto</em>` : ''}</div>
+      <div class="e"><span>Entradas</span><b>${brl(ent)}</b></div>
+      <div class="s"><span>Saídas</span><b>${brl(sai)}</b></div>
+      <div class="r"><span>Resultado</span><b class="${clsSinal(ent - sai)}">${brl(ent - sai)}</b></div>
+    </div>
+    <div class="ls-busca"><input id="ls_q" class="busca-ic" placeholder="Filtrar por descrição, conta ou banco…" value="${esc(LST.q)}" autofocus>
+      <span class="mut">Clique em ✎ para editar, ✕ para excluir ou no botão da situação para pagar/receber.</span></div>
+    <div class="ls-tab"><table class="ls"><thead><tr><th>Data</th><th>Vencimento</th><th>Empresa</th><th>Banco</th><th style="text-align:left">Conta / descrição</th><th style="text-align:right">Valor</th><th>Situação</th><th></th></tr></thead>
+      <tbody id="ls_corpo"></tbody></table></div>
+    <div class="mf"><span class="mut">${LST.mudou ? 'Alterações salvas — as telas serão atualizadas ao fechar.' : ''}</span><span class="sp"></span><button class="btn" data-act="fecharModal">Fechar</button></div>`,
+    'm-lista', () => { const m = LST?.mudou; LST = null; if (m) rerender(); });
+  desenharLinhasLista();
+}
+function desenharLinhasLista() {
+  const corpo = $('ls_corpo'); if (!corpo || !LST) return;
+  const q = semAcento(LST.q.trim());
+  const vis = LST.lancs.filter(l => !q || semAcento(`${l.item} ${planoLabel(l.plano_conta_id)} ${M.banco[l.banco_id]?.nome ?? ''} ${siglaEmpresa(l.planilha_id)}`).includes(q));
+  corpo.innerHTML = vis.map(l => {
+    const s = sinal(l), g = grupoDoPlano(l.plano_conta_id);
+    return `<tr class="${s > 0 ? 'rec' : 'desp'}">
+      <td class="c">${fmtData(l.data_lancamento)}</td>
+      <td class="c mut">${fmtData(vencimento(l))}</td>
+      <td class="c"><span class="tag" style="background:${esc(corEmpresa(l.planilha_id))}">${esc(siglaEmpresa(l.planilha_id))}</span></td>
+      <td>${l.banco_id ? bancoTag(M.banco[l.banco_id], 18) : '<span class="a-def">a definir</span>'}</td>
+      <td class="ls-c"><b>${esc(l.item || M.plano[l.plano_conta_id]?.nome || '')}</b><small>${g ? `<i style="background:${esc(corGrupo(g))}"></i>` : ''}${esc(planoLabel(l.plano_conta_id))}${l.parcela ? ` · parcela ${esc(l.parcela)}` : ''}</small></td>
+      <td class="r ${s > 0 ? 'pos' : 'neg'}"><b>${s > 0 ? '+' : '−'} ${num2(l.valor)}</b></td>
+      <td class="c">${seloSituacao(l).replace('data-act="pagar"', 'data-act="lsPagar"')}</td>
+      <td class="acoes"><button class="ib" title="Editar" data-act="lsEditar" data-id="${l.id}">✎</button><button class="ib del" title="Excluir" data-act="lsExcluir" data-id="${l.id}">✕</button></td></tr>`;
+  }).join('') || `<tr><td colspan="8" class="vazio">${LST.lancs.length ? 'Nada encontrado com esse filtro.' : 'Nenhum lançamento aqui.'}</td></tr>`;
+}
+const voltarLista = () => desenharLista();
+const mudouLista = async () => { if (LST) { LST.mudou = true; await desenharLista(); } else await rerender(); };
+
+/* ---------- editar um lançamento numa janela ---------- */
+let EDL = null;
+function editarNaJanela(l, voltar, depois) {
+  if (!l) return;
+  EDL = { l, depois };
+  const rec = sinal(l) > 0;
+  abrirModal(`
+    <div class="mh ${rec ? 'rec' : 'desp'}" style="--ec:${esc(corEmpresa(l.planilha_id))}">
+      <div><small>Editar lançamento · ${esc(siglaEmpresa(l.planilha_id))}</small><b>${esc(l.item || M.plano[l.plano_conta_id]?.nome || 'Lançamento')}</b></div>
+      <button class="ib x" data-act="fecharModal" title="Fechar (Esc)">✕</button>
+    </div>
+    <div class="mcorpo">
+      <label>Data do lançamento<input type="date" id="m_data" value="${l.data_lancamento}"></label>
+      <label>Vencimento<input type="date" id="m_venc" value="${l.data_programada ?? ''}"></label>
+      <label class="span2">Plano de contas<select id="m_plano" data-busca>${opcoesPlano(l.plano_conta_id)}</select></label>
+      <label>Descrição<input id="m_item" value="${esc(l.item ?? '')}"></label>
+      <label>Valor (R$)<input id="m_valor" inputmode="decimal" value="${num2(l.valor)}" class="m-val"></label>
+      <div class="mlbl">Pagamento <span class="mut">— deixe o banco vazio para o lançamento ficar em aberto</span></div>
+      <label>Banco<select id="m_banco" data-banco>${opcoes(bancosDaEmpresa(l.planilha_id), l.banco_id ?? '', b => b.nome, 'Em aberto (sem banco)')}</select></label>
+      <label>Data do pagamento<input type="date" id="m_dpag" value="${l.data_pagamento ?? ''}"></label>
+      <label class="span2">Forma de pagamento<select id="m_forma"><option value="">—</option>${FORMAS_PAG.map(f => `<option ${f === l.forma_pagamento ? 'selected' : ''}>${esc(f)}</option>`).join('')}</select></label>
+    </div>
+    <div class="mf">
+      <button class="btn sec perigo" data-act="mExcluir">✕ Excluir</button>
+      <span class="sp"></span>
+      <button class="btn sec" data-act="fecharModal">Cancelar</button>
+      <button class="btn" data-primary data-act="mSalvar">Salvar alteração</button>
+    </div>`, 'm-ed', voltar);
+}
+async function salvarNaJanela() {
+  const { l, depois } = EDL || {}; if (!l) return;
+  const row = {
+    data_lancamento: $('m_data').value, data_programada: $('m_venc').value || null, plano_conta_id: Number($('m_plano').value) || null,
+    item: $('m_item').value.trim(), valor: parseValor($('m_valor').value), banco_id: Number($('m_banco').value) || null,
+    data_pagamento: $('m_dpag').value || null, forma_pagamento: $('m_forma').value || null,
+  };
+  if (!row.data_lancamento) return toast('Informe a data do lançamento.', true);
+  if (!row.plano_conta_id) return toast('Selecione o plano de contas.', true);
+  if (!(row.valor > 0)) return toast('Informe um valor maior que zero.', true);
+  if (/^PAR:/.test(l.origem || '') && row.data_programada && row.data_programada !== l.data_programada && row.data_lancamento === l.data_lancamento)
+    row.data_lancamento = row.data_programada;                                         // parcela: acompanha o vencimento
+  if (!row.banco_id) { row.data_pagamento = null; row.forma_pagamento = null; }          // sem banco = em aberto
+  else if (!row.data_pagamento) row.data_pagamento = row.data_lancamento;
+  if (!l.forma_pagamento && !row.forma_pagamento) delete row.forma_pagamento;          // não grava a coluna à toa
+  try { await store.update('lancamentos', l.id, comAjuste(l, row)); } catch (e) { return toast(e.message, true); }
+  fecharModal(true); toast('Lançamento alterado.');
+  await (depois || mudouLista)();
+}
+async function excluirNaJanela(l, depois) {
+  if (!l || !confirm(`Excluir o lançamento "${l.item || 'sem descrição'}" de ${brl(l.valor)}?`)) return;
+  try { await store.remove('lancamentos', l.id); } catch (e) { return toast(e.message, true); }
+  toast('Lançamento excluído.');
+  if ($('modal')?.querySelector('.m-ed')) fecharModal(true);
+  await (depois || mudouLista)();
+}
+
+/* ---------- pendências do dia (abre sempre que o sistema é aberto) ---------- */
+async function mostrarPendencias() {
+  let abertos = [];
+  try { abertos = (await store.lancs({ ini: `${hoje.getFullYear() - 1}-01-01`, fim: addDias(HOJE, 7) })).filter(emAberto); }
+  catch (e) { return; }
+  const h = new Date().getHours(), saud = h < 12 ? 'Bom dia' : h < 18 ? 'Boa tarde' : 'Boa noite';
+  const nome = S.usuario ? S.usuario.charAt(0).toUpperCase() + S.usuario.slice(1) : '';
+  const venc = abertos.filter(l => vencimento(l) < HOJE), hojeL = abertos.filter(l => vencimento(l) === HOJE), semana = abertos.filter(l => vencimento(l) > HOJE);
+  const soma = (a, sg) => a.filter(l => sinal(l) === sg).reduce((x, l) => x + Number(l.valor), 0);
+  const bloco = (tit, cls, lista, vazio) => `<div class="pd-b ${cls}"><div class="pd-bh"><b>${tit}</b><span>${lista.length ? `${lista.length} · a pagar ${brl(soma(lista, -1))} · a receber ${brl(soma(lista, 1))}` : ''}</span></div>
+    ${lista.length ? lista.slice(0, 6).map(l => `<div class="pd-l"><span class="d">${fmtData(vencimento(l)).slice(0, 5)}</span><span class="tag" style="background:${esc(corEmpresa(l.planilha_id))}">${esc(siglaEmpresa(l.planilha_id))}</span>
+      <span class="n">${esc(l.item || M.plano[l.plano_conta_id]?.nome || '')}</span><b class="${sinal(l) > 0 ? 'pos' : 'neg'}">${sinal(l) > 0 ? '↓ receber' : '↑ pagar'} ${num2(l.valor)}</b></div>`).join('')
+      + (lista.length > 6 ? `<div class="pd-mais">+ ${lista.length - 6} outro(s)</div>` : '') : `<div class="pd-vz">${vazio}</div>`}</div>`;
+  abrirModal(`
+    <div class="pd-top">
+      <small>${new Date().toLocaleDateString('pt-BR', { weekday: 'long', day: '2-digit', month: 'long', year: 'numeric' })}</small>
+      <h2>${saud}${nome ? ', ' + esc(nome) : ''}!</h2>
+      <p>Nossas pendências financeiras para hoje são:</p>
+      <div class="pd-kpi">
+        <div class="desp"><span>A pagar hoje</span><b>${brl(soma(hojeL, -1))}</b></div>
+        <div class="rec"><span>A receber hoje</span><b>${brl(soma(hojeL, 1))}</b></div>
+        <div class="venc ${venc.length ? 'on' : ''}"><span>Em atraso</span><b>${brl(soma(venc, -1) + soma(venc, 1))}</b></div>
+      </div>
+    </div>
+    <div class="pd-corpo">
+      ${bloco('Vencem hoje', 'hoje', hojeL, '✓ Nada vence hoje.')}
+      ${bloco('Em atraso', 'atraso', venc, '✓ Nenhuma conta em atraso.')}
+      ${bloco('Próximos 7 dias', 'prox', semana, 'Nada previsto para os próximos dias.')}
+    </div>
+    <div class="mf"><button class="btn sec" data-act="pdVer">Ver e pagar as contas em aberto</button><span class="sp"></span><button class="btn" data-act="fecharModal" data-primary>Ciente, fechar</button></div>`, 'm-pend', null, true);
 }
 
 /* ---------- parcelas (empréstimos, financiamentos, compras parceladas) ---------- */
@@ -1738,7 +2058,7 @@ function desenharParcelas() {
       <input type="date" value="${p.data}" data-pi="${i}" data-pk="data">
       <input inputmode="decimal" value="${num2(p.valor)}" data-pi="${i}" data-pk="valor">
     </div>`).join('')}</div>
-    <div class="parc-f"><span class="mut">Lançadas em aberto (sem banco): cada parcela é paga depois pelo botão <b>Pagar</b>.</span>
+    <div class="parc-f"><span class="mut">Cada parcela entra no fluxo de caixa e na DRE <b>na data do seu vencimento</b>, em aberto, e é paga depois pelo botão <b>Pagar</b> (continua no vencimento).</span>
       <button class="salvar" data-act="lancarParcelas">+ Lançar ${P.length} parcelas · ${brl(tot)}</button></div>`;
 }
 async function lancarParcelas() {
@@ -2005,24 +2325,24 @@ function renderFluxo() {
   if (cfg.desc) vis = [...vis].reverse();
   const consolidado = S.empresaVis === 'all';
   const cel = (k, d) => {
-    const res = d.ent - d.sai;
+    const res = d.ent - d.sai, clk = (tem, kk) => tem ? ` clk" data-act="fxCel" data-d="${d.data}" data-k="${kk}" title="Ver os lançamentos` : '';
     return {
       ini: `<td class="${d.ini < 0 ? 'neg' : ''}">${num2(d.ini)}</td>`,
-      ent: `<td class="pos">${d.ent ? num2(d.ent) : '–'}</td>`,
-      sai: `<td class="neg">${d.sai ? num2(d.sai) : '–'}</td>`,
-      res: `<td class="${clsSinal(res)}">${res ? num2(res) : '–'}</td>`,
+      ent: `<td class="pos${clk(d.ent, 'ent')}">${d.ent ? num2(d.ent) : '–'}</td>`,
+      sai: `<td class="neg${clk(d.sai, 'sai')}">${d.sai ? num2(d.sai) : '–'}</td>`,
+      res: `<td class="${clsSinal(res)}${clk(d.itens.length, 'res')}">${res ? num2(res) : '–'}</td>`,
       fim: `<td style="font-weight:700" class="${d.fim < 0 ? 'neg' : ''}">${num2(d.fim)}</td>`,
-      qtd: `<td class="mut">${d.itens.length || ''}</td>`,
+      qtd: `<td class="mut${clk(d.itens.length, 'res')}">${d.itens.length || ''}</td>`,
     }[k];
   };
   const pe = { ini: num2(saldo0), ent: num2(tEnt), sai: num2(tSai), res: num2(tEnt - tSai), fim: num2(s), qtd: dias.reduce((a, d) => a + d.itens.length, 0) };
   const peCls = { ent: 'pos', sai: 'neg', res: clsSinal(tEnt - tSai) };
 
   $('main').innerHTML = `
-    ${bannerEmpresa(S.empresaVis)}
+    ${bannerEmpresa(S.empresaVis, 'FLUXO DE CAIXA', 'FLUXO DE CAIXA ACUMULADO')}
     <h2 class="tit">Fluxo de Caixa Diário</h2>
-    <p class="sub">${MESES_NOME[S.mes]} de ${S.ano}. Clique em um dia para ver os lançamentos.</p>
-    <div class="barra">${abasEmpresa(S.empresaVis, 'empresaVis', true)}</div>
+    <p class="sub">${MESES_NOME[S.mes]} de ${S.ano}. Clique no dia para expandir, ou em um valor para ver e editar os lançamentos.</p>
+    <div class="barra">${abasEmpresa(S.empresaVis, 'empresaVis', true, 'FLUXO DE CAIXA', 'FLUXO DE CAIXA ACUMULADO')}</div>
     <div class="barra">${barraAno()}${barraMeses(corEmpresa(S.empresaVis))}
       <div class="filtros"><label class="chk"><input type="checkbox" data-chg="fluxoVazios" ${S.fluxo.ocultarVazios ? 'checked' : ''}> Ocultar dias sem movimento</label>${botaoPers('fluxo')}</div>
     </div>
@@ -2043,7 +2363,7 @@ function renderFluxo() {
           <td colspan="${cfg.cols.length}"><div class="detl"><span class="b">${l.banco_id ? bancoTag(M.banco[l.banco_id], 16) : `<span class="a-def">${sinal(l) > 0 ? 'a receber' : 'a pagar'}</span>`}</span><span class="c">${esc(planoLabel(l.plano_conta_id))} <span class="mut">· ${esc(l.item)}</span></span><b class="${sinal(l) > 0 ? 'pos' : 'neg'}">${sinal(l) > 0 ? '' : '-'}${num2(l.valor)}</b></div></td></tr>`).join('');
         return html;
       }).join('') || `<tr><td colspan="${cfg.cols.length + 1}" class="vazio">Sem movimento no mês.</td></tr>`}</tbody>
-      <tfoot><tr><td style="text-align:left">Total do mês</td>${cfg.cols.map(k => `<td class="r ${peCls[k] ?? ''}">${pe[k]}</td>`).join('')}</tr></tfoot>
+      <tfoot><tr><td style="text-align:left">Total do mês</td>${cfg.cols.map(k => `<td class="r ${peCls[k] ?? ''} ${['ent', 'sai', 'res', 'qtd'].includes(k) ? 'clk" data-act="fxCel" data-k="' + k : ''}">${pe[k]}</td>`).join('')}</tr></tfoot>
     </table></div>
     <p class="dica">O fluxo usa a data do lançamento. Transferências entre bancos não alteram o caixa da empresa — veja-as na tela Bancos.</p>`;
 }
@@ -2089,8 +2409,9 @@ function renderDRE() {
   const fmt = v => Math.abs(v) < 0.005 ? '<span class="z">–</span>' : `<span class="${v < 0 ? 'neg' : ''}">${num2(v)}</span>`;
   const f2 = v => Number.isFinite(v) ? num2(v) : '–';
   const head = `<tr><th style="text-align:left">Demonstrativo de Resultados</th>${meses.map(m => `<th>${MESES[m]}</th>`).join('')}${cfg.cols.map(k => `<th>${k === 'total' && oc.size ? `TOTAL (${meses.length} ${meses.length === 1 ? 'mês' : 'meses'})` : colDef('dre', k).h.toUpperCase()}</th>`).join('')}</tr>`;
-  const linhaVals = (arr, total) => meses.map(m => `<td>${fmt(arr[m])}</td>`).join('') + cfg.cols.map(k => ({
-    total: `<td class="tot">${fmt(total)}</td>`,
+  const ck = (at, m, v) => at && Math.abs(v || 0) > 0.004 ? ` class="clk" ${at} data-m="${m}" title="Ver os lançamentos"` : '';
+  const linhaVals = (arr, total, at = '') => meses.map(m => `<td${ck(at, m, arr[m])}>${fmt(arr[m])}</td>`).join('') + cfg.cols.map(k => ({
+    total: `<td class="tot${at && Math.abs(total) > 0.004 ? ' clk' : ''}" ${at && Math.abs(total) > 0.004 ? `${at} data-m="tot" title="Ver os lançamentos"` : ''}>${fmt(total)}</td>`,
     media: `<td>${fmt(n ? total / n : 0)}</td>`,
     av: `<td class="mut">${rob ? pct(total / rob) : '–'}</td>`,
   })[k]).join('');
@@ -2103,8 +2424,8 @@ function renderDRE() {
     if (t === 'g') {
       const aberto = S.dre.abertos.has(k);
       const contasPos = S.plano_contas.filter(p => M.gdre[p.grupo_dre_id]?.posicao === k && meses.some(m => Math.abs(conta[p.id]?.[m] || 0) > 0.004));
-      body += `<tr class="g"><td class="l" data-act="dreAbrir" data-k="${k}"><span class="caret ${aberto ? 'on' : ''}">${contasPos.length ? '▸' : ''}</span>${esc(POS_NOME[k])}</td>${linhaVals(cols.map(c => c[k]), tot[k])}</tr>`;
-      if (aberto) body += contasPos.map(p => `<tr class="sub"><td class="l">${esc(p.codigo + ' ' + p.nome)}</td>${linhaVals(conta[p.id], soma(conta[p.id]))}</tr>`).join('');
+      body += `<tr class="g"><td class="l" data-act="dreAbrir" data-k="${k}"><span class="caret ${aberto ? 'on' : ''}">${contasPos.length ? '▸' : ''}</span>${esc(POS_NOME[k])}</td>${linhaVals(cols.map(c => c[k]), tot[k], `data-act="dreCel" data-k="${k}"`)}</tr>`;
+      if (aberto) body += contasPos.map(p => `<tr class="sub"><td class="l">${esc(p.codigo + ' ' + p.nome)}</td>${linhaVals(conta[p.id], soma(conta[p.id]), `data-act="dreCel" data-c="${p.id}"`)}</tr>`).join('');
     } else if (t === 's') {
       body += `<tr class="s"><td class="l" title="${esc(calcNome(k)?.[2] ?? '')}">${esc(calcNome(k)?.[1] ?? k)}</td>${linhaVals(cols.map(c => c[k]), tot[k])}</tr>`;
     } else if (t === 'p') {
@@ -2114,13 +2435,13 @@ function renderDRE() {
         total: `<td>${f2(tot.PE)}</td>`, media: `<td>${n ? f2(tot.PE / n) : '–'}</td>`, av: '<td></td>' })[c]).join('')}</tr>`;
     }
   }
-  if (contasSem.size && meses.some(m => Math.abs(semDre[m]) > 0.004)) body += `<tr class="alerta"><td class="l">⚠ Contas sem Grupo DRE (${contasSem.size}) — <a href="#" data-act="cadTab" data-t="grupos_dre">classificar</a></td>${linhaVals(semDre, soma(semDre))}</tr>`;
+  if (contasSem.size && meses.some(m => Math.abs(semDre[m]) > 0.004)) body += `<tr class="alerta"><td class="l">⚠ Contas sem Grupo DRE (${contasSem.size}) — <a href="#" data-act="cadTab" data-t="grupos_dre">classificar</a></td>${linhaVals(semDre, soma(semDre), 'data-act="dreCel" data-k="SEM"')}</tr>`;
 
   const periodo = oc.size ? `${meses.length} ${meses.length === 1 ? 'mês selecionado' : 'meses selecionados'}` : 'ano todo';
   $('main').innerHTML = `
     ${bannerEmpresa(S.empresaVis, 'DRE')}
     <h2 class="tit">DRE — Demonstrativo de Resultados</h2>
-    <p class="sub">${S.ano} · ${periodo}. Percentuais sobre a Receita Operacional Bruta. Clique em um grupo para ver as contas.</p>
+    <p class="sub">${S.ano} · ${periodo}. Percentuais sobre a Receita Operacional Bruta. Clique em um grupo para ver as contas, ou em um valor para ver os lançamentos.</p>
     <div class="barra">${abasEmpresa(S.empresaVis, 'empresaVis', true, 'DRE')}</div>
     <div class="barra">${barraAno()}
       <div class="filtros">
@@ -2477,10 +2798,10 @@ function renderDash() {
       <button class="mini" data-act="view" data-v="lancamentos">Ver lançamentos →</button></div>
     <div class="ab-grid">
       <div class="ab-tot">
-        <div class="abt desp"><small>A pagar</small><b>${brl(somaV(abP))}</b><span>${abP.length} conta(s)</span></div>
-        <div class="abt rec"><small>A receber</small><b>${brl(somaV(abR))}</b><span>${abR.length} conta(s)</span></div>
-        <div class="abt venc ${venc.length ? 'on' : ''}"><small>Vencidas</small><b>${brl(somaV(venc))}</b><span>${venc.length ? `${venc.length} conta(s) em atraso` : 'nada em atraso'}</span></div>
-        <div class="abt"><small>Próximos 7 dias</small><b>${brl(somaV(ate7))}</b><span>${ate7.length} vencimento(s)</span></div>
+        <div class="abt desp" data-act="abLista" data-t="pagar" title="Ver as contas a pagar"><small>A pagar</small><b>${brl(somaV(abP))}</b><span>${abP.length} conta(s)</span></div>
+        <div class="abt rec" data-act="abLista" data-t="receber" title="Ver as contas a receber"><small>A receber</small><b>${brl(somaV(abR))}</b><span>${abR.length} conta(s)</span></div>
+        <div class="abt venc ${venc.length ? 'on' : ''}" data-act="abLista" data-t="venc" title="Ver as contas vencidas"><small>Vencidas</small><b>${brl(somaV(venc))}</b><span>${venc.length ? `${venc.length} conta(s) em atraso` : 'nada em atraso'}</span></div>
+        <div class="abt" data-act="abLista" data-t="semana" title="Ver os vencimentos dos próximos 7 dias"><small>Próximos 7 dias</small><b>${brl(somaV(ate7))}</b><span>${ate7.length} vencimento(s)</span></div>
       </div>
       <div class="ab-lista">${proximos.length ? proximos.map(l => {
         const st = situacao(l), rec = sinal(l) > 0, dias = Math.round((new Date(vencimento(l) + 'T12:00') - new Date(HOJE + 'T12:00')) / 864e5);
@@ -2489,7 +2810,7 @@ function renderDash() {
           <b class="ab-v ${rec ? 'pos' : 'neg'}">${rec ? '+' : '−'} ${num2(l.valor)}</b>
           <button class="selo ${st} ${rec ? 'rec' : 'desp'}" data-act="pagar" data-id="${l.id}">${rec ? '↓ Receber' : '↑ Pagar'}</button></div>`;
       }).join('') : '<div class="ab-vazio">✓ Nenhuma conta em aberto. Lançamentos feitos sem banco aparecem aqui até serem pagos ou recebidos.</div>'}</div>
-    </div></section>`;
+    </div><div class="tip" hidden></div></section>`;
 
   // ---------- 1. Receitas x despesas por mês ----------
   const g1 = (() => {
@@ -2701,14 +3022,14 @@ function renderFluxoAcum() {
   const fmt = v => Math.abs(v) < 0.005 ? '<span class="z">–</span>' : `<span class="${v < 0 ? 'neg' : ''}">${num2(v)}</span>`;
   const fut = m => m > ult ? 'fut' : '';
   const extras = (total, media = true) => cfg.cols.map(k => k === 'total' ? `<td class="tot">${fmt(total)}</td>` : `<td>${media ? fmt(total / nMeses) : '<span class="z">–</span>'}</td>`).join('');
-  const linha = (cls, rot, arr, total, media, attrs = '') => `<tr class="${cls}"><td class="l" ${attrs}>${rot}</td>${meses.map(m => `<td class="${fut(m)}">${fmt(arr[m])}</td>`).join('')}${extras(total, media)}</tr>`;
+  const linha = (cls, rot, arr, total, media, attrs = '', at = '') => `<tr class="${cls}"><td class="l" ${attrs}>${rot}</td>${meses.map(m => at && Math.abs(arr[m]) > 0.004 ? `<td class="${fut(m)} clk" ${at} data-m="${m}" title="Ver os lançamentos">${fmt(arr[m])}</td>` : `<td class="${fut(m)}">${fmt(arr[m])}</td>`).join('')}${at && Math.abs(total) > 0.004 ? extras(total, media).replace('<td class="tot">', `<td class="tot clk" ${at} data-m="tot" title="Ver os lançamentos">`) : extras(total, media)}</tr>`;
   const soma = a => a.reduce((x, y) => x + y, 0);
   const secao = (rot, cls) => `<tr class="sec ${cls}"><td class="l">${rot}</td><td colspan="${12 + cfg.cols.length}"></td></tr>`;
   const grupos = tipo => gruposOrdenados().filter(g => g.tipo === tipo && grp[g.id]?.some(v => v));
   const blocoGrupos = tipo => grupos(tipo).map(g => {
     const ab = abertos.has(g.id), cs = S.plano_contas.filter(p => p.grupo_id === g.id && conta[p.id]?.some(v => v));
-    return linha('g', `<span class="caret ${ab ? 'on' : ''}">▸</span><i class="gdot" style="background:${esc(corGrupo(g))}"></i>${esc(g.nome)}`, grp[g.id], soma(grp[g.id]), true, `data-act="faAbrir" data-g="${g.id}"`)
-      + (ab ? cs.map(p => linha('sub', esc(p.codigo + ' ' + p.nome), conta[p.id], soma(conta[p.id]), true)).join('') : '');
+    return linha('g', `<span class="caret ${ab ? 'on' : ''}">▸</span><i class="gdot" style="background:${esc(corGrupo(g))}"></i>${esc(g.nome)}`, grp[g.id], soma(grp[g.id]), true, `data-act="faAbrir" data-g="${g.id}"`, `data-act="faCel" data-g="${g.id}"`)
+      + (ab ? cs.map(p => linha('sub', esc(p.codigo + ' ' + p.nome), conta[p.id], soma(conta[p.id]), true, '', `data-act="faCel" data-c="${p.id}"`)).join('') : '');
   }).join('') || `<tr class="sub"><td class="l mut">Nenhum movimento</td><td colspan="${12 + cfg.cols.length}"></td></tr>`;
   const res = ent.map((v, m) => v - sai[m]);
   let acc = 0; const resAcum = res.map(v => (acc += v));
@@ -2721,9 +3042,9 @@ function renderFluxoAcum() {
   const body = `
     <tr class="si"><td class="l">Saldo inicial do mês <span class="mut" style="font-weight:500">(caixa dos bancos)</span></td>${meses.map(m => `<td class="${fut(m)}">${fmt(ini[m])}</td>`).join('')}${cfg.cols.map(k => k === 'total' ? `<td class="tot" title="Saldo no início do ano">${fmt(s0)}</td>` : '<td><span class="z">–</span></td>').join('')}</tr>
     ${secao('ENTRADAS', 'e')}${blocoGrupos('RECEITA')}
-    ${linha('te', 'Total de entradas', ent, tEnt, true)}
+    ${linha('te', 'Total de entradas', ent, tEnt, true, '', 'data-act="faCel" data-t="e"')}
     ${secao('SAÍDAS', 's')}${blocoGrupos('DESPESA')}
-    ${linha('ts', 'Total de saídas', sai, tSai, true)}
+    ${linha('ts', 'Total de saídas', sai, tSai, true, '', 'data-act="faCel" data-t="s"')}
     ${linha('res', 'Resultado do mês', res, tRes, true)}
     ${linha('racc', 'Resultado acumulado no ano', resAcum, tRes, false)}
     <tr class="sacc"><td class="l">Saldo acumulado</td>${meses.map(m => `<td class="${fut(m)} ${fim[m] < 0 ? 'negs' : ''}">${num2(fim[m])}</td>`).join('')}${cfg.cols.map(k => k === 'total' ? `<td class="tot" title="Saldo no fim do período">${num2(saldoAtual)}</td>` : '<td>–</td>').join('')}</tr>`;
@@ -2772,6 +3093,7 @@ function dicaGrafico(alvo) {
 
 /* ========================== BANCOS / EXTRATOS ========================== */
 async function viewBancos() {
+  if (S.bk.aba === 'fluxo') return viewBkFluxo();
   const B = S.bk;
   if (!B.ini) { const p = periodoMes(); B.ini = p.ini; B.fim = p.fim; }
   let saldos = {}, lancs = [], transfs = [];
@@ -2796,6 +3118,7 @@ async function viewBancos() {
   const tot = { ini: 0, ent: 0, sai: 0 };
   for (const b of S.bancos) { tot.ini += saldos[b.id] || 0; tot.ent += mv[b.id].ent; tot.sai += mv[b.id].sai; }
   S.bk.dados = { saldos, mv, movs, tot };
+  if (B.sel !== 'all') { S.bk.fx = { ...(S.bk.fx || {}), vis: 'b:' + B.sel, mes: B.ini.slice(0, 7) }; await carregarBkFluxo(); }
   renderBancos();
 }
 
@@ -2838,9 +3161,7 @@ function renderBancos() {
   const rod = { ent: `<td class="r pos">${num2(sEnt)}</td>`, sai: `<td class="r neg">${num2(sSai)}</td>`, saldo: `<td class="r">${num2(run)}</td>` };
   const nomeSel = sel === 'all' ? 'Todos os bancos' : M.banco[sel]?.nome;
 
-  $('main').innerHTML = `
-    <h2 class="tit">Bancos</h2>
-    <p class="sub">Saldos, entradas e saídas de cada conta no período. Clique em um banco para ver o extrato.</p>
+  renderBancosShell(`
     <div class="periodo">
       <label>De <input type="date" id="bk_ini" value="${B.ini}" data-chg="bkPeriodo"></label>
       <label>até <input type="date" id="bk_fim" value="${B.fim}" data-chg="bkPeriodo"></label>
@@ -2854,6 +3175,7 @@ function renderBancos() {
       ${card('all', 'Todos os bancos', tot.ini, tot, '<span class="logo ini" style="width:32px;height:32px;background:#fff;color:var(--orange)">Σ</span>', 'total')}
       ${(B.empresa ? bancosSoDaEmpresa(Number(B.empresa)) : S.bancos).map(b => card(b.id, b.nome, saldos[b.id] || 0, mv[b.id], iconeBanco(b, 32), '', b.planilha_id)).join('')}
     </div>
+    ${sel !== 'all' && S.bk.fxDados?.V.banco === sel ? `<section class="bk-fx-emb">${renderBkFluxo(true)}</section>` : ''}
     <div class="barra">
       <h3 style="margin:0;font-size:15px">Extrato · ${esc(nomeSel)}</h3>
       <div class="filtros">
@@ -2878,7 +3200,86 @@ function renderBancos() {
       </tbody>
       <tfoot><tr>${cols.map((k, i) => rod[k] ?? `<td>${i === 0 ? `${lista.length} mov.` : ''}</td>`).join('')}</tr></tfoot>
     </table></div>
-    ${filtrado ? '<p class="dica">Com filtros ativos a coluna de saldo é ocultada (o saldo só faz sentido com todos os movimentos).</p>' : ''}`;
+    ${filtrado ? '<p class="dica">Com filtros ativos a coluna de saldo é ocultada (o saldo só faz sentido com todos os movimentos).</p>' : ''}`);
+}
+// no extrato, trocar o mês do fluxo diário também leva o período do extrato para esse mês
+function bkFxIrMes(mes) {
+  if (S.bk.aba === 'fluxo') return viewBkFluxo();
+  const [a, m] = mes.split('-').map(Number);
+  S.bk.ini = `${mes}-01`; S.bk.fim = `${mes}-${pad(ultimoDia(a, m - 1))}`;
+  viewBancos();
+}
+function renderBancosShell(corpo) {
+  const fx = S.bk.aba === 'fluxo';
+  $('main').innerHTML = `
+    <div class="dtop"><div><h2 class="tit">Bancos</h2>
+      <p class="sub">${fx ? 'Fluxo de caixa diário: receita, despesa e resultado de cada dia. Clique nos valores para ver os lançamentos.' : 'Saldos, entradas e saídas de cada conta no período. Clique em um banco para ver o extrato.'}</p></div>
+      <div class="seg"><button class="${fx ? '' : 'on'}" data-act="bkAba" data-v="extrato">Saldos e extrato</button><button class="${fx ? 'on' : ''}" data-act="bkAba" data-v="fluxo">Fluxo de caixa diário</button></div>
+    </div>${corpo}`;
+}
+
+/* ---------- Bancos · fluxo de caixa diário (receita, despesa e resultado de cada dia) ---------- */
+// Visão: todos os bancos, os bancos de uma empresa ou um banco. Só entra o que passou pelo banco (pago/recebido).
+const visBk = v => v.startsWith('e:') ? { pid: Number(v.slice(2)), banco: null, rot: siglaEmpresa(Number(v.slice(2))), cor: corEmpresa(Number(v.slice(2))) }
+  : v.startsWith('b:') ? { pid: null, banco: Number(v.slice(2)), rot: M.banco[Number(v.slice(2))]?.nome ?? '', cor: corEmpresa(M.banco[Number(v.slice(2))]?.planilha_id ?? 'all') }
+  : { pid: null, banco: null, rot: 'Todos os bancos', cor: '#2f3034' };
+async function viewBkFluxo() {
+  await carregarBkFluxo();
+  if (S.bk.aba === 'fluxo') renderBancosShell(renderBkFluxo()); else renderBancos();
+}
+async function carregarBkFluxo() {
+  const F = S.bk.fx ||= { vis: S.planilhaId ? 'e:' + S.planilhaId : 'all', mes: `${hoje.getFullYear()}-${pad(hoje.getMonth() + 1)}` };
+  const [a, m] = F.mes.split('-').map(Number), ini = `${F.mes}-01`, fim = `${F.mes}-${pad(ultimoDia(a, m - 1))}`, V = visBk(F.vis);
+  let lancs = [];
+  try { lancs = await store.lancs({ ini, fim, planilha_id: V.pid, banco_id: V.banco }); } catch (e) { toast(e.message, true); }
+  const dias = Array.from({ length: ultimoDia(a, m - 1) }, (_, i) => ({ dia: i + 1, data: `${F.mes}-${pad(i + 1)}`, rec: 0, desp: 0, n: 0 }));
+  for (const l of lancs) {
+    if (!l.banco_id) continue;
+    const d = dias[Number(l.data_lancamento.slice(8, 10)) - 1]; if (!d) continue;
+    sinal(l) > 0 ? d.rec += Number(l.valor) : d.desp += Number(l.valor); d.n++;
+  }
+  S.bk.fxDados = { dias, ini, fim, V, a, m };
+}
+// embutido = aparece no "Saldos e extrato" ao clicar num banco (o banco vem do cartão clicado)
+function renderBkFluxo(embutido = false) {
+  const F = S.bk.fx, { dias, V, a, m } = S.bk.fxDados;
+  const tRec = dias.reduce((x, d) => x + d.rec, 0), tDesp = dias.reduce((x, d) => x + d.desp, 0), tRes = tRec - tDesp;
+  const com = dias.filter(d => d.n);
+  const melhor = com.length ? com.reduce((x, d) => d.rec - d.desp > x.rec - x.desp ? d : x) : null;
+  const pior = com.length ? com.reduce((x, d) => d.rec - d.desp < x.rec - x.desp ? d : x) : null;
+  const cel = (d, k, v, cls) => v ? `<td class="${cls} clk" data-act="bkFxCel" data-d="${d.data}" data-k="${k}" title="Ver os lançamentos de ${fmtData(d.data)}"><span>R$</span>${num2(Math.abs(v))}</td>` : `<td class="${cls} z"><span>R$</span>-</td>`;
+  const bloco = lista => `<table class="bfx"><thead><tr><th>Dia</th><th class="rec">Receita</th><th class="desp">Despesa</th><th>Resultado do dia</th></tr></thead><tbody>${lista.map(d => {
+    const r = d.rec - d.desp, dow = new Date(a, m - 1, d.dia).getDay();
+    return `<tr class="${dow === 0 || dow === 6 ? 'fds' : ''} ${d.data === HOJE ? 'hoje' : ''}"><td class="dia">${d.dia}<small>${DIAS_SEM[dow]}</small></td>${cel(d, 'ent', d.rec, 'rec')}${cel(d, 'sai', d.desp, 'desp')}${r ? `<td class="res ${r > 0 ? 'bom' : 'ruim'} clk" data-act="bkFxCel" data-d="${d.data}" data-k="res"><span>R$</span>${r < 0 ? '(' + num2(-r) + ')' : num2(r)}</td>` : '<td class="res z"><span>R$</span>-</td>'}</tr>`;
+  }).join('')}</tbody></table>`;
+  const meses = []; for (let y = hoje.getFullYear() + 1; y >= hoje.getFullYear() - 2; y--) for (let mm = 12; mm >= 1; mm--) meses.push(`${y}-${pad(mm)}`);
+  const resumo = `<b>${esc(V.rot)} ${MESES[m - 1].charAt(0) + MESES[m - 1].slice(1).toLowerCase()}/${String(a).slice(2)}</b>`;
+  return `
+    <div class="bfx-top">
+      ${embutido ? `<div class="bfx-nome">${M.banco[V.banco] ? iconeBanco(M.banco[V.banco], 26) : ''}<b>${esc(V.rot)}</b><span class="mut">fluxo diário</span></div>` : `<label>Selecione<select data-chg="bkFxVis">
+        <option value="all" ${F.vis === 'all' ? 'selected' : ''}>Todos os bancos</option>
+        <optgroup label="Empresas">${S.planilhas.map(p => `<option value="e:${p.id}" ${F.vis === 'e:' + p.id ? 'selected' : ''}>${esc(siglaEmpresa(p.id))} — todos os bancos da empresa</option>`).join('')}</optgroup>
+        <optgroup label="Bancos">${S.bancos.map(b => `<option value="b:${b.id}" ${F.vis === 'b:' + b.id ? 'selected' : ''}>${esc(b.nome)}${b.planilha_id ? ' · ' + esc(siglaEmpresa(b.planilha_id)) : ''}</option>`).join('')}</optgroup>
+      </select></label>`}
+      <div class="ano"><button data-act="bkFxMes" data-d="-1" aria-label="Mês anterior">‹</button><select data-chg="bkFxMesSel" class="bfx-mes">${meses.map(x => `<option value="${x}" ${x === F.mes ? 'selected' : ''}>${MESES[Number(x.slice(5)) - 1]}/${x.slice(2, 4)}</option>`).join('')}</select><button data-act="bkFxMes" data-d="1" aria-label="Próximo mês">›</button></div>
+      <div class="bfx-ana"><span>Análise do resultado</span>${melhor ? `<b>O melhor resultado de ${MESES_NOME[m - 1]} aconteceu no dia ${melhor.dia} <em class="pos">(${brl(melhor.rec - melhor.desp)})</em>${pior && pior !== melhor ? ` · o pior no dia ${pior.dia} <em class="${pior.rec - pior.desp < 0 ? 'neg' : ''}">(${brl(pior.rec - pior.desp)})</em>` : ''}</b>` : '<b class="mut">Sem movimento no mês.</b>'}</div>
+    </div>
+    <div class="tiles bfx-tiles" style="--ec:${esc(V.cor)}">
+      <div class="tile g"><div class="l">Receita do mês</div><div class="v">${brl(tRec)}</div><div class="s">${resumo}</div></div>
+      <div class="tile r"><div class="l">Despesa do mês</div><div class="v">${brl(tDesp)}</div><div class="s">${com.length} dia(s) com movimento</div></div>
+      <div class="tile ${tRes < 0 ? 'r' : 'b'}"><div class="l">Resultado do mês</div><div class="v ${clsSinal(tRes)}">${brl(tRes)}</div><div class="s">${tRec ? pct(tRes / tRec) + ' das receitas' : ''}</div></div>
+      <div class="tile o"><div class="l">Média por dia útil</div><div class="v">${brl(tRes / Math.max(1, dias.filter(d => { const w = new Date(a, m - 1, d.dia).getDay(); return w && w < 6; }).length))}</div><div class="s">resultado ÷ dias úteis</div></div>
+    </div>
+    <div class="bfx-grid">
+      ${bloco(dias.slice(0, 11))}${bloco(dias.slice(11, 22))}
+      <div class="bfx-col3">${bloco(dias.slice(22))}
+        <table class="bfx bfx-tot"><tbody><tr><td class="dia">Total</td>
+          <td class="rec clk" data-act="bkFxCel" data-k="ent"><span>R$</span>${num2(tRec)}</td>
+          <td class="desp clk" data-act="bkFxCel" data-k="sai"><span>R$</span>${num2(tDesp)}</td>
+          <td class="res ${tRes >= 0 ? 'bom' : 'ruim'} clk" data-act="bkFxCel" data-k="res"><span>R$</span>${tRes < 0 ? '(' + num2(-tRes) + ')' : num2(tRes)}</td></tr></tbody></table>
+      </div>
+    </div>
+    <p class="dica">Entram só os lançamentos pagos/recebidos em banco (os em aberto ficam de fora) e pela data do lançamento. Transferências entre contas não contam como receita ou despesa. Clique em qualquer valor para ver, editar, pagar ou excluir os lançamentos.</p>`;
 }
 
 function exportarCSV() {
@@ -3006,12 +3407,13 @@ function infoRelatorio() {
   if (v === 'dash') { const P = periodoDash(); return { t: 'Dashboard', emp: nomeNaTela(S.empresaVis, 'DASHBOARD'), per: `${P.rot} de ${S.ano}`, cor: corEmpresa(S.empresaVis) }; }
   if (v === 'fluxoAcum') return { t: 'Fluxo de Caixa Acumulado', emp: nomeNaTela(S.empresaVis, 'FLUXO ACUMULADO'), per: String(S.ano), cor: corEmpresa(S.empresaVis) };
   if (v === 'custos') return { t: 'Custos Fixos', emp: S.cf?.emp === 'all' ? 'Todas as empresas' : nomeEmpresa(S.cf?.emp), per: '' };
-  if (v === 'fluxo') return { t: 'Fluxo de Caixa Diário', emp: nomeEmpresa(S.empresaVis), per, cor: corEmpresa(S.empresaVis) };
+  if (v === 'fluxo') return { t: 'Fluxo de Caixa Diário', emp: nomeNaTela(S.empresaVis, 'FLUXO DE CAIXA', 'FLUXO DE CAIXA ACUMULADO'), per, cor: corEmpresa(S.empresaVis) };
   if (v === 'dre') {
     const oc = mesesOcultosDRE();
     return { t: 'DRE - Demonstrativo de Resultados', emp: nomeNaTela(S.empresaVis, 'DRE'), cor: corEmpresa(S.empresaVis),
       per: `${S.ano}${oc.size ? ' · meses: ' + MESES.filter((_, i) => !oc.has(i)).join(', ') : ''}` };
   }
+  if (v === 'bancos' && S.bk.aba === 'fluxo') return { t: 'Bancos - Fluxo de Caixa Diário', emp: S.bk.fxDados?.V.rot, per: fmtMes(S.bk.fx?.mes) };
   if (v === 'bancos') return { t: 'Bancos e Extrato', emp: S.bk.sel === 'all' ? 'Todos os bancos' : M.banco[S.bk.sel]?.nome, per: `${fmtData(S.bk.ini)} a ${fmtData(S.bk.fim)}` };
   if (v === 'transferencias') return { t: 'Transferências entre contas', per };
   return { t: 'Cadastro - ' + (CAD_TABS.find(c => c[0] === S.cadTab)?.[1] ?? '') };
@@ -3398,7 +3800,64 @@ const ACOES = {
     abrirPagamento(l, S.view === 'dash' ? viewDash : viewLancamentos);
   },
   fecharModal: () => fecharModal(),
+  lsPagar: d => { const l = LST?.lancs.find(x => x.id === Number(d.id)); abrirPagamento(l, mudouLista, voltarLista); },
+  lsEditar: d => editarNaJanela(LST?.lancs.find(x => x.id === Number(d.id)), voltarLista),
+  lsExcluir: d => excluirNaJanela(LST?.lancs.find(x => x.id === Number(d.id))),
+  mSalvar: () => salvarNaJanela(),
+  mExcluir: () => excluirNaJanela(EDL?.l, EDL?.depois),
+  pdVer: () => { fecharModal(true); abrirLista({ titulo: 'Contas em aberto', sub: 'Todas as empresas · vencidas e próximas', ini: `${hoje.getFullYear() - 1}-01-01`, fim: addDias(HOJE, 120), pred: emAberto, ordem: 'venc' }); },
+  abLista: d => {
+    const pid = S.empresaVis === 'all' ? null : S.empresaVis, t = d.t;
+    const pred = { pagar: l => emAberto(l) && sinal(l) < 0, receber: l => emAberto(l) && sinal(l) > 0, venc: l => situacao(l) === 'vencido',
+      semana: l => emAberto(l) && vencimento(l) >= HOJE && vencimento(l) <= addDias(HOJE, 7) }[t];
+    const tit = { pagar: 'Contas a pagar', receber: 'Contas a receber', venc: 'Contas vencidas', semana: 'Vencimentos dos próximos 7 dias' }[t];
+    abrirLista({ titulo: tit, sub: `${nomeNaTela(S.empresaVis, 'DASHBOARD')} · em aberto`, cor: corEmpresa(S.empresaVis), ini: `${hoje.getFullYear() - 1}-01-01`, fim: addDias(HOJE, 120), pid, pred, ordem: 'venc' });
+  },
+  fxCel: d => {           // fluxo de caixa diário: clique nos números
+    const pid = S.empresaVis === 'all' ? null : S.empresaVis, dia = d.d, k = d.k;
+    const { ini, fim } = periodoMes();
+    const pred = k === 'ent' ? (l => sinal(l) > 0) : k === 'sai' ? (l => sinal(l) < 0) : null;
+    abrirLista({ titulo: `${k === 'ent' ? 'Entradas' : k === 'sai' ? 'Saídas' : 'Lançamentos'} ${dia ? 'de ' + fmtData(dia) : 'de ' + MESES_NOME[S.mes] + '/' + S.ano}`,
+      sub: nomeNaTela(S.empresaVis, 'FLUXO DE CAIXA'), cor: corEmpresa(S.empresaVis), ini: dia || ini, fim: dia || fim, pid, pred });
+  },
+  dreCel: d => {          // DRE: clique nos números
+    const pid = S.empresaVis === 'all' ? null : S.empresaVis, oc = mesesOcultosDRE(), m = d.m === 'tot' ? null : Number(d.m);
+    const noMes = l => { const mm = Number(l.data_lancamento.slice(5, 7)) - 1; return m == null ? !oc.has(mm) : mm === m; };
+    const pos = l => M.gdre[M.plano[l.plano_conta_id]?.grupo_dre_id]?.posicao;
+    const pred = d.c ? (l => noMes(l) && l.plano_conta_id === Number(d.c)) : d.k === 'SEM' ? (l => noMes(l) && !pos(l)) : (l => noMes(l) && pos(l) === d.k);
+    const nome = d.c ? planoLabel(Number(d.c)) : d.k === 'SEM' ? 'Contas sem grupo DRE' : POS_NOME[d.k];
+    abrirLista({ titulo: nome, sub: `${nomeNaTela(S.empresaVis, 'DRE')} · ${m == null ? (oc.size ? 'meses exibidos de ' + S.ano : 'ano de ' + S.ano) : MESES_NOME[m] + '/' + S.ano}`,
+      cor: corEmpresa(S.empresaVis), ini: m == null ? `${S.ano}-01-01` : `${S.ano}-${pad(m + 1)}-01`, fim: m == null ? `${S.ano}-12-31` : `${S.ano}-${pad(m + 1)}-${pad(ultimoDia(S.ano, m))}`, pid, pred });
+  },
+  faCel: d => {           // fluxo acumulado: clique nos números
+    const pid = S.empresaVis === 'all' ? null : S.empresaVis, m = d.m === 'tot' ? null : Number(d.m);
+    const pred = d.c ? (l => l.plano_conta_id === Number(d.c)) : d.g ? (l => String(grupoDoPlano(l.plano_conta_id)?.id ?? 0) === d.g) : d.t === 'e' ? (l => sinal(l) > 0) : d.t === 's' ? (l => sinal(l) < 0) : null;
+    const nome = d.c ? planoLabel(Number(d.c)) : d.g ? (M.grupo[d.g]?.nome ?? 'Sem grupo') : d.t === 'e' ? 'Total de entradas' : d.t === 's' ? 'Total de saídas' : 'Resultado';
+    abrirLista({ titulo: nome, sub: `${nomeNaTela(S.empresaVis, 'FLUXO ACUMULADO')} · ${m == null ? 'ano de ' + S.ano : MESES_NOME[m] + '/' + S.ano}`, cor: corEmpresa(S.empresaVis),
+      ini: m == null ? `${S.ano}-01-01` : `${S.ano}-${pad(m + 1)}-01`, fim: m == null ? `${S.ano}-12-31` : `${S.ano}-${pad(m + 1)}-${pad(ultimoDia(S.ano, m))}`, pid, pred });
+  },
   confirmarPag: () => confirmarPagamento(),
+  pagDividir: () => {
+    PAG.dividir = !PAG.dividir;
+    const rec = sinal(PAG.l) > 0;
+    if (PAG.dividir) {                                         // começa com a forma e o banco já escolhidos acima
+      const f = document.querySelector('#modal input[name=p_forma]:checked')?.value, b = Number($('p_banco').value) || '';
+      if (PAG.partes.length === 1) PAG.partes[0] = { forma: f || PAG.partes[0].forma, banco: b || PAG.partes[0].banco, valor: Number(PAG.l.valor) };
+    }
+    document.querySelectorAll('#modal .p-un').forEach(e => e.hidden = PAG.dividir);
+    $('p_div').hidden = !PAG.dividir;
+    $('p_tg').textContent = PAG.dividir ? 'Voltar para uma forma só' : `${rec ? 'Receber' : 'Pagar'} em mais de uma forma (ex.: parte em cheque, parte em dinheiro)`;
+    if (PAG.dividir) desenharPartes();
+  },
+  pagParteAdd: () => {
+    lerPartes();
+    const tot = PAG.partes.reduce((a, p) => a + p.valor, 0), resta = r2(Math.max(0, Number(PAG.l.valor) - tot));
+    const usadas = PAG.partes.map(p => p.forma);
+    PAG.partes.push({ forma: FORMAS_PAG.find(f => !usadas.includes(f)) || 'Outros', banco: PAG.partes.at(-1)?.banco || '', valor: resta });
+    desenharPartes();
+    const v = document.querySelectorAll('#p_partes [data-pp=valor]'); v[v.length - 1]?.focus(); v[v.length - 1]?.select();
+  },
+  pagParteDel: d => { lerPartes(); PAG.partes.splice(Number(d.i), 1); desenharPartes(); },
   estornarPag: () => estornarPagamento(),
   cfEmp: d => { S.cf.emp = d.id === 'all' ? 'all' : Number(d.id); renderCustos(); },
   cfNovo: () => abrirEditorCF({ id: Date.now().toString(36), planilha_id: S.cf.emp === 'all' ? (S.planilhaId ?? S.planilhas[0]?.id) : S.cf.emp, plano_conta_id: null, descricao: '', dia: 10, ativo: true,
@@ -3415,7 +3874,7 @@ const ACOES = {
   vigDel: d => { const cf = lerEditorCF(); cf.vigencias.splice(Number(d.i), 1); desenharEditorCF(); },
   cfSalvar: async () => {
     const cf = lerEditorCF();
-    if (await salvarCF(cf, S.cfEd.novo)) { fecharModal(); S.cf.sel = cf.id; if (S.view === 'custos') await viewCustos(); else await rerender(); }
+    if (await salvarCF(cf, S.cfEd.novo)) { fecharModal(true); S.cf.sel = cf.id; if (S.view === 'custos') await viewCustos(); else await rerender(); }
   },
   cfEncerrar: async d => {
     const cf = S.cf.lista.find(x => x.id === d.id); if (!cf) return;
@@ -3440,6 +3899,7 @@ const ACOES = {
   },
   cancelarLanc: () => { S.editId = null; renderLancamentos(); },
   editarLanc: d => editarLanc(Number(d.id)),
+  editarLancJanela: d => editarNaJanela(S.lancs.find(x => x.id === Number(d.id)), null, viewLancamentos),
   excluirLanc: d => excluirLanc(Number(d.id)),
   fluxoDia: d => { const a = S.fluxo.abertos; a.has(d.d) ? a.delete(d.d) : a.add(d.d); renderFluxo(); },
   dreAbrir: d => { const a = S.dre.abertos; a.has(d.k) ? a.delete(d.k) : a.add(d.k); renderDRE(); },
@@ -3450,7 +3910,7 @@ const ACOES = {
   faTodos: () => { const a = S.fa.abertos; if (a.size) a.clear(); else S.grupos.forEach(g => a.add(g.id)); renderFluxoAcum(); },
   dreTodos: () => { if (S.dre.abertos.size) S.dre.abertos.clear(); else DRE_POS.forEach(([k]) => S.dre.abertos.add(k)); renderDRE(); },
   drePct: d => { S.dre.pct = d.v === '1'; renderDRE(); },
-  bkSel: d => { S.bk.sel = d.id; renderBancos(); },
+  bkSel: d => { S.bk.sel = d.id === 'all' ? 'all' : d.id; viewBancos(); },
   bkRapido: d => {
     const a = hoje.getFullYear(), m = hoje.getMonth();
     if (d.p === 'mes') { S.bk.ini = `${a}-${pad(m + 1)}-01`; S.bk.fim = `${a}-${pad(m + 1)}-${pad(ultimoDia(a, m))}`; }
@@ -3459,6 +3919,14 @@ const ACOES = {
     viewBancos();
   },
   bkCsv: () => exportarCSV(),
+  bkAba: d => { S.bk.aba = d.v; viewBancos(); },
+  bkFxMes: d => { const F = S.bk.fx; F.mes = Number(d.d) > 0 ? proxMes(F.mes) : antMes(F.mes); bkFxIrMes(F.mes); },
+  bkFxCel: d => {
+    const { ini, fim, V } = S.bk.fxDados, k = d.k;
+    const pred = l => !!l.banco_id && (k === 'ent' ? sinal(l) > 0 : k === 'sai' ? sinal(l) < 0 : true);
+    abrirLista({ titulo: `${k === 'ent' ? 'Receitas' : k === 'sai' ? 'Despesas' : 'Lançamentos'} ${d.d ? 'de ' + fmtData(d.d) : 'de ' + fmtMes(S.bk.fx.mes)}`,
+      sub: `Bancos · ${V.rot}`, cor: V.cor, ini: d.d || ini, fim: d.d || fim, pid: V.pid, banco: V.banco, pred });
+  },
   salvarTransf: () => salvarTransf(),
   cancelarTransf: () => { S.trEdit = null; renderTransferencias(); },
   editarTransf: d => { S.trEdit = Number(d.id); renderTransferencias(); $('t_valor')?.focus(); },
@@ -3526,6 +3994,8 @@ const MUDANCAS = {
     S.bk.ini = i; S.bk.fim = f; viewBancos();
   },
   bkEmpresa: el => { S.bk.empresa = el.value; renderBancos(); },
+  bkFxVis: el => { S.bk.fx.vis = el.value; viewBkFluxo(); },
+  bkFxMesSel: el => { S.bk.fx.mes = el.value; bkFxIrMes(el.value); },
   bkTipo: el => { S.bk.tipo = el.value; renderBancos(); },
   dreConta: el => alternarContaDRE(Number(el.dataset.id), el.value),
   gdreFiltro: el => { S.gdre.filtro = el.value; renderCadastros(); },
@@ -3746,6 +4216,11 @@ window.addEventListener('resize', medirCabecalhos);
 document.addEventListener('input', e => {
   const id = e.target.id;
   if (id === 'mk_custo') { S.mkCusto = e.target.value; atualizarSimulador(); }
+  if (e.target.dataset?.pp === 'valor' && PAG?.dividir) {      // atualiza o total das formas enquanto digita
+    lerPartes(); const t = r2(PAG.partes.reduce((a, p) => a + p.valor, 0)), resta = r2(Number(PAG.l.valor) - t), el = document.querySelector('#p_partes .pp-tot');
+    if (el) el.innerHTML = `Informado <b>${brl(t)}</b> de ${brl(PAG.l.valor)} ${Math.abs(resta) < 0.005 ? '<em class="ok">✓ fecha o valor</em>' : resta > 0 ? `<em class="falta">faltam ${brl(resta)} — ficam em aberto</em>` : `<em class="passa">passou ${brl(-resta)}</em>`}`;
+  }
+  if (id === 'ls_q' && LST) { LST.q = e.target.value; desenharLinhasLista(); }
   if (e.target.dataset?.parc != null) gerarParcelas();
   if (e.target.dataset?.pi != null) {                       // ajuste numa parcela
     const p = S.lf.parc?.[Number(e.target.dataset.pi)]; if (!p) return;
@@ -3761,7 +4236,7 @@ document.addEventListener('input', e => {
 });
 document.addEventListener('keydown', e => {
   if ($('modal')) {                                          // janela aberta: Enter confirma, Esc fecha
-    if (e.key === 'Escape') { e.preventDefault(); fecharModal(); }
+    if (e.key === 'Escape') { e.preventDefault(); if (!$('modal').classList.contains('fixo')) fecharModal(); }
     else if (e.key === 'Enter' && e.target.closest('#modal') && !e.target.matches('button, textarea')) { e.preventDefault(); document.querySelector('#modal [data-primary]')?.click(); }
     return;
   }
@@ -3829,6 +4304,7 @@ async function iniciarApp() {
   try { await recarregarCadastros(); } catch (e) { toast(e.message, true); }
   await renovarCustosFixos();
   await irPara('dash');
+  await mostrarPendencias();
 }
 
 async function boot() {
