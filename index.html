@@ -353,6 +353,7 @@ td.item-l{white-space:normal}
 table.lanc td{height:38px;border-right:0;border-bottom:1px solid #eeeef0}
 table.lanc thead th{background:#4a4b50;font-size:12px;letter-spacing:.3px;padding:9px 8px;text-align:left}
 table.lanc th.c-valor,table.lanc th.c-acum{text-align:right}
+table.lanc td.acc.acc-ab{opacity:.45}
 table.lanc th.c-data,table.lanc th.c-dprog,table.lanc th.c-dpag{text-align:center}
 table.lanc th.c-banco{width:175px}table.lanc th.c-data{width:96px}table.lanc th.c-grupo{width:200px}table.lanc th.c-plano{width:260px}
 table.lanc th.c-valor{width:130px}table.lanc th.c-dprog,table.lanc th.c-dpag{width:104px}table.lanc th.c-acum{width:130px}table.lanc th.c-acoes{width:66px}
@@ -725,6 +726,85 @@ table.bfx-tot td.dia{width:58px}
 .mf .btn{padding:9px 18px}
 .btn.ok{background:#2a78d6}.btn.ok:hover{background:#1f63b6}
 .btn.perigo{color:var(--neg);border-color:#f0b4ae}.btn.perigo:hover{background:#fff1f0}
+/* ---------- ícones no seletor de bancos / resumo recolhível ---------- */
+.bsel-gr{font-size:10.5px;font-weight:800;text-transform:uppercase;letter-spacing:.5px;color:var(--muted);padding:8px 10px 3px;border-top:1px solid var(--line);margin-top:4px}
+.bsel-pop .bsel-gr:first-child{border-top:0;margin-top:0}
+.op-emp{display:inline-grid;place-items:center;flex:none;border-radius:6px;background:var(--ec,#2f3034);color:#fff;font-size:9px;font-weight:800;letter-spacing:.2px}
+.op-emp.todos{background:#2f3034}
+.bfx-top .bsel-btn{min-width:300px;min-height:34px;border-radius:4px}
+.lk-tog{display:flex;justify-content:flex-end;margin:-4px 0 6px}
+.lk-tog .mini{font-size:11.5px;padding:4px 10px;color:#55565b}
+/* ---------- filtro no cabeçalho dos lançamentos ---------- */
+table.lanc thead th .cf-btn{margin-left:6px;border:0;background:rgba(255,255,255,.14);color:#fff;border-radius:4px;width:20px;height:20px;display:inline-grid;place-items:center;vertical-align:middle;cursor:pointer;opacity:.75;padding:0}
+table.lanc thead th .cf-btn:hover{opacity:1;background:rgba(255,255,255,.3)}
+table.lanc thead th.cf-on{color:#ffd2b3}
+table.lanc thead th.cf-on .cf-btn{background:var(--orange);opacity:1;color:#fff}
+.tabwrap.congela table.lanc thead th.cf-on{box-shadow:inset 0 -3px 0 var(--orange)}
+.cf-pop{position:fixed;z-index:120;background:#fff;border:1px solid #cfd0d4;border-radius:10px;box-shadow:0 18px 50px rgba(0,0,0,.25);width:290px;display:flex;flex-direction:column;padding:10px;gap:8px;font-size:12.5px;color:var(--text);animation:subir .12s}
+.cf-h{display:flex;justify-content:space-between;align-items:baseline;gap:8px}
+.cf-h b{font-size:11px;text-transform:uppercase;letter-spacing:.4px;color:#55565b}.cf-h .mut{font-size:11px}
+.cf-q{border:1px solid #cfd0d4;border-radius:6px;padding:7px 9px;font-size:12.5px}
+.cf-q:focus{outline:2px solid var(--orange);outline-offset:-1px;border-color:var(--orange)}
+.cf-lista{max-height:260px;overflow:auto;border:1px solid var(--line);border-radius:6px;padding:4px 0}
+.cf-i,.cf-all{display:flex;align-items:center;gap:8px;padding:4px 10px;cursor:pointer}
+.cf-i:hover{background:#fff5ee}
+.cf-i span{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.cf-i small{color:var(--muted);font-variant-numeric:tabular-nums}
+.cf-all{font-weight:700;padding:2px 10px}
+.cf-i input,.cf-all input{accent-color:var(--orange);width:15px;height:15px;flex:none}
+.cf-vz{padding:10px;color:var(--muted);text-align:center}
+.cf-f{display:flex;gap:6px;align-items:center}.cf-f .sp{flex:1}.cf-f .btn{padding:6px 16px}.cf-f button:disabled{opacity:.45;cursor:default}
+.cf-limpa{border:1px solid #f5c49a;background:#fff3ea;color:#c2410c;border-radius:12px;padding:3px 10px;font-weight:700;font-size:11.5px;margin-left:8px;cursor:pointer}
+.cf-limpa:hover{background:#ffe6d2}
+/* ---------- plano de contas: janela e ordenação ---------- */
+table.ordenavel th.th-ord{text-align:left;cursor:pointer;user-select:none}
+table.ordenavel th.th-ord:hover{background:#6a6b70}
+table.ordenavel th.th-ord.on{box-shadow:inset 0 -3px 0 var(--orange)}
+.seta-ord{margin-left:6px;font-size:10px;opacity:.55}.th-ord.on .seta-ord{opacity:1;color:#ffb27d}
+.barra .sp{flex:1}
+.ord-sel{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:600;color:var(--muted)}
+.ord-sel select{border:1px solid #bfc8ce;border-radius:4px;padding:6px 8px;background:#fff;color:var(--text);font-weight:600}
+.modal.m-pc{width:min(600px,100%)}
+.mcorpo.pc-grid{grid-template-columns:150px 1fr}
+.pc-grid #pc_cod{font-weight:700;font-variant-numeric:tabular-nums;letter-spacing:.3px}
+.pc-auto{animation:pcAuto 1s}
+@keyframes pcAuto{0%{background:#ffe6d2;border-color:var(--orange)}100%{background:#fff}}
+.pc-info{display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px;font-size:12px;background:#f7f7f9;border:1px solid var(--line);border-radius:8px;padding:10px 12px;min-height:42px}
+.pc-tp{font-size:11px;font-weight:700;padding:2px 8px;border-radius:10px}
+.pc-tp.rec{background:#e7f6ec;color:#1e7b3c}.pc-tp.desp{background:#fdecea;color:#b3261e}
+.pc-ult{flex-basis:100%;font-size:11.5px}
+@media (max-width:560px){ .mcorpo.pc-grid{grid-template-columns:1fr} }
+/* ---------- importar planilha ---------- */
+.imp-btn{display:inline-flex;align-items:center;gap:5px;border-color:var(--orange);color:var(--orange-d)}
+.imp-btn:hover{background:var(--orange);color:#fff}
+.modal.m-imp{width:min(1200px,100%)}
+.imp-dest{display:flex;flex-wrap:wrap;align-items:center;gap:10px 14px;padding:12px 20px;border-bottom:1px solid var(--line)}
+.imp-dest .lbl{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.4px;color:var(--muted)}
+.imp-dest .seg button{display:inline-flex;align-items:center;gap:7px}
+.imp-dest .seg button i{width:9px;height:9px;border-radius:50%;background:var(--ec)}
+.imp-dest .seg button.on{color:var(--text);box-shadow:inset 0 -3px 0 var(--ec),0 1px 2px rgba(0,0,0,.15)}
+.imp-aviso{font-size:12px;color:#8a4b00;background:#fff6e6;border:1px solid #f5d49a;border-radius:6px;padding:5px 10px}
+.imp-tot em.ok{color:var(--muted)}
+.imp-map{padding:12px 20px 14px;border-bottom:1px solid var(--line);background:#fffcf6}
+.imp-mh{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 12px;margin-bottom:10px}
+.imp-mh b{font-size:12px;text-transform:uppercase;letter-spacing:.4px}.imp-mh .mut{font-size:11.5px}
+.imp-map .mg{display:grid;grid-template-columns:minmax(220px,1fr) 20px minmax(280px,1.3fr);gap:8px 10px;align-items:center;max-height:220px;overflow:auto;padding-right:4px}
+.imp-map .de{font-weight:600;font-size:12.5px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.imp-map .de .tp{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.4px;background:#ececef;color:#55565b;border-radius:4px;padding:2px 6px}
+.imp-map .de small{color:var(--muted);font-weight:500}
+.imp-map .seta{color:var(--muted);text-align:center}
+.imp-map select,.imp-map .cb-inp{width:100%;border:1px solid #cfd0d4;border-radius:6px;padding:7px 9px;font-size:12.5px;background:#fff;min-height:34px}
+.imp-map .pend select,.imp-map .pend .cb-inp{border-color:#e8a33d;background:#fff8ec}
+.imp-fil{display:flex;flex-wrap:wrap;align-items:center;gap:8px 14px;padding:12px 20px 8px}
+.imp-fil .mut{font-size:11.5px}
+.imp-fil .seg small{font-weight:700;opacity:.65;margin-left:3px}
+table.ls.imp td{height:38px;font-size:12.5px}
+table.ls.imp tr.off td{opacity:.55}
+table.ls.imp td input[type=checkbox],table.ls.imp th input[type=checkbox]{width:16px;height:16px;cursor:pointer}
+.ist{display:inline-block;font-size:11px;font-weight:700;padding:3px 9px;border-radius:10px;white-space:nowrap}
+.ist.ok{background:#e7f6ec;color:#1e7b3c}.ist.ab{background:#eaf2fc;color:#1667b7}.ist.dup{background:#f0f0f2;color:#66676c}
+.ist.pend{background:#fff1dc;color:#a75a00}.ist.ign{background:#f6f6f7;color:#9a9ba0}
+@media (max-width:760px){ .imp-map .mg{grid-template-columns:1fr} .imp-map .seta{display:none} }
 /* ---------- custos fixos ---------- */
 .kpis-4{grid-template-columns:repeat(4,minmax(0,1fr))}
 .kp.alerta{border-color:#f0b4ae;background:#fff8f7}.kp.alerta::before{background:var(--neg)}
@@ -1315,6 +1395,9 @@ class SupaStore {
 }
 
 /* ============================== ESTADO ============================== */
+// nome exibido para cada usuário de login (saudação, topo da tela e relatórios). O login continua o mesmo.
+const NOMES_USUARIO = { caplojasdk: 'Lucio' };
+const nomeUsuario = () => { const u = String(S.usuario || '').toLowerCase(); return NOMES_USUARIO[u] || (u ? u.charAt(0).toUpperCase() + u.slice(1) : ''); };
 let store, sb;
 const hoje = new Date(), HOJE = isoData(hoje);
 const S = {
@@ -1329,7 +1412,7 @@ const S = {
   cf: { emp: 'all', lista: [], sel: null, lancs: {} },
   pers: null, usuario: '',
   dash: { per: 'ano', tabelas: new Set(), dados: null },
-  buscaCad: '',
+  buscaCad: '', cadOrd: {}, colFiltro: {},
   fluxo: { ocultarVazios: false, abertos: new Set() },
   dre: { pct: true, abertos: new Set(), dados: null },
   bk: { sel: 'all', ini: null, fim: null, empresa: '', tipo: '', busca: '' },
@@ -1392,7 +1475,7 @@ function renderShell() {
         </div>
       </div>
       <span class="modo ${MODO_SUPABASE ? '' : 'demo'}">${MODO_SUPABASE ? 'Supabase' : 'Demonstração'}</span>
-      <span class="usuario" title="Usuário conectado">${esc(S.usuario || '')}</span>
+      <span class="usuario" title="Usuário conectado: ${esc(S.usuario || '')}">${esc(nomeUsuario())}</span>
       <button class="sair" data-act="sair">Sair</button>
     </header>
     <main id="main"></main>`;
@@ -1628,6 +1711,7 @@ async function viewLancamentos() {
 }
 
 function renderLancamentos() {
+  fecharCf();
   const cfg = cfgTela('lancamentos');
   const dataPadrao = (hoje.getFullYear() === S.ano && hoje.getMonth() === S.mes) ? HOJE : `${S.ano}-${pad(S.mes + 1)}-01`;
   const nAj = qtdAjustados(S.lancs), cor = corEmpresa(S.planilhaId);
@@ -1640,19 +1724,21 @@ function renderLancamentos() {
     ${formLancamento(cor, dataPadrao)}
 
     <div class="lanc-tool">
-      <div class="lt-tit"><b>Lançamentos de ${MESES_NOME[S.mes]}</b> <span class="mut" id="lt-cont"></span></div>
+      <div class="lt-tit"><b>Lançamentos de ${MESES_NOME[S.mes]}</b> <span class="mut" id="lt-cont"></span>${cfAtivos().length ? `<button class="cf-limpa" data-act="cfLimparTudo" title="Remove os filtros do cabeçalho da tabela">✕ Limpar filtros das colunas (${cfAtivos().length})</button>` : ''}</div>
       <div class="filtros">
         <input id="f_texto" class="busca-ic" placeholder="Buscar item ou conta…" value="${esc(S.filtro.texto)}">
         <select id="f_sit" data-chg="fSit">${[['', 'Todas as situações'], ['aberto', 'Em aberto'], ['vencido', 'Vencidos'], ['pago', 'Pagos / recebidos']].map(([v, t]) => `<option value="${v}" ${S.filtro.sit === v ? 'selected' : ''}>${t}</option>`).join('')}</select>
         <select id="f_banco" data-chg="fBanco" data-banco>${opcoes(bancosDaEmpresa(S.planilhaId), S.filtro.banco, b => b.nome, 'Todos os bancos')}</select>
         <select id="f_grupo" data-chg="fGrupo">${opcoes(gruposOrdenados(), S.filtro.grupo, g => g.nome, 'Todos os grupos')}</select>
         <label class="chk"><input type="checkbox" data-chg="fAj" ${S.filtro.aj ? 'checked' : ''}> Só ajustados${nAj ? ` <span class="cont-aj">${nAj}</span>` : ''}</label>
+        <button class="mini imp-btn" data-act="impAbrir" title="Importar lançamentos de uma planilha Excel (.xlsx) ou CSV">⬆ Importar planilha</button>
+        <input type="file" id="imp_arq" accept=".xlsx,.xls,.xlsm,.csv" data-chg="impArquivo" hidden>
         ${botaoPers('lancamentos')}
       </div>
     </div>
     <div class="tabwrap congela">
       <table class="lanc ${cfg.compacto ? 'compacto' : ''}">
-        <thead><tr>${cfg.cols.map(k => `<th class="c-${k}">${colDef('lancamentos', k).h}</th>`).join('')}<th class="c-acoes"></th></tr></thead>
+        <thead><tr>${cfg.cols.map(k => `<th class="c-${k} ${S.colFiltro[k] ? 'cf-on' : ''}">${colDef('lancamentos', k).h}${CF_VAL[k] ? `<button class="cf-btn" data-act="cfAbrir" data-k="${k}" title="${S.colFiltro[k] ? 'Filtro ativo — clique para alterar' : 'Filtrar esta coluna'}">${ICO_FUNIL}</button>` : ''}</th>`).join('')}<th class="c-acoes"></th></tr></thead>
         <tbody id="linhas"></tbody>
       </table>
     </div>
@@ -1665,7 +1751,8 @@ function renderLancamentos() {
 function renderLinhas() {
   const cfg = cfgTela('lancamentos');
   let acum = 0;
-  const comAcum = S.lancs.map(l => (acum += sinal(l) * Number(l.valor), { ...l, acum }));
+  // o acumulado só soma o que já foi pago/recebido (com data de pagamento); em aberto não entra
+  const comAcum = S.lancs.map(l => (acum += emAberto(l) ? 0 : sinal(l) * Number(l.valor), { ...l, acum }));
   const fimDoDia = {};                                   // acumulado ao fim de cada dia (sempre cronológico)
   for (const l of comAcum) fimDoDia[l.data_lancamento] = l.acum;
   const f = S.filtro, t = f.texto.trim().toLowerCase();
@@ -1676,10 +1763,11 @@ function renderLinhas() {
     if (f.aj && !(l.ajustes && Object.keys(l.ajustes).length)) return false;
     if (f.sit && situacao(l) !== f.sit && !(f.sit === 'aberto' && situacao(l) === 'vencido')) return false;
     if (t && !(`${l.item} ${pc?.codigo} ${pc?.nome}`.toLowerCase().includes(t))) return false;
+    if (!passaCF(l)) return false;
     return true;
   });
   if (cfg.desc) vis = vis.reverse();
-  const filtrado = !!(f.banco || f.grupo || f.aj || f.sit || t);
+  const filtrado = !!(f.banco || f.grupo || f.aj || f.sit || t || cfAtivos().length);
   if ($('lt-cont')) $('lt-cont').textContent = `· ${vis.length} ${vis.length === 1 ? 'lançamento' : 'lançamentos'}${filtrado ? ` (de ${S.lancs.length})` : ''}`;
   const nCol = cfg.cols.length + 1;
   // totais de cada dia (dos lançamentos visíveis)
@@ -1708,13 +1796,89 @@ function renderLinhas() {
       valor: celEd('lanc', l, 'valor', 'r valor', `<span class="${s > 0 ? 'pos' : 'neg'}">${s > 0 ? '+' : '−'} ${num2(l.valor)}</span>`),
       dprog: celEd('lanc', l, 'dprog', 'c mut', fmtData(l.data_programada) || '—'),
       dpag: celEd('lanc', l, 'dpag', 'c mut', fmtData(l.data_pagamento) || '—'),
-      acum: `<td class="r acc ${l.acum < 0 ? 'neg' : ''}">${l.acum < 0 ? '−' : ''}${num2(Math.abs(l.acum))}</td>`,
+      acum: `<td class="r acc ${l.acum < 0 ? 'neg' : ''} ${emAberto(l) ? 'acc-ab' : ''}" ${emAberto(l) ? 'title="Em aberto: não entra no acumulado"' : ''}>${l.acum < 0 ? '−' : ''}${num2(Math.abs(l.acum))}</td>`,
     };
     html += `<tr class="lin ${S.editId === l.id ? 'editando' : ''} ${Object.keys(A).length ? 'tem-aj' : ''} ${s > 0 ? 'rec' : 'desp'} ${situacao(l) !== 'pago' ? 'aberto' : ''} ${situacao(l) === 'vencido' ? 'vencido' : ''}">${cfg.cols.map(k => C[k]).join('')}
       <td class="acoes"><button class="ib" title="Editar todos os campos" data-act="editarLancJanela" data-id="${l.id}">✎</button><button class="ib del" title="Excluir" data-act="excluirLanc" data-id="${l.id}">✕</button></td></tr>`;
   }
-  $('linhas').innerHTML = html || `<tr><td colspan="${nCol}" class="vazio">Nenhum lançamento ${f.aj ? 'ajustado ' : ''}${f.sit ? 'nessa situação ' : ''}em ${MESES_NOME[S.mes]} de ${S.ano}.</td></tr>`;
+  $('linhas').innerHTML = html || `<tr><td colspan="${nCol}" class="vazio">Nenhum lançamento ${f.aj ? 'ajustado ' : ''}${f.sit ? 'nessa situação ' : ''}${cfAtivos().length ? 'com os filtros das colunas ' : ''}em ${MESES_NOME[S.mes]} de ${S.ano}.${cfAtivos().length ? ' <button class="mini" data-act="cfLimparTudo">Limpar filtros das colunas</button>' : ''}</td></tr>`;
 }
+
+/* ---------- filtro no cabeçalho da tabela (estilo Excel) ---------- */
+const ICO_FUNIL = '<svg viewBox="0 0 16 16" width="11" height="11" aria-hidden="true"><path fill="currentColor" d="M1.5 2h13l-5 6.2V13l-3 1.5V8.2z"/></svg>';
+const CF_VAZIO = '(vazio)';
+const CF_VAL = {
+  banco: l => M.banco[l.banco_id]?.nome ?? '(a definir)',
+  data: l => fmtData(l.data_lancamento),
+  grupo: l => grupoDoPlano(l.plano_conta_id)?.nome ?? CF_VAZIO,
+  plano: l => planoLabel(l.plano_conta_id) || CF_VAZIO,
+  item: l => String(l.item ?? '').trim() || CF_VAZIO,
+  valor: l => `${sinal(l) > 0 ? '+' : '−'} ${num2(l.valor)}`,
+  status: l => ({ pago: sinal(l) > 0 ? 'Recebido' : 'Pago', aberto: 'Em aberto', vencido: 'Vencido' })[situacao(l)],
+  dprog: l => fmtData(l.data_programada) || CF_VAZIO,
+  dpag: l => fmtData(l.data_pagamento) || CF_VAZIO,
+  forma: l => l.forma_pagamento || CF_VAZIO,
+};
+const CF_ORD = { data: l => l.data_lancamento, dprog: l => l.data_programada || '', dpag: l => l.data_pagamento || '', valor: l => sinal(l) * Number(l.valor) };
+const cfAtivos = () => Object.keys(S.colFiltro).filter(k => S.colFiltro[k] && CF_VAL[k]);
+const passaCF = (l, exceto = null) => cfAtivos().every(k => k === exceto || S.colFiltro[k].has(CF_VAL[k](l)));
+let CF = null;
+function fecharCf() { $('cfPop')?.remove(); CF = null; }
+function abrirCf(k, btn) {
+  if (CF?.k === k) return fecharCf();
+  fecharCf(); if (!CF_VAL[k]) return;
+  const base = S.lancs.filter(l => passaCF(l, k));           // valores possíveis com os filtros das outras colunas
+  const cont = new Map(), chave = {};
+  for (const l of base) { const v = CF_VAL[k](l); cont.set(v, (cont.get(v) || 0) + 1); if (!(v in chave)) chave[v] = (CF_ORD[k] || CF_VAL[k])(l); }
+  const cmp = (a, b) => typeof a === 'number' && typeof b === 'number' ? a - b : String(a).localeCompare(String(b), 'pt-BR', { numeric: true, sensitivity: 'base' });
+  const vals = [...cont.keys()].sort((a, b) => (a === CF_VAZIO || a === '(a definir)') - (b === CF_VAZIO || b === '(a definir)') || cmp(chave[a], chave[b]));
+  const atual = S.colFiltro[k];
+  CF = { k, vals, cont, sel: new Set(atual ? vals.filter(v => atual.has(v)) : vals), q: '' };
+  const pop = document.createElement('div');
+  pop.id = 'cfPop'; pop.className = 'cf-pop';
+  pop.innerHTML = `<div class="cf-h"><b>Filtrar · ${esc(colDef('lancamentos', k).h)}</b><span class="mut">${vals.length} valor(es)</span></div>
+    <input class="cf-q" placeholder="Pesquisar…" autocomplete="off">
+    <label class="cf-all"><input type="checkbox"> <span>(Selecionar tudo)</span></label>
+    <div class="cf-lista"></div>
+    <div class="cf-f"><button type="button" class="mini" data-x="limpar" ${atual ? '' : 'disabled'}>Limpar filtro</button><span class="sp"></span><button type="button" class="mini" data-x="cancelar">Cancelar</button><button type="button" class="btn" data-x="ok">OK</button></div>`;
+  document.body.appendChild(pop);
+  const r = btn.closest('th').getBoundingClientRect();
+  pop.style.left = `${Math.max(8, Math.min(r.left, innerWidth - pop.offsetWidth - 8))}px`;
+  pop.style.top = `${Math.min(r.bottom + 2, innerHeight - pop.offsetHeight - 8)}px`;
+  const q = pop.querySelector('.cf-q'), all = pop.querySelector('.cf-all input'), lista = pop.querySelector('.cf-lista');
+  q.addEventListener('input', () => { CF.q = q.value; CF.sel = new Set(visCf()); desenharCf(); });
+  q.addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); aplicarCf(); } else if (e.key === 'Escape') { e.preventDefault(); e.stopPropagation(); fecharCf(); } });
+  all.addEventListener('change', () => { for (const v of visCf()) all.checked ? CF.sel.add(v) : CF.sel.delete(v); desenharCf(); });
+  lista.addEventListener('change', e => { const v = CF.vals[Number(e.target.dataset.i)]; e.target.checked ? CF.sel.add(v) : CF.sel.delete(v); desenharCf(); });
+  pop.querySelector('.cf-f').addEventListener('click', e => {
+    const x = e.target.closest('button')?.dataset.x;
+    if (x === 'ok') aplicarCf();
+    else if (x === 'cancelar') fecharCf();
+    else if (x === 'limpar') { delete S.colFiltro[k]; renderLancamentos(); }
+  });
+  desenharCf(); q.focus();
+}
+const visCf = () => { const t = semAcento(CF.q.trim()); return CF.vals.filter(v => !t || semAcento(v).includes(t)); };
+function desenharCf() {
+  const pop = $('cfPop'); if (!pop || !CF) return;
+  const vis = visCf(), all = pop.querySelector('.cf-all input'), nSel = vis.filter(v => CF.sel.has(v)).length;
+  all.checked = vis.length > 0 && nSel === vis.length; all.indeterminate = nSel > 0 && nSel < vis.length;
+  const lista = pop.querySelector('.cf-lista'), rol = lista.scrollTop;
+  lista.innerHTML = vis.map(v => `<label class="cf-i"><input type="checkbox" data-i="${CF.vals.indexOf(v)}" ${CF.sel.has(v) ? 'checked' : ''}><span title="${esc(v)}">${esc(v)}</span><small>${CF.cont.get(v)}</small></label>`).join('')
+    || '<div class="cf-vz">Nada encontrado.</div>';
+  lista.scrollTop = rol;
+  pop.querySelector('[data-x=ok]').disabled = !vis.some(v => CF.sel.has(v));
+}
+function aplicarCf() {
+  if (!CF) return;
+  const vis = new Set(visCf()), fim = CF.vals.filter(v => CF.sel.has(v) && vis.has(v));
+  if (!fim.length) return toast('Marque ao menos um valor.', true);
+  if (fim.length === CF.vals.length) delete S.colFiltro[CF.k]; else S.colFiltro[CF.k] = new Set(fim);
+  renderLancamentos();
+}
+document.addEventListener('pointerdown', e => { if (CF && !e.target.closest('#cfPop, [data-act=cfAbrir]')) fecharCf(); }, true);
+document.addEventListener('scroll', e => { if (CF && !(e.target instanceof Element && e.target.closest('#cfPop'))) fecharCf(); }, true);
+window.addEventListener('resize', () => CF && fecharCf());
 
 function renderPainel() {
   let rec = 0, desp = 0, aPagar = 0, aReceber = 0, nAb = 0, venc = 0;
@@ -1728,8 +1892,10 @@ function renderPainel() {
   }
   const res = rec - desp, acum = S.saldoAnt + res;
   const usados = S.bancos.filter(b => porBanco[b.id]);
+  const verResumo = VIS.lancResumo === true;
   $('painel').innerHTML = `
-    <div class="lk">
+    <div class="lk-tog"><button class="mini" data-act="lkTog" title="${verResumo ? 'Esconder' : 'Mostrar'} as caixas de saldo, receitas e despesas do mês">${verResumo ? '▾ Ocultar resumo do mês' : '▸ Mostrar resumo do mês'}</button></div>
+    ${verResumo ? `<div class="lk">
       <div class="lk-i"><div class="l">Saldo de ${MESES_NOME[(S.mes + 11) % 12]}</div><div class="v ${S.saldoAnt < 0 ? 'neg' : ''}">${brl(S.saldoAnt)}</div></div>
       <div class="lk-op">+</div>
       <div class="lk-i rec"><div class="l">Receitas do mês</div><div class="v">${brl(rec)}</div></div>
@@ -1738,7 +1904,7 @@ function renderPainel() {
       <div class="lk-op">=</div>
       <div class="lk-i fim"><div class="l">Saldo acumulado</div><div class="v ${acum < 0 ? 'neg' : ''}">${brl(acum)}</div>
         <div class="s">resultado do mês <b class="${res < 0 ? 'neg' : 'pos'}">${res < 0 ? '−' : '+'} ${brl(Math.abs(res))}</b></div></div>
-    </div>
+    </div>` : ''}
     ${nAb ? `<div class="ab-faixa"><span class="lbl">Em aberto no mês</span>
       <button class="ab-i desp ${S.filtro.sit === 'aberto' ? 'on' : ''}" data-act="filtroSit" data-v="aberto"><small>A pagar</small><b>${brl(aPagar)}</b></button>
       <button class="ab-i rec ${S.filtro.sit === 'aberto' ? 'on' : ''}" data-act="filtroSit" data-v="aberto"><small>A receber</small><b>${brl(aReceber)}</b></button>
@@ -2147,7 +2313,7 @@ async function mostrarPendencias() {
   try { abertos = (await store.lancs({ ini: `${hoje.getFullYear() - 1}-01-01`, fim: addDias(HOJE, 7) })).filter(emAberto); }
   catch (e) { return; }
   const h = new Date().getHours(), saud = h < 12 ? 'Bom dia' : h < 18 ? 'Boa tarde' : 'Boa noite';
-  const nome = S.usuario ? S.usuario.charAt(0).toUpperCase() + S.usuario.slice(1) : '';
+  const nome = nomeUsuario();
   const venc = abertos.filter(l => vencimento(l) < HOJE), hojeL = abertos.filter(l => vencimento(l) === HOJE), semana = abertos.filter(l => vencimento(l) > HOJE);
   const soma = (a, sg) => a.filter(l => sinal(l) === sg).reduce((x, l) => x + Number(l.valor), 0);
   const bloco = (tit, cls, lista, vazio) => `<div class="pd-b ${cls}"><div class="pd-bh"><b>${tit}</b><span>${lista.length ? `${lista.length} · a pagar ${brl(soma(lista, -1))} · a receber ${brl(soma(lista, 1))}` : ''}</span></div>
@@ -3416,7 +3582,7 @@ function renderBkFluxo(embutido = false) {
   const resumo = `<b>${esc(V.rot)} ${MESES[m - 1].charAt(0) + MESES[m - 1].slice(1).toLowerCase()}/${String(a).slice(2)}</b>`;
   return `
     <div class="bfx-top">
-      ${embutido ? `<div class="bfx-nome">${M.banco[V.banco] ? iconeBanco(M.banco[V.banco], 26) : ''}<b>${esc(V.rot)}</b><span class="mut">fluxo diário</span></div>` : `<label>Selecione<select data-chg="bkFxVis">
+      ${embutido ? `<div class="bfx-nome">${M.banco[V.banco] ? iconeBanco(M.banco[V.banco], 26) : ''}<b>${esc(V.rot)}</b><span class="mut">fluxo diário</span></div>` : `<label>Selecione<select data-chg="bkFxVis" data-banco class="bk-vis">
         <option value="all" ${F.vis === 'all' ? 'selected' : ''}>Todos os bancos</option>
         <optgroup label="Empresas">${S.planilhas.map(p => `<option value="e:${p.id}" ${F.vis === 'e:' + p.id ? 'selected' : ''}>${esc(siglaEmpresa(p.id))} — todos os bancos da empresa</option>`).join('')}</optgroup>
         <optgroup label="Bancos">${S.bancos.map(b => `<option value="b:${b.id}" ${F.vis === 'b:' + b.id ? 'selected' : ''}>${esc(b.nome)}${b.planilha_id ? ' · ' + esc(siglaEmpresa(b.planilha_id)) : ''}</option>`).join('')}</optgroup>
@@ -3522,6 +3688,316 @@ async function salvarTransf() {
     toast(S.trEdit ? 'Transferência ajustada.' : `Transferência de ${brl(row.valor)} registrada.`);
     S.trEdit = null; await viewTransferencias(); $('t_origem').focus();
   } catch (e) { toast(e.message, true); }
+}
+
+/* ======================= IMPORTAR PLANILHA (Excel / CSV) ======================= */
+// Lê a planilha de lançamentos (Tipo Pagamento | Data do Lançamento | Classificação | Plano de Contas | Item | Valor |
+// Data Programada | Data de Pagamento), casa bancos e contas com os cadastros, mostra a prévia e grava na empresa escolhida.
+const XLSX_LIB = 'https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js';
+let xlsxLib;
+const libXLSX = () => xlsxLib ||= new Promise((ok, falha) => {
+  if (window.XLSX) return ok(window.XLSX);
+  const s = document.createElement('script');
+  s.src = XLSX_LIB; s.onload = () => ok(window.XLSX);
+  s.onerror = () => { xlsxLib = null; falha(new Error('Não foi possível carregar o leitor de planilhas. Verifique a conexão com a internet.')); };
+  document.head.appendChild(s);
+});
+const IMP_MAP_KEY = 'cap_import_map_v1';
+let IMP = null;
+const normTxt = s => String(s ?? '').normalize('NFD').replace(/[̀-ͯ]/g, '').toUpperCase().replace(/[^A-Z0-9]+/g, ' ').trim();
+const impMemo = () => { try { return JSON.parse(localStorage.getItem(IMP_MAP_KEY)) || { banco: {}, plano: {} }; } catch (e) { return { banco: {}, plano: {} }; } };
+const impMemoSalvar = m => { try { localStorage.setItem(IMP_MAP_KEY, JSON.stringify(m)); } catch (e) {} };
+
+function impData(v) {
+  if (v == null || v === '') return null;
+  let iso = null, m;
+  if (typeof v === 'number') { if (v > 20000 && v < 80000) iso = new Date(Math.round((v - 25569) * 86400000)).toISOString().slice(0, 10); }
+  else if (v instanceof Date) { if (!isNaN(v)) iso = isoData(v); }
+  else {
+    const s = String(v).trim();
+    if ((m = s.match(/^(\d{1,2})[\/.-](\d{1,2})[\/.-](\d{2,4})/))) { let a = Number(m[3]); if (a < 100) a += 2000; iso = `${a}-${pad(m[2])}-${pad(m[1])}`; }
+    else if ((m = s.match(/^(\d{4})-(\d{1,2})-(\d{1,2})/))) iso = `${m[1]}-${pad(m[2])}-${pad(m[3])}`;
+  }
+  if (!iso) return null;
+  const [a, mm, d] = iso.split('-').map(Number);
+  return mm >= 1 && mm <= 12 && d >= 1 && d <= ultimoDia(a, mm - 1) ? iso : null;
+}
+function impValor(v) {
+  if (v == null || v === '') return null;
+  const n = typeof v === 'number' ? r2(v) : parseValor(String(v).replace(/^\((.*)\)$/, '-$1'));
+  return Number.isFinite(n) && Math.abs(n) >= 0.005 ? r2(Math.abs(n)) : null;
+}
+
+// colunas pelo título (a ordem pode variar); sem títulos reconhecidos, usa a ordem padrão da planilha
+const IMP_COLS = [
+  ['pag', /DATA (DE |DO )?PAGAMENTO|PAGO EM|DATA PAGTO/],
+  ['prog', /PROGRAMADA|VENCIMENTO/],
+  ['data', /DATA (DO |DE )?LANCAMENTO|^DATA$/],
+  ['banco', /TIPO PAGAMENTO|BANCO|CONTA BANCARIA|^CONTA$/],
+  ['plano', /PLANO/],
+  ['item', /^ITEM|DESCRICAO|HISTORICO/],
+  ['valor', /^VALOR/],
+];
+function impColunas(linhas) {
+  for (let i = 0; i < Math.min(15, linhas.length); i++) {
+    const col = {};
+    (linhas[i] || []).forEach((h, j) => {
+      const n = normTxt(h); if (!n) return;
+      const k = IMP_COLS.find(([k, re]) => !(k in col) && re.test(n));
+      if (k) col[k[0]] = j;
+    });
+    if (['data', 'plano', 'valor'].every(k => k in col)) return { col, ini: i + 1 };
+  }
+  return { col: { banco: 0, data: 1, plano: 3, item: 4, valor: 5, prog: 6, pag: 7 }, ini: 0 };
+}
+
+function casarPlano(txt) {
+  const s = String(txt ?? '').trim(); if (!s) return null;
+  const m = s.match(/^(\d+(?:\.\d+)*)\.?\s*[-–]?\s*(.*)$/);
+  const cod = m ? m[1] : '', nome = normTxt(m ? m[2] : s);
+  const P = S.plano_contas.map(p => ({ p, n: normTxt(p.nome) }));
+  let c = P.filter(x => x.n === nome && nome);
+  if (c.length) return (c.find(x => x.p.codigo === cod) || c[0]).p.id;
+  if (nome.length >= 4) { c = P.filter(x => x.n.length >= 4 && (x.n.includes(nome) || nome.includes(x.n))); if (c.length === 1) return c[0].p.id; }
+  if (!nome && cod) { c = P.filter(x => x.p.codigo === cod); if (c.length === 1) return c[0].p.id; }
+  return null;
+}
+function casarBanco(txt, pid) {
+  const n = normTxt(txt); if (!n) return null;
+  const lista = bancosDaEmpresa(pid);
+  const b = lista.find(x => normTxt(x.nome) === n) || S.bancos.find(x => normTxt(x.nome) === n);
+  if (b) return b.id;
+  const c = lista.filter(x => { const k = normTxt(x.nome); return k.length >= 4 && (k.includes(n) || n.includes(k)); });
+  return c.length === 1 ? c[0].id : null;
+}
+
+function impAbrir() {
+  if (!S.planilhas.length) return toast('Cadastre uma empresa antes de importar.', true);
+  const inp = $('imp_arq'); if (!inp) return;
+  inp.value = ''; inp.click();
+}
+
+async function impArquivo(arq) {
+  if (!arq) return;
+  let X;
+  toast('Lendo a planilha…');
+  try { X = await libXLSX(); } catch (e) { return toast(e.message, true); }
+  let linhas;
+  try {
+    const wb = X.read(await arq.arrayBuffer(), { type: 'array', raw: false, cellDates: false });
+    // usa a primeira aba que tenha os títulos de lançamentos (ou a primeira aba)
+    const abas = wb.SheetNames.map(n => X.utils.sheet_to_json(wb.Sheets[n], { header: 1, raw: true, defval: null, blankrows: false }));
+    linhas = abas.find(l => impColunas(l).ini > 0) || abas[0] || [];
+  } catch (e) { return toast('Não foi possível ler o arquivo. Use uma planilha Excel (.xlsx / .xls) ou CSV.', true); }
+  const { col, ini } = impColunas(linhas);
+  const get = (r, k) => k in col ? r[col[k]] : null;
+  const L = [];
+  for (let i = ini; i < linhas.length; i++) {
+    const r = linhas[i] || [];
+    if (!r.some(v => v != null && String(v).trim() !== '')) continue;
+    const l = {
+      n: i + 1,
+      bancoTxt: String(get(r, 'banco') ?? '').trim(),
+      data: impData(get(r, 'data')),
+      planoTxt: String(get(r, 'plano') ?? '').trim(),
+      item: String(get(r, 'item') ?? '').trim(),
+      valor: impValor(get(r, 'valor')),
+      prog: impData(get(r, 'prog')),
+      pag: impData(get(r, 'pag')),
+    };
+    l.ign = !l.data ? 'Sem data' : l.valor == null ? 'Sem valor' : !l.planoTxt ? 'Sem conta' : '';
+    L.push(l);
+  }
+  if (!L.length) return toast('Nenhum lançamento encontrado no arquivo.', true);
+
+  // empresa de destino: a aba aberta, ou a que aparece no nome dos bancos (ex.: "DINHEIRO DK")
+  const cont = {};
+  for (const l of L) for (const p of S.planilhas) { const sg = normTxt(siglaEmpresa(p.id)); if (sg && new RegExp(`(^| )${sg}$`).test(normTxt(l.bancoTxt))) cont[p.id] = (cont[p.id] || 0) + 1; }
+  const melhor = Object.entries(cont).sort((a, b) => b[1] - a[1])[0];
+  const dest = melhor && Number(melhor[0]) !== S.planilhaId && melhor[1] > (cont[S.planilhaId] || 0) ? Number(melhor[0]) : S.planilhaId;
+  IMP = { arq: arq.name, linhas: L, dest, detectou: dest !== S.planilhaId, mapB: {}, mapP: {}, filtro: '', exist: {}, salvando: false };
+  impCasar();
+  abrirModal(`<div id="imp"></div>`, 'm-imp', () => { IMP = null; });
+  await impExistentes();
+}
+
+// casa bancos (dependem da empresa) e contas; o que não casar fica para o usuário escolher
+function impCasar() {
+  const memo = impMemo();
+  const valido = (v, tab) => v === 0 || v === 'x' || (tab === 'b' ? !!M.banco[v] : !!M.plano[v]);
+  const mapB = {}, mapP = {};
+  for (const l of IMP.linhas) {
+    const kb = normTxt(l.bancoTxt);
+    if (kb && !(kb in mapB)) {
+      const ant = IMP.mapB[kb], m = memo.banco[`${IMP.dest}|${kb}`];
+      mapB[kb] = ant?.manual ? ant : casarBanco(l.bancoTxt, IMP.dest) != null ? { v: casarBanco(l.bancoTxt, IMP.dest), auto: true }
+        : m != null && valido(m, 'b') ? { v: m, manual: true } : { v: '' };
+      mapB[kb].txt = l.bancoTxt;
+    }
+    const kp = normTxt(l.planoTxt);
+    if (kp && !(kp in mapP)) {
+      const ant = IMP.mapP[kp], m = memo.plano[kp];
+      mapP[kp] = ant?.manual ? ant : casarPlano(l.planoTxt) != null ? { v: casarPlano(l.planoTxt), auto: true }
+        : m != null && valido(m, 'p') ? { v: m, manual: true } : { v: '' };
+      mapP[kp].txt = l.planoTxt;
+    }
+  }
+  IMP.mapB = mapB; IMP.mapP = mapP;
+}
+
+async function impExistentes() {
+  const datas = IMP.linhas.map(l => l.data).filter(Boolean).sort();
+  IMP.exist = {}; IMP.carregando = true; desenharImp();
+  if (datas.length) {
+    try {
+      const ex = await store.lancs({ ini: datas[0], fim: datas.at(-1), planilha_id: IMP.dest });
+      for (const l of ex) { const k = impChave(l.data_lancamento, l.valor, l.item); IMP.exist[k] = (IMP.exist[k] || 0) + 1; }
+    } catch (e) { toast(e.message, true); }
+  }
+  IMP.carregando = false;
+  if (IMP) desenharImp();
+}
+const impChave = (data, valor, item) => `${data}|${Number(valor).toFixed(2)}|${normTxt(item)}`;
+
+// situação de cada linha: ok (pronta), dup (já existe), pend (falta escolher), skip (não importar), ign (inválida)
+function impResolver() {
+  const resto = { ...IMP.exist };
+  return IMP.linhas.map(l => {
+    const r = { l, banco_id: null, plano_id: null, st: 'ok', msg: '' };
+    if (l.ign) return { ...r, st: 'ign', msg: l.ign };
+    const mp = IMP.mapP[normTxt(l.planoTxt)];
+    if (mp?.v === 'x') return { ...r, st: 'skip', msg: 'Não importar' };
+    r.plano_id = mp?.v ? Number(mp.v) : null;
+    const kb = normTxt(l.bancoTxt), mb = kb ? IMP.mapB[kb] : null;
+    if (mb) r.banco_id = mb.v === '' || mb.v === 0 ? null : Number(mb.v);
+    const k = impChave(l.data, l.valor, l.item);
+    const dup = resto[k] > 0; if (dup) resto[k]--;
+    if (!r.plano_id) { r.st = 'pend'; r.msg = 'Escolha a conta'; }
+    else if (mb && mb.v === '') { r.st = 'pend'; r.msg = 'Escolha o banco'; }
+    else if (dup) { r.st = 'dup'; r.msg = 'Já existe'; }
+    r.pago = !!(l.pag && r.banco_id);
+    r.sel = r.st === 'ok' || r.st === 'dup' ? (l.sel ?? r.st === 'ok') : false;
+    return r;
+  });
+}
+
+function desenharImp() {
+  const box = $('imp'); if (!box || !IMP) return;
+  const tab = box.querySelector('.ls-tab'), rol = tab ? tab.scrollTop : 0;
+  const R = impResolver(), cor = corEmpresa(IMP.dest);
+  const sel = R.filter(r => r.sel);
+  const cnt = st => R.filter(r => r.st === st).length;
+  const ent = sel.filter(r => sinal({ plano_conta_id: r.plano_id }) > 0).reduce((a, r) => a + r.l.valor, 0);
+  const sai = sel.filter(r => sinal({ plano_conta_id: r.plano_id }) < 0).reduce((a, r) => a + r.l.valor, 0);
+  const nLinhas = (map, k) => IMP.linhas.filter(l => normTxt(map === 'b' ? l.bancoTxt : l.planoTxt) === k && !l.ign).length;
+  const pendB = Object.entries(IMP.mapB).filter(([k, m]) => !m.auto && nLinhas('b', k));
+  const pendP = Object.entries(IMP.mapP).filter(([k, m]) => !m.auto && nLinhas('p', k));
+  const optsPlano = v => `<option value="">Escolha a conta…</option><option value="x" ${v === 'x' ? 'selected' : ''}>— Não importar estas linhas —</option>` + opcoesPlano(v).replace(/^<option value="">[^<]*<\/option>/, '');
+  const mapa = (pendB.length || pendP.length) ? `
+    <div class="imp-map">
+      <div class="imp-mh"><b>Correspondências</b><span class="mut">Estes nomes da planilha não foram encontrados nos cadastros. Escolha o equivalente — a escolha fica guardada para as próximas importações.</span></div>
+      <div class="mg">
+        ${pendB.map(([k, m]) => `<div class="de"><span class="tp">Banco</span>${esc(m.txt)}<small>${nLinhas('b', k)} linha(s)</small></div><span class="seta">→</span>
+          <div class="${m.v === '' ? 'pend' : ''}"><select data-chg="impBanco" data-k="${esc(k)}"><option value="">Escolha o banco…</option><option value="0" ${m.v === 0 ? 'selected' : ''}>Sem banco — importar em aberto</option>${bancosDaEmpresa(IMP.dest).map(b => `<option value="${b.id}" ${String(b.id) === String(m.v) ? 'selected' : ''}>${esc(b.nome)}</option>`).join('')}</select></div>`).join('')}
+        ${pendP.map(([k, m]) => `<div class="de"><span class="tp">Conta</span>${esc(m.txt)}<small>${nLinhas('p', k)} linha(s)</small></div><span class="seta">→</span>
+          <div class="${m.v === '' ? 'pend' : ''}"><select data-chg="impPlano" data-k="${esc(k)}" data-busca>${optsPlano(m.v)}</select></div>`).join('')}
+      </div>
+    </div>` : '';
+  const FIL = [['', 'Todas', R.length], ['ok', 'Prontas', cnt('ok')], ['dup', 'Já existem', cnt('dup')], ['pend', 'Pendências', cnt('pend')], ['ign', 'Ignoradas', cnt('ign') + cnt('skip')]];
+  const vis = R.filter(r => !IMP.filtro || r.st === IMP.filtro || (IMP.filtro === 'ign' && r.st === 'skip'));
+  const selecionaveis = vis.filter(r => r.st === 'ok' || r.st === 'dup');
+  const todos = selecionaveis.length && selecionaveis.every(r => r.sel);
+  const SELO = { ok: r => r.pago ? `<span class="ist ok">✓ ${sinal({ plano_conta_id: r.plano_id }) > 0 ? 'Recebido' : 'Pago'}</span>` : `<span class="ist ab">Em aberto</span>`,
+    dup: () => `<span class="ist dup" title="Já existe um lançamento com a mesma data, valor e descrição nesta empresa">Já existe</span>`,
+    pend: r => `<span class="ist pend">${r.msg}</span>`, skip: r => `<span class="ist ign">${r.msg}</span>`, ign: r => `<span class="ist ign">${r.msg}</span>` };
+  const linhas = vis.map(r => {
+    const l = r.l, s = r.plano_id ? sinal({ plano_conta_id: r.plano_id }) : 0, g = r.plano_id ? grupoDoPlano(r.plano_id) : null;
+    const pode = r.st === 'ok' || r.st === 'dup';
+    return `<tr class="${s > 0 ? 'rec' : s < 0 ? 'desp' : ''} ${r.sel ? '' : 'off'}">
+      <td class="c"><input type="checkbox" data-chg="impChk" data-i="${IMP.linhas.indexOf(l)}" ${r.sel ? 'checked' : ''} ${pode ? '' : 'disabled'}></td>
+      <td class="c mut">${l.n}</td>
+      <td class="c">${l.data ? fmtData(l.data) : '<span class="neg">—</span>'}</td>
+      <td>${r.banco_id ? bancoTag(M.banco[r.banco_id], 18) : l.bancoTxt ? `<span class="a-def">${esc(l.bancoTxt)}</span>` : '<span class="mut">—</span>'}</td>
+      <td class="ls-c"><b>${esc(l.item || '')}</b><small>${g ? `<i style="background:${esc(corGrupo(g))}"></i>${esc(planoLabel(r.plano_id))}` : `<span class="neg">${esc(l.planoTxt || 'sem conta')}</span>`}</small></td>
+      <td class="r ${s > 0 ? 'pos' : s < 0 ? 'neg' : ''}"><b>${l.valor == null ? '—' : `${s > 0 ? '+' : s < 0 ? '−' : ''} ${num2(l.valor)}`}</b></td>
+      <td class="c mut">${l.prog ? fmtData(l.prog) : ''}</td>
+      <td class="c mut">${l.pag ? fmtData(l.pag) : ''}</td>
+      <td class="c">${SELO[r.st](r)}</td></tr>`;
+  }).join('') || `<tr><td colspan="9" class="vazio">Nenhuma linha neste filtro.</td></tr>`;
+  const pend = cnt('pend');
+  box.innerHTML = `
+    <div class="mh" style="--ec:${esc(cor)}">
+      <div><small>Importar planilha</small><b>${esc(IMP.arq)}</b></div>
+      <button class="ib x" data-act="fecharModal" title="Fechar (Esc)">✕</button>
+    </div>
+    <div class="imp-dest">
+      <span class="lbl">Lançar em</span>
+      <div class="seg">${S.planilhas.map(p => `<button class="${p.id === IMP.dest ? 'on' : ''}" style="--ec:${esc(corEmpresa(p.id))}" data-act="impDestino" data-id="${p.id}"><i></i>${esc(nomeEmpresa(p.id))}</button>`).join('')}</div>
+      ${IMP.detectou ? `<span class="imp-aviso">Pelos nomes dos bancos, este arquivo parece ser da <b>${esc(siglaEmpresa(IMP.dest))}</b> — confira a empresa acima.</span>` : ''}
+    </div>
+    <div class="ls-tot imp-tot">
+      <div><span>Para importar</span><b>${sel.length}</b><em class="ok">de ${R.length} linhas</em></div>
+      <div class="e"><span>Entradas</span><b>${brl(ent)}</b></div>
+      <div class="s"><span>Saídas</span><b>${brl(sai)}</b></div>
+      <div class="r"><span>Resultado</span><b class="${clsSinal(ent - sai)}">${brl(ent - sai)}</b></div>
+    </div>
+    ${mapa}
+    <div class="imp-fil">
+      <div class="seg seg-sm">${FIL.map(([k, t, n]) => `<button class="${IMP.filtro === k ? 'on' : ''}" data-act="impFiltro" data-v="${k}">${t} <small>${n}</small></button>`).join('')}</div>
+      <span class="mut">${IMP.carregando ? 'Procurando lançamentos que já existem…' : 'Linhas sem valor (ex.: previsões em branco) são ignoradas. Linhas iguais às já lançadas (data, valor e descrição) vêm desmarcadas.'}</span>
+    </div>
+    <div class="ls-tab"><table class="ls imp"><thead><tr><th><input type="checkbox" data-chg="impTodos" ${todos ? 'checked' : ''} ${selecionaveis.length ? '' : 'disabled'} title="Marcar / desmarcar todas"></th><th>Linha</th><th>Data</th><th>Banco</th><th style="text-align:left">Descrição / conta</th><th style="text-align:right">Valor</th><th>Vencimento</th><th>Pagamento</th><th>Situação</th></tr></thead>
+      <tbody>${linhas}</tbody></table></div>
+    <div class="mf">
+      <span class="mut">${pend ? `<b class="neg">${pend} linha(s) com pendência</b> — escolha as correspondências acima para incluí-las.` : 'Lançamentos com data de pagamento e banco entram como pagos/recebidos; os demais, em aberto.'}</span>
+      <span class="sp"></span>
+      <button class="btn sec" data-act="fecharModal">Cancelar</button>
+      <button class="btn" data-act="impConfirmar" ${sel.length && !IMP.salvando && !IMP.carregando ? '' : 'disabled'}>${IMP.salvando ? 'Importando…' : `⬆ Importar ${sel.length} lançamento${sel.length === 1 ? '' : 's'}`}</button>
+    </div>`;
+  prepararBuscaPlano();
+  const t2 = box.querySelector('.ls-tab'); if (t2) t2.scrollTop = rol;
+}
+
+function impMapear(tipo, k, v) {
+  if (!IMP) return;
+  const map = tipo === 'b' ? IMP.mapB : IMP.mapP;
+  const val = v === '' ? '' : v === 'x' ? 'x' : v === '0' ? 0 : Number(v);
+  map[k] = { ...map[k], v: val, manual: val !== '', auto: false };
+  if (val !== '') {
+    const memo = impMemo();
+    if (tipo === 'b') memo.banco[`${IMP.dest}|${k}`] = val; else memo.plano[k] = val;
+    impMemoSalvar(memo);
+  }
+  desenharImp();
+}
+
+async function impConfirmar() {
+  if (!IMP || IMP.salvando) return;
+  const R = impResolver().filter(r => r.sel);
+  if (!R.length) return toast('Nenhuma linha marcada para importar.', true);
+  const origem = `IMP:${Date.now().toString(36)}`;
+  const rows = R.map(({ l, banco_id, plano_id, pago }) => ({
+    planilha_id: IMP.dest, banco_id, plano_conta_id: plano_id,
+    data_lancamento: l.data, item: l.item || M.plano[plano_id]?.nome || '', valor: l.valor,
+    data_programada: l.prog || l.data, data_pagamento: pago ? l.pag : null, origem,
+  }));
+  IMP.salvando = true; desenharImp();
+  let feitos = 0;
+  try {
+    for (let i = 0; i < rows.length; i += 500) { await store.insertMany('lancamentos', rows.slice(i, i + 500)); feitos += Math.min(500, rows.length - i); }
+  } catch (e) {
+    if (IMP) { IMP.salvando = false; desenharImp(); }
+    return toast(feitos ? `Importados ${feitos} de ${rows.length}. Erro: ${e.message}` : e.message, true);
+  }
+  // abre a empresa e o mês onde caiu a maior parte dos lançamentos
+  const meses = {}; for (const r of rows) { const ym = r.data_lancamento.slice(0, 7); meses[ym] = (meses[ym] || 0) + 1; }
+  const ymAtual = `${S.ano}-${pad(S.mes + 1)}`;
+  if (!meses[ymAtual]) { const [a, m] = Object.entries(meses).sort((x, y) => y[1] - x[1])[0][0].split('-').map(Number); S.ano = a; S.mes = m - 1; }
+  const dest = IMP.dest;
+  fecharModal(true); IMP = null;
+  S.planilhaId = dest; S.editId = null;
+  if (S.view !== 'lancamentos') await irPara('lancamentos'); else await viewLancamentos();
+  toast(`${rows.length} lançamento${rows.length === 1 ? '' : 's'} importado${rows.length === 1 ? '' : 's'} em ${siglaEmpresa(dest)}.`);
 }
 
 /* ============================ RELATÓRIOS PDF ============================ */
@@ -3771,7 +4247,7 @@ async function gerarPDF(orient) {
     txt([info.emp, info.per].filter(Boolean).join('   •   '), tx, 19.5, { s: 9, c: [100, 101, 107] });
     txt('RELATÓRIO GERENCIAL', W - ML, 11.5, { s: 6.5, b: true, c: [...cor], a: 'right' });
     txt(`Emitido em ${emitido}`, W - ML, 16, { s: 7.5, c: [116, 117, 123], a: 'right' });
-    if (S.usuario) txt(`por ${S.usuario}`, W - ML, 20, { s: 7.5, c: [116, 117, 123], a: 'right' });
+    if (S.usuario) txt(`por ${nomeUsuario()}`, W - ML, 20, { s: 7.5, c: [116, 117, 123], a: 'right' });
     doc.setFillColor(...cor); doc.rect(ML, 25.5, W - 2 * ML, 1.1, 'F');
     doc.setFillColor(62, 63, 68); doc.rect(ML + (W - 2 * ML) * 0.82, 25.5, (W - 2 * ML) * 0.18, 1.1, 'F');
     doc.setDrawColor(221, 222, 226); doc.setLineWidth(0.2); doc.line(ML, H - 11, W - ML, H - 11);
@@ -3821,7 +4297,7 @@ const CAD = {
     busca: r => r.nome,
   },
   plano_contas: {
-    titulo: 'Plano de Contas', sub: 'As categorias. Cada conta pertence a um grupo (classificação) e a um grupo da DRE.',
+    titulo: 'Plano de Contas', sub: 'As categorias. Cada conta pertence a um grupo (classificação); o código é sugerido pelo grupo. Clique no título da coluna para ordenar.',
     campos: [
       { k: 'codigo', l: 'Código', t: 'text', req: true, ph: '1.1.1' },
       { k: 'nome', l: 'Nome da conta', t: 'text', req: true, cls: 'w-lg', ph: 'Ex.: VENDAS DE MERCADORIAS' },
@@ -3832,6 +4308,8 @@ const CAD = {
            ['Classificação', r => { const g = M.grupo[r.grupo_id]; return g ? `<span class="tag" style="background:${esc(corGrupo(g))}">${esc(g.nome)}</span>` : ''; }],
            ['Grupo DRE', r => M.gdre[r.grupo_dre_id] ? esc(M.gdre[r.grupo_dre_id].nome) : '<span class="neg">— sem grupo —</span>']],
     busca: r => `${r.codigo} ${r.nome} ${M.grupo[r.grupo_id]?.nome ?? ''} ${M.gdre[r.grupo_dre_id]?.nome ?? ''}`,
+    ord: [r => r.codigo, r => r.nome, r => M.grupo[r.grupo_id]?.nome ?? '', r => M.gdre[r.grupo_dre_id]?.nome ?? ''],
+    modal: true,
   },
 };
 
@@ -3853,17 +4331,28 @@ function renderCadastros() {
   const ed = S.cadEdit ? S[t].find(r => r.id === S.cadEdit) : null;
   const q = S.buscaCad.trim().toLowerCase();
   const lista = S[t].filter(r => !q || cfg.busca(r).toLowerCase().includes(q));
+  const ord = cfg.ord ? (S.cadOrd[t] ||= { i: 0, desc: false }) : null;
+  if (ord) {
+    const f = cfg.ord[ord.i], cmp = (a, b) => String(a ?? '').localeCompare(String(b ?? ''), 'pt-BR', { numeric: true, sensitivity: 'base' });
+    lista.sort((a, b) => (ord.desc ? -1 : 1) * (cmp(f(a), f(b)) || cmp(a.codigo, b.codigo)));
+  }
+  const th = (h, i) => !ord ? `<th style="text-align:left">${h}</th>`
+    : `<th class="th-ord ${ord.i === i ? 'on' : ''}" data-act="cadOrd" data-i="${i}" title="Ordenar por ${esc(h.toLowerCase())}">${h}<span class="seta-ord">${ord.i === i ? (ord.desc ? '▼' : '▲') : '↕'}</span></th>`;
   $('main').innerHTML = `${sub}
     <section class="cad">
       <h2 class="tit">${cfg.titulo}</h2><p class="sub">${cfg.sub}</p>
-      <form class="form" id="cadForm" data-t="${t}">
+      ${cfg.modal ? '' : `<form class="form" id="cadForm" data-t="${t}">
         ${cfg.campos.map(c => `<label>${c.l}${campoHTML(c, ed?.[c.k], ed)}</label>`).join('')}
         <button class="btn" type="submit">${ed ? 'Salvar alteração' : '+ Adicionar'}</button>
         ${ed ? '<button class="btn sec" type="button" data-act="cadCancelar">Cancelar</button>' : ''}
-      </form>
-      <div class="barra"><input class="busca" id="cadBusca" placeholder="Pesquisar…" value="${esc(S.buscaCad)}"><span class="mut">${lista.length} registro(s)</span></div>
-      <div class="tabwrap"><table class="zebra">
-        <thead><tr>${cfg.cols.map(([h]) => `<th style="text-align:left">${h}</th>`).join('')}<th style="width:80px"></th></tr></thead>
+      </form>`}
+      <div class="barra"><input class="busca" id="cadBusca" placeholder="Pesquisar…" value="${esc(S.buscaCad)}"><span class="mut">${lista.length} registro(s)</span>
+        ${cfg.modal ? `<span class="sp"></span>
+        <label class="ord-sel">Ordenar por<select data-chg="cadOrdSel">${cfg.cols.map(([h], i) => `<option value="${i}" ${ord.i === i ? 'selected' : ''}>${esc(h)}</option>`).join('')}</select></label>
+        <button class="mini" data-act="cadOrdInv" title="Inverter a ordem">${ord.desc ? '▼ Decrescente' : '▲ Crescente'}</button>
+        <button class="btn" data-act="pcNovo">+ Nova conta</button>` : ''}</div>
+      <div class="tabwrap"><table class="zebra ${ord ? 'ordenavel' : ''}">
+        <thead><tr>${cfg.cols.map(([h], i) => th(h, i)).join('')}<th style="width:80px"></th></tr></thead>
         <tbody>${lista.length ? lista.map(r => `<tr class="${r.id === S.cadEdit ? 'editando' : ''}">${cfg.cols.map(([, f]) => `<td>${f(r)}</td>`).join('')}
           <td class="acoes"><button class="ib" title="Editar" data-act="cadEditar" data-id="${r.id}">✎</button><button class="ib del" title="Excluir" data-act="cadExcluir" data-id="${r.id}">✕</button></td></tr>`).join('')
           : `<tr><td colspan="${cfg.cols.length + 1}" class="vazio">Nada encontrado.</td></tr>`}</tbody>
@@ -3873,7 +4362,7 @@ function renderCadastros() {
     $('c_tipo').addEventListener('change', e => { if (e.target.value) $('c_cor').value = corPadrao(e.target.value); });
     if (!ed) $('c_cor').value = corPadrao('RECEITA');
   }
-  if (ed) $('cadForm').querySelector('input,select')?.focus();
+  if (ed && !cfg.modal) $('cadForm').querySelector('input,select')?.focus();
 }
 
 async function salvarCadastro(t) {
@@ -3922,6 +4411,107 @@ function carregarImagem(file, k) {
     img.src = fr.result;
   };
   fr.readAsDataURL(file);
+}
+
+
+/* ------------------------- Plano de contas: janela ------------------------- */
+// Cadastro numa janela: escolhe o grupo, o código sequencial é sugerido e o grupo da DRE vem das outras contas do grupo.
+let PCF = null;
+const codValido = c => /^\d+(\.\d+)*$/.test(String(c ?? '').trim());
+const prefixoCod = c => String(c).trim().split('.').slice(0, -1).join('.');
+function proximoCodigo(gid, exceto = null) {
+  const usados = new Set(S.plano_contas.filter(x => x.id !== exceto).map(x => String(x.codigo ?? '').trim()));
+  const cods = S.plano_contas.filter(p => p.grupo_id === gid && p.id !== exceto).map(p => String(p.codigo ?? '').trim()).filter(codValido);
+  let pre, n;
+  if (cods.length) {
+    const cont = {}; for (const c of cods) cont[prefixoCod(c)] = (cont[prefixoCod(c)] || 0) + 1;
+    pre = Object.entries(cont).sort((a, b) => b[1] - a[1])[0][0];
+    n = Math.max(...cods.filter(c => prefixoCod(c) === pre).map(c => Number(c.split('.').at(-1)) || 0)) + 1;
+  } else {                       // grupo ainda sem contas: abre o próximo subgrupo (1.x receitas, 2.x despesas)
+    const raiz = M.grupo[gid]?.tipo === 'RECEITA' ? '1' : '2';
+    const subs = [...usados].filter(codValido).map(c => c.split('.')).filter(s => s[0] === raiz && s.length > 1).map(s => Number(s[1]) || 0);
+    pre = `${raiz}.${(subs.length ? Math.max(...subs) : 0) + 1}`; n = 1;
+  }
+  const cod = k => pre ? `${pre}.${k}` : String(k);
+  while (usados.has(cod(n))) n++;
+  return cod(n);
+}
+function dreDoGrupo(gid, exceto = null) {
+  const cont = {};
+  for (const p of S.plano_contas) if (p.grupo_id === gid && p.id !== exceto && M.gdre[p.grupo_dre_id]) cont[p.grupo_dre_id] = (cont[p.grupo_dre_id] || 0) + 1;
+  const m = Object.entries(cont).sort((a, b) => b[1] - a[1])[0];
+  return m ? Number(m[0]) : null;
+}
+function abrirConta(id = null) {
+  const r = id ? M.plano[id] : null;
+  PCF = { id: r?.id ?? null, grupoOrig: r?.grupo_id ?? null, codOrig: r?.codigo ?? '', sug: null };
+  abrirModal(`
+    <div class="mh" id="pc_mh" style="--ec:${esc(r ? corGrupo(M.grupo[r.grupo_id]) : '#f37021')}">
+      <div><small>Plano de contas</small><b>${r ? 'Editar conta' : 'Nova conta'}</b></div>
+      <button class="ib x" data-act="fecharModal" title="Fechar (Esc)">✕</button>
+    </div>
+    <div class="mcorpo pc-grid">
+      <label class="span2"><span>Grupo (classificação) <i>*</i></span>
+        <select id="pc_grupo" data-chg="pcGrupo" ${r ? '' : 'autofocus'}><option value="">Selecione o grupo…</option>${gruposOrdenados().map(g => `<option value="${g.id}" ${g.id === r?.grupo_id ? 'selected' : ''}>${esc(g.nome)} · ${g.tipo === 'RECEITA' ? 'Receita' : 'Despesa'}</option>`).join('')}</select></label>
+      <label><span>Código <i>*</i></span><input id="pc_cod" value="${esc(r?.codigo ?? '')}" placeholder="automático" inputmode="decimal" autocomplete="off"></label>
+      <label><span>Nome da conta <i>*</i></span><input id="pc_nome" value="${esc(r?.nome ?? '')}" placeholder="Ex.: VENDAS DE MERCADORIAS" autocomplete="off" ${r ? 'autofocus' : ''}></label>
+      <div class="pc-info span2" id="pc_info"></div>
+    </div>
+    <div class="mf">
+      ${r ? '<button class="btn sec perigo" data-act="pcExcluir">✕ Excluir</button>' : ''}
+      <span class="sp"></span>
+      <button class="btn sec" data-act="fecharModal">Cancelar</button>
+      <button class="btn" data-primary data-act="pcSalvar">${r ? 'Salvar alteração' : '+ Cadastrar conta'}</button>
+    </div>`, 'm-ed m-pc');
+  infoConta();
+}
+function infoConta() {
+  const el = $('pc_info'); if (!el || !PCF) return;
+  const gid = Number($('pc_grupo').value) || null, g = M.grupo[gid];
+  if (!g) { el.innerHTML = '<span class="mut">Escolha o grupo: o próximo código da sequência é preenchido automaticamente.</span>'; return; }
+  const irmas = S.plano_contas.filter(p => p.grupo_id === gid && p.id !== PCF.id).sort((a, b) => String(a.codigo).localeCompare(String(b.codigo), 'pt-BR', { numeric: true }));
+  const dre = PCF.id && gid === PCF.grupoOrig ? M.plano[PCF.id]?.grupo_dre_id : dreDoGrupo(gid, PCF.id);
+  el.innerHTML = `<span class="tag" style="background:${esc(corGrupo(g))}">${esc(g.nome)}</span>
+    <span class="pc-tp ${g.tipo === 'RECEITA' ? 'rec' : 'desp'}">${g.tipo === 'RECEITA' ? 'Receita · soma' : 'Despesa · subtrai'}</span>
+    <span class="mut">DRE: <b>${M.gdre[dre] ? esc(M.gdre[dre].nome) : 'definir em Grupos DRE'}</b></span>
+    ${irmas.length ? `<span class="mut pc-ult">Últimas do grupo: ${irmas.slice(-3).map(p => `<b>${esc(p.codigo)}</b> ${esc(p.nome)}`).join(' · ')}</span>` : '<span class="mut pc-ult">Primeira conta deste grupo.</span>'}`;
+  $('pc_mh')?.style.setProperty('--ec', corGrupo(g));
+}
+function pcGrupoMudou() {
+  if (!PCF) return;
+  const gid = Number($('pc_grupo').value) || null, cod = $('pc_cod');
+  if (gid) {
+    const atual = cod.value.trim();
+    const trocar = !atual || atual === PCF.sug || (PCF.id && gid !== PCF.grupoOrig && atual === PCF.codOrig);
+    if (PCF.id && gid === PCF.grupoOrig && atual === PCF.sug) { cod.value = PCF.codOrig; PCF.sug = null; }
+    else if (trocar) { PCF.sug = proximoCodigo(gid, PCF.id); cod.value = PCF.sug; }
+    cod.classList.remove('pc-auto'); void cod.offsetWidth; cod.classList.add('pc-auto');
+  }
+  infoConta();
+  setTimeout(() => $('pc_nome')?.focus(), 0);
+}
+async function salvarConta() {
+  if (!PCF) return;
+  const gid = Number($('pc_grupo').value) || null, codigo = $('pc_cod').value.trim(), nome = $('pc_nome').value.trim();
+  if (!gid) return toast('Escolha o grupo (classificação).', true), $('pc_grupo').focus();
+  if (!codigo) return toast('Informe o código.', true), $('pc_cod').focus();
+  if (!nome) return toast('Informe o nome da conta.', true), $('pc_nome').focus();
+  const dup = S.plano_contas.find(p => p.id !== PCF.id && String(p.codigo).trim() === codigo);
+  if (dup) return toast(`O código ${codigo} já é usado por "${dup.nome}".`, true), $('pc_cod').focus();
+  const row = { codigo, nome, grupo_id: gid };
+  if (!PCF.id || gid !== PCF.grupoOrig) { const d = dreDoGrupo(gid, PCF.id); if (d || !PCF.id) row.grupo_dre_id = d; }
+  try {
+    if (PCF.id) await store.update('plano_contas', PCF.id, row); else await store.insert('plano_contas', row);
+  } catch (e) { return toast(e.message, true); }
+  const novo = !PCF.id;
+  fecharModal(true); PCF = null;
+  await recarregarCadastros(); renderCadastros();
+  toast(novo ? `Conta ${codigo} ${nome} cadastrada.` : 'Alteração salva.');
+}
+async function excluirConta() {
+  if (!PCF?.id) return;
+  const id = PCF.id; fecharModal(true); PCF = null;
+  await excluirCadastro('plano_contas', id);
 }
 
 /* ------------------------------ Grupos DRE ------------------------------ */
@@ -4013,6 +4603,13 @@ const ACOES = {
   mes: d => { S.mes = Number(d.m); S.editId = null; S.trEdit = null; S.fluxo.abertos.clear(); rerender(); },
   ano: d => { S.ano += Number(d.d); S.editId = null; S.trEdit = null; S.fluxo.abertos.clear(); rerender(); },
   salvarLanc: () => salvarLanc(),
+  cfAbrir: (d, b) => abrirCf(d.k, b),
+  lkTog: () => { VIS.lancResumo = !(VIS.lancResumo === true); salvarVis(); renderPainel(); },
+  cfLimparTudo: () => { S.colFiltro = {}; renderLancamentos(); },
+  impAbrir: () => impAbrir(),
+  impDestino: d => { if (!IMP || IMP.salvando) return; IMP.dest = Number(d.id); IMP.detectou = false; IMP.mapB = {}; impCasar(); impExistentes(); },
+  impFiltro: d => { if (IMP) { IMP.filtro = d.v; desenharImp(); } },
+  impConfirmar: () => impConfirmar(),
   lfModo: d => { S.lf.modo = d.v; S.lf.parc = null; S.editId = null; renderLancamentos(); setTimeout(() => $('e_plano')?.focus(), 0); },
   parcBase: d => { S.lf.base = d.v; document.querySelectorAll('[data-act=parcBase]').forEach(b => b.classList.toggle('on', b.dataset.v === d.v)); gerarParcelas(); },
   lancarParcelas: () => lancarParcelas(),
@@ -4158,7 +4755,12 @@ const ACOES = {
     if (!t || !confirm(`Excluir a transferência de ${brl(t.valor)}?`)) return;
     try { await store.remove('transferencias', t.id); toast('Transferência excluída.'); viewTransferencias(); } catch (e) { toast(e.message, true); }
   },
-  cadEditar: d => { S.cadEdit = Number(d.id); renderCadastros(); window.scrollTo(0, 0); },
+  cadEditar: d => { if (CAD[S.cadTab]?.modal) return abrirConta(Number(d.id)); S.cadEdit = Number(d.id); renderCadastros(); window.scrollTo(0, 0); },
+  cadOrd: d => { const o = (S.cadOrd[S.cadTab] ||= { i: 0, desc: false }), i = Number(d.i); if (o.i === i) o.desc = !o.desc; else { o.i = i; o.desc = false; } renderCadastros(); },
+  cadOrdInv: () => { const o = (S.cadOrd[S.cadTab] ||= { i: 0, desc: false }); o.desc = !o.desc; renderCadastros(); },
+  pcNovo: () => abrirConta(),
+  pcSalvar: () => salvarConta(),
+  pcExcluir: () => excluirConta(),
   cadCancelar: () => { S.cadEdit = null; renderCadastros(); },
   cadExcluir: d => excluirCadastro(S.cadTab, Number(d.id)),
   imgLimpar: d => { $('c_' + d.k).value = ''; $('c_' + d.k + '_file').value = ''; $('c_' + d.k + '_prev').innerHTML = iconeBanco({ nome: $('c_nome').value }, 34); },
@@ -4196,6 +4798,13 @@ const ACOES = {
   },
 };
 const MUDANCAS = {
+  pcGrupo: () => pcGrupoMudou(),
+  cadOrdSel: el => { const o = (S.cadOrd[S.cadTab] ||= { i: 0, desc: false }); o.i = Number(el.value); o.desc = false; renderCadastros(); },
+  impArquivo: el => impArquivo(el.files?.[0]),
+  impBanco: el => impMapear('b', el.dataset.k, el.value),
+  impPlano: el => impMapear('p', el.dataset.k, el.value),
+  impChk: el => { const l = IMP?.linhas[Number(el.dataset.i)]; if (l) { l.sel = el.checked; desenharImp(); } },
+  impTodos: el => { if (!IMP) return; const R = impResolver().filter(r => (r.st === 'ok' || r.st === 'dup') && (!IMP.filtro || r.st === IMP.filtro)); R.forEach(r => r.l.sel = el.checked); desenharImp(); },
   ePlano: () => atualizarBadgeEntrada(),
   fBanco: el => { S.filtro.banco = el.value; renderLinhas(); },
   fGrupo: el => { S.filtro.grupo = el.value; renderLinhas(); },
@@ -4377,10 +4986,19 @@ function prepararSeletoresBanco() {
     desenharBsel(sel);
   });
 }
+function iconeOpcao(v, size) {
+  v = String(v ?? '');
+  const b = M.banco[v] || (v.startsWith('b:') ? M.banco[v.slice(2)] : null);
+  if (b) return iconeBanco(b, size);
+  if (v.startsWith('e:')) { const id = Number(v.slice(2)); return `<span class="op-emp" style="--ec:${esc(corEmpresa(id))};width:${size}px;height:${size}px">${esc(siglaEmpresa(id))}</span>`; }
+  if (v === 'all') return `<span class="op-emp todos" style="width:${size}px;height:${size}px">${ICO_BANCOS}</span>`;
+  return '';
+}
+const ICO_BANCOS = '<svg viewBox="0 0 24 24" width="62%" height="62%" aria-hidden="true"><path fill="currentColor" d="M12 2 2 7v2h20V7zM4 10v7h3v-7zm6.5 0v7h3v-7zM17 10v7h3v-7zM2 19v3h20v-3z"/></svg>';
 function desenharBsel(sel) {
   const bt = sel._bt; if (!bt) return;
-  const v = valorSelect.get.call(sel), b = M.banco[v], txt = sel.selectedOptions[0]?.text ?? '';
-  bt.innerHTML = `${b ? iconeBanco(b, 20) : ''}<span class="t ${v ? '' : 'mut'}">${esc(txt)}</span><span class="car">▾</span>`;
+  const v = valorSelect.get.call(sel), txt = sel.selectedOptions[0]?.text ?? '';
+  bt.innerHTML = `${iconeOpcao(v, 20)}<span class="t ${v ? '' : 'mut'}">${esc(txt)}</span><span class="car">▾</span>`;
   bt.title = txt;
 }
 function abrirBsel(sel) {
@@ -4388,8 +5006,11 @@ function abrirBsel(sel) {
   const bt = sel._bt, r = bt.getBoundingClientRect(), ops = [...sel.options];
   const pop = document.createElement('div');
   pop.className = 'bsel-pop'; pop.setAttribute('role', 'listbox');
-  pop.innerHTML = ops.map((o, i) => `<div class="bsel-op ${o.value === sel.value ? 'on' : ''} ${o.value ? '' : 'vazio'}" role="option" data-i="${i}">
-    ${o.value && M.banco[o.value] ? iconeBanco(M.banco[o.value], 24) : '<span class="sem-ic"></span>'}<span class="n">${esc(o.text)}</span></div>`).join('');
+  pop.innerHTML = ops.map((o, i) => {
+    const g = o.parentElement?.tagName === 'OPTGROUP' && o.parentElement.querySelector('option') === o ? `<div class="bsel-gr">${esc(o.parentElement.label)}</div>` : '';
+    return `${g}<div class="bsel-op ${o.value === sel.value ? 'on' : ''} ${o.value ? '' : 'vazio'}" role="option" data-i="${i}">
+    ${iconeOpcao(o.value, 24) || '<span class="sem-ic"></span>'}<span class="n">${esc(o.text)}</span></div>`;
+  }).join('');
   document.body.appendChild(pop);
   const w = Math.max(r.width, 230);
   pop.style.minWidth = w + 'px';
@@ -4398,7 +5019,8 @@ function abrirBsel(sel) {
   pop.style.left = Math.max(8, Math.min(r.left, innerWidth - w - 8)) + 'px';
   pop.style.top = top + 'px';
   let ativo = Math.max(0, ops.findIndex(o => o.value === sel.value));
-  const marcar = i => { ativo = (i + ops.length) % ops.length; [...pop.children].forEach((el, j) => el.classList.toggle('foco', j === ativo)); pop.children[ativo].scrollIntoView({ block: 'nearest' }); };
+  const itens = [...pop.querySelectorAll('.bsel-op')];
+  const marcar = i => { ativo = (i + ops.length) % ops.length; itens.forEach((el, j) => el.classList.toggle('foco', j === ativo)); itens[ativo].scrollIntoView({ block: 'nearest' }); };
   const escolher = i => {
     const v = ops[i].value, mudou = v !== sel.value;
     fecharBsel(true);
