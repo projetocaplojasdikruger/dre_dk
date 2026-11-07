@@ -726,6 +726,49 @@ table.bfx-tot td.dia{width:58px}
 .mf .btn{padding:9px 18px}
 .btn.ok{background:#2a78d6}.btn.ok:hover{background:#1f63b6}
 .btn.perigo{color:var(--neg);border-color:#f0b4ae}.btn.perigo:hover{background:#fff1f0}
+/* ---------- janela de transferência ---------- */
+.tr-nova{padding:7px 14px}
+.modal.m-tr{width:min(760px,100%)}
+.tr-mh{border-bottom-color:var(--orange)}
+.tr-corpo{padding:18px 20px 8px;display:flex;flex-direction:column;gap:16px}
+.tr-contas{display:grid;grid-template-columns:1fr 44px 1fr;align-items:stretch;gap:10px}
+.tr-conta{position:relative;border:1px solid var(--line);border-radius:12px;padding:12px 14px 12px 16px;background:#fafafb;display:flex;flex-direction:column;gap:10px;box-shadow:inset 4px 0 0 var(--ec,transparent);transition:box-shadow .2s}
+.tr-conta.sai{background:linear-gradient(180deg,#fff7f2,#fff)}
+.tr-conta.entra{background:linear-gradient(180deg,#f2f8ff,#fff)}
+.tr-lbl{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.6px;display:flex;align-items:center;gap:6px}
+.tr-lbl i{font-style:normal;width:20px;height:20px;border-radius:50%;display:inline-grid;place-items:center;color:#fff;font-size:12px}
+.sai .tr-lbl{color:#c2410c}.sai .tr-lbl i{background:#eb6834}
+.entra .tr-lbl{color:#1667b7}.entra .tr-lbl i{background:#2a78d6}
+.tr-conta .bsel-btn{width:100%;min-width:0;min-height:42px;border-radius:8px;border-color:#cfd0d4;font-size:13.5px}
+.tr-saldo{display:flex;align-items:center;gap:10px;min-height:38px;font-size:12px}
+.tr-saldo>div{display:flex;flex-direction:column}
+.tr-saldo small{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.4px;color:var(--muted)}
+.tr-saldo b{font-size:14px;font-variant-numeric:tabular-nums}
+.tr-seta{color:var(--muted);font-size:14px}
+.tr-troca{align-self:center;width:44px;height:44px;border-radius:50%;border:1px solid #cfd0d4;background:#fff;font-size:20px;color:#55565b;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.08);transition:.15s}
+.tr-troca:hover{border-color:var(--orange);color:var(--orange-d);transform:rotate(180deg)}
+.tr-contas.girou .tr-conta{animation:trGira .35s}
+@keyframes trGira{0%{transform:scale(.97);opacity:.6}100%{transform:none;opacity:1}}
+.tr-valor{display:flex;flex-direction:column;align-items:center;gap:6px;padding:14px;border:1px dashed #d8d9dd;border-radius:12px;background:#fff}
+.tr-vl{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.6px;color:#55565b}
+.tr-vi{display:flex;align-items:baseline;gap:8px}
+.tr-vi em{font-style:normal;font-size:20px;font-weight:700;color:var(--muted)}
+.tr-vi input{border:0;border-bottom:2px solid #e3e4e7;font-size:34px;font-weight:800;width:260px;text-align:center;padding:2px 6px;font-variant-numeric:tabular-nums;color:var(--text);background:transparent}
+.tr-vi input:focus{outline:0;border-bottom-color:var(--orange)}
+.tr-campos{display:grid;grid-template-columns:180px 1fr;gap:12px}
+.tr-campos label{display:flex;flex-direction:column;gap:5px;font-size:11px;font-weight:700;color:#55565b;text-transform:uppercase;letter-spacing:.3px}
+.tr-campos input{border:1px solid #cfd0d4;border-radius:8px;padding:9px 10px;font-size:13px;font-weight:500;min-height:40px;text-transform:none;letter-spacing:0}
+.tr-campos input:focus{outline:2px solid var(--orange);outline-offset:-1px;border-color:var(--orange)}
+.tr-campos .opc{text-transform:none;font-weight:500;color:var(--muted);letter-spacing:0}
+.tr-aviso:empty{display:none}
+.tr-aviso{display:flex;flex-direction:column;gap:6px}
+.tr-av{font-size:12.5px;border-radius:8px;padding:8px 12px;border:1px solid}
+.tr-av.erro{background:#fff1f0;border-color:#f0b4ae;color:#b3261e}
+.tr-av.alerta{background:#fff6e6;border-color:#f5d49a;color:#8a4b00}
+.tr-av.info{background:#eef5fd;border-color:#bcd6f5;color:#1f4f8a}
+.tr-dica{font-size:11.5px}
+.m-tr .btn:disabled{opacity:.5;cursor:not-allowed}
+@media (max-width:640px){ .tr-contas{grid-template-columns:1fr} .tr-troca{justify-self:center;transform:rotate(90deg)} .tr-campos{grid-template-columns:1fr} .tr-vi input{width:200px;font-size:28px} }
 /* ---------- ícones no seletor de bancos / resumo recolhível ---------- */
 .bsel-gr{font-size:10.5px;font-weight:800;text-transform:uppercase;letter-spacing:.5px;color:var(--muted);padding:8px 10px 3px;border-top:1px solid var(--line);margin-top:4px}
 .bsel-pop .bsel-gr:first-child{border-top:0;margin-top:0}
@@ -3647,12 +3690,9 @@ function renderTransferencias() {
   $('main').innerHTML = `
     <h2 class="tit">Transferências entre contas</h2>
     <p class="sub">Movimentam dinheiro de um banco para outro sem afetar receitas, despesas ou a DRE.</p>
-    <div class="barra">${barraAno()}${barraMeses()}<div class="filtros">${nAj ? `<span class="leg-aj">${nAj} ajustada(s)</span>` : ''}${botaoPers('transferencias')}</div></div>
+    <div class="barra">${barraAno()}${barraMeses()}<div class="filtros">${nAj ? `<span class="leg-aj">${nAj} ajustada(s)</span>` : ''}${botaoPers('transferencias')}<button class="btn tr-nova" data-act="novaTransf">⇄ Nova transferência</button></div></div>
     <div class="tabwrap congela"><table class="zebra ${cfg.compacto ? 'compacto' : ''}">
       <thead><tr>${cfg.cols.map(k => `<th ${['origem', 'destino', 'desc'].includes(k) ? 'style="text-align:left"' : ''}>${colDef('transferencias', k).h}</th>`).join('')}<th></th></tr></thead>
-      <tbody id="entrada"><tr class="entrada">${cfg.cols.map(k => ENTRADA[k]).join('')}
-        <td><button class="salvar" data-act="salvarTransf">${ed ? 'Salvar' : '+ Transferir'}</button>${ed ? '<button class="cancelar" data-act="cancelarTransf">Cancelar</button>' : ''}</td>
-      </tr></tbody>
       <tbody>${exib.map(t => {
         const C = {
           data: celEd('tr', t, 'data', 'c', fmtData(t.data)),
@@ -3662,11 +3702,142 @@ function renderTransferencias() {
           valor: celEd('tr', t, 'valor', 'r', `<b>${brl(t.valor)}</b>`),
         };
         return `<tr class="${t.id === S.trEdit ? 'editando' : ''} ${t.ajustes && Object.keys(t.ajustes).length ? 'tem-aj' : ''}">${cfg.cols.map(k => C[k]).join('')}
-          <td class="acoes"><button class="ib" title="Editar tudo na linha amarela" data-act="editarTransf" data-id="${t.id}">✎</button><button class="ib del" title="Excluir" data-act="excluirTransf" data-id="${t.id}">✕</button></td></tr>`;
-      }).join('') || `<tr><td colspan="${cfg.cols.length + 1}" class="vazio">Nenhuma transferência em ${MESES_NOME[S.mes]} de ${S.ano}.</td></tr>`}</tbody>
+          <td class="acoes"><button class="ib" title="Editar na janela" data-act="editarTransf" data-id="${t.id}">✎</button><button class="ib del" title="Excluir" data-act="excluirTransf" data-id="${t.id}">✕</button></td></tr>`;
+      }).join('') || `<tr><td colspan="${cfg.cols.length + 1}" class="vazio">Nenhuma transferência em ${MESES_NOME[S.mes]} de ${S.ano}. <button class="mini" data-act="novaTransf">⇄ Lançar transferência</button></td></tr>`}</tbody>
       <tfoot><tr>${cfg.cols.map((k, i) => k === 'valor' ? `<td class="r">${brl(total)}</td>` : `<td>${i === 0 ? `${lista.length} transferência(s)` : ''}</td>`).join('')}<td></td></tr></tfoot>
     </table></div>
-    <p class="dica">Tecle <b>Enter</b> na linha amarela para salvar. Para corrigir, <b>clique na célula</b> e altere — a célula fica <span class="leg-aj">destacada</span> como ajustada.</p>`;
+    <p class="dica">Use <b>⇄ Nova transferência</b> para lançar. Para corrigir, <b>clique na célula</b> e altere — ou use ✎ para abrir a janela. A célula alterada fica <span class="leg-aj">destacada</span> como ajustada.</p>`;
+}
+
+/* ---------- janela de transferência (nova / editar) ---------- */
+// Escolhe a conta que sai e a que entra (com ícones), mostra o saldo de cada uma antes e depois e valida antes de gravar.
+let TRF = null;
+const rotBancoTr = b => b.nome + (b.planilha_id && M.planilha[b.planilha_id] && !normTxt(b.nome).split(' ').includes(normTxt(siglaEmpresa(b.planilha_id))) ? ` · ${siglaEmpresa(b.planilha_id)}` : '');
+function abrirTransf(id = null) {
+  const t = id ? S.trLista.find(x => x.id === id) : null;
+  const dataPadrao = (hoje.getFullYear() === S.ano && hoje.getMonth() === S.mes) ? HOJE : periodoMes().ini;
+  TRF = { id: t?.id ?? null, orig: t, saldos: null };
+  const sel = (idc, v, ph) => `<select id="${idc}" data-banco data-chg="tfAtualizar">${opcoes(S.bancos, v ?? '', rotBancoTr, ph)}</select>`;
+  abrirModal(`
+    <div class="mh tr-mh">
+      <div><small>Transferência entre contas</small><b>${t ? 'Editar transferência' : 'Nova transferência'}</b></div>
+      <button class="ib x" data-act="fecharModal" title="Fechar (Esc)">✕</button>
+    </div>
+    <div class="tr-corpo">
+      <div class="tr-contas">
+        <div class="tr-conta sai" id="tf_cs">
+          <span class="tr-lbl"><i>↑</i> Sai de</span>
+          ${sel('tf_origem', t?.banco_origem_id, 'Escolha a conta de origem…')}
+          <div class="tr-saldo" id="tf_so"></div>
+        </div>
+        <button type="button" class="tr-troca" data-act="tfTrocar" title="Inverter origem e destino">⇄</button>
+        <div class="tr-conta entra" id="tf_cd">
+          <span class="tr-lbl"><i>↓</i> Entra em</span>
+          ${sel('tf_destino', t?.banco_destino_id, 'Escolha a conta de destino…')}
+          <div class="tr-saldo" id="tf_sd"></div>
+        </div>
+      </div>
+      <label class="tr-valor"><span class="tr-vl">Valor da transferência</span>
+        <span class="tr-vi"><em>R$</em><input id="tf_valor" inputmode="decimal" placeholder="0,00" autocomplete="off" value="${t ? num2(t.valor) : ''}" ${t ? '' : 'autofocus'}></span></label>
+      <div class="tr-campos">
+        <label>Data<input type="date" id="tf_data" value="${t?.data ?? dataPadrao}" data-chg="tfData"></label>
+        <label><span>Descrição <span class="opc">opcional</span></span><input id="tf_desc" placeholder="Ex.: Depósito do caixa no banco" value="${esc(t?.descricao ?? '')}" autocomplete="off"></label>
+      </div>
+      <div class="tr-aviso" id="tf_aviso"></div>
+    </div>
+    <div class="mf">
+      ${t ? '<button class="btn sec perigo" data-act="tfExcluir">✕ Excluir</button>' : '<span class="mut tr-dica">Enter confirma · Esc fecha</span>'}
+      <span class="sp"></span>
+      <button class="btn sec" data-act="fecharModal">Cancelar</button>
+      ${t ? '' : '<button class="btn sec" data-act="tfSalvar" data-mais="1" title="Grava e deixa a janela aberta para a próxima">Salvar e lançar outra</button>'}
+      <button class="btn" data-primary data-act="tfSalvar" id="tf_ok">${t ? 'Salvar alteração' : 'Transferir'}</button>
+    </div>`, 'm-tr', () => { TRF = null; });
+  const v = $('tf_valor');
+  v.addEventListener('input', atualizarTr);
+  v.addEventListener('blur', () => { const n = parseValor(v.value); if (n > 0) v.value = num2(n); });
+  carregarSaldosTr();
+}
+async function carregarSaldosTr() {
+  if (!TRF) return;
+  const data = valCampo('tf_data');
+  TRF.saldos = null; atualizarTr();
+  if (!data) return;
+  let s = {};
+  try { s = await store.saldosBancos(addDias(data, 1)); } catch (e) { s = {}; }
+  const o = TRF?.orig;                                // na edição, tira a própria transferência do saldo
+  if (o && o.data <= data) { s = { ...s }; s[o.banco_origem_id] = r2((s[o.banco_origem_id] || 0) + Number(o.valor)); s[o.banco_destino_id] = r2((s[o.banco_destino_id] || 0) - Number(o.valor)); }
+  if (TRF && valCampo('tf_data') === data) { TRF.saldos = s; atualizarTr(); }
+}
+function atualizarTr() {
+  if (!TRF || !$('tf_origem')) return;
+  const o = Number(valCampo('tf_origem')) || null, d = Number(valCampo('tf_destino')) || null;
+  const v = parseValor(valCampo('tf_valor')), val = v > 0 ? v : 0, data = valCampo('tf_data');
+  const S0 = TRF.saldos, quando = data ? fmtData(data).slice(0, 5) : '';
+  const caixa = (id, sinalV) => {
+    if (!id) return '<span class="mut">Escolha uma conta para ver o saldo.</span>';
+    if (!S0) return '<span class="mut">Calculando saldo…</span>';
+    const a = S0[id] || 0, b = r2(a + sinalV * val);
+    return `<div><small>Saldo em ${quando}</small><b class="${a < 0 ? 'neg' : ''}">${brl(a)}</b></div>
+      <span class="tr-seta">→</span>
+      <div><small>Depois</small><b class="${b < 0 ? 'neg' : sinalV > 0 && val ? 'pos' : ''}">${brl(b)}</b></div>`;
+  };
+  $('tf_so').innerHTML = caixa(o, -1); $('tf_sd').innerHTML = caixa(d, 1);
+  for (const [cx, id] of [['tf_cs', o], ['tf_cd', d]]) $(cx).style.setProperty('--ec', id && M.banco[id]?.planilha_id ? corEmpresa(M.banco[id].planilha_id) : 'transparent');
+  const av = [];
+  if (o && d && o === d) av.push(['erro', 'A conta de origem e a de destino precisam ser diferentes.']);
+  else {
+    if (o && S0 && val && (S0[o] || 0) - val < -0.004) av.push(['alerta', `A conta de origem ficará negativa (${brl((S0[o] || 0) - val)}).`]);
+    const po = M.banco[o]?.planilha_id, pd = M.banco[d]?.planilha_id;
+    if (po && pd && po !== pd) av.push(['info', `Transferência entre empresas: <b>${esc(siglaEmpresa(po))} → ${esc(siglaEmpresa(pd))}</b>.`]);
+  }
+  $('tf_aviso').innerHTML = av.map(([c, t]) => `<div class="tr-av ${c}">${t}</div>`).join('');
+  const ok = $('tf_ok');
+  if (ok) { ok.textContent = TRF.id ? 'Salvar alteração' : val ? `Transferir ${brl(val)}` : 'Transferir'; ok.disabled = !!(o && d && o === d); }
+}
+function trocarTr() {
+  const so = $('tf_origem'), sd = $('tf_destino'); if (!so || !sd) return;
+  const a = so.value; so.value = sd.value; sd.value = a;
+  $('tf_cs').parentElement.classList.remove('girou'); void so.offsetWidth; $('tf_cs').parentElement.classList.add('girou');
+  atualizarTr();
+}
+async function salvarTr(mais = false) {
+  if (!TRF) return;
+  const row = {
+    data: valCampo('tf_data'),
+    banco_origem_id: Number(valCampo('tf_origem')) || null,
+    banco_destino_id: Number(valCampo('tf_destino')) || null,
+    descricao: valCampo('tf_desc').trim(),
+    valor: parseValor(valCampo('tf_valor')),
+  };
+  if (!row.banco_origem_id) return toast('Escolha a conta de onde o dinheiro sai.', true), abrirBsel($('tf_origem'));
+  if (!row.banco_destino_id) return toast('Escolha a conta para onde o dinheiro vai.', true), abrirBsel($('tf_destino'));
+  if (row.banco_origem_id === row.banco_destino_id) return toast('Origem e destino precisam ser contas diferentes.', true);
+  if (!(row.valor > 0)) return toast('Informe um valor maior que zero.', true), $('tf_valor').focus();
+  if (!row.data) return toast('Informe a data.', true), $('tf_data').focus();
+  const editando = !!TRF.id;
+  try {
+    if (editando) await store.update('transferencias', TRF.id, comAjuste(TRF.orig, row));
+    else await store.insert('transferencias', row);
+  } catch (e) { return toast(e.message, true); }
+  const [a, m] = row.data.split('-').map(Number), fora = a !== S.ano || m - 1 !== S.mes;
+  const txt = `${M.banco[row.banco_origem_id]?.nome} → ${M.banco[row.banco_destino_id]?.nome}`;
+  toast(editando ? 'Transferência ajustada.' : `Transferência de ${brl(row.valor)} registrada (${txt})${fora ? ` em ${MESES_NOME[m - 1]}/${a}` : ''}.`);
+  if (mais && !editando) {
+    await viewTransferencias();
+    if (!TRF) return;
+    $('tf_valor').value = ''; $('tf_desc').value = '';
+    await carregarSaldosTr(); $('tf_valor').focus();
+    return;
+  }
+  fecharModal(true); TRF = null;
+  await viewTransferencias();
+}
+async function excluirTr() {
+  const t = TRF?.orig; if (!t) return;
+  if (!confirm(`Excluir a transferência de ${brl(t.valor)}?`)) return;
+  try { await store.remove('transferencias', t.id); } catch (e) { return toast(e.message, true); }
+  fecharModal(true); TRF = null; toast('Transferência excluída.');
+  await viewTransferencias();
 }
 
 async function salvarTransf() {
@@ -4749,7 +4920,11 @@ const ACOES = {
   },
   salvarTransf: () => salvarTransf(),
   cancelarTransf: () => { S.trEdit = null; renderTransferencias(); },
-  editarTransf: d => { S.trEdit = Number(d.id); renderTransferencias(); $('t_valor')?.focus(); },
+  editarTransf: d => abrirTransf(Number(d.id)),
+  novaTransf: () => abrirTransf(),
+  tfTrocar: () => trocarTr(),
+  tfSalvar: d => salvarTr(!!d.mais),
+  tfExcluir: () => excluirTr(),
   excluirTransf: async d => {
     const t = S.trLista.find(x => x.id === Number(d.id));
     if (!t || !confirm(`Excluir a transferência de ${brl(t.valor)}?`)) return;
@@ -4798,6 +4973,8 @@ const ACOES = {
   },
 };
 const MUDANCAS = {
+  tfAtualizar: () => atualizarTr(),
+  tfData: () => carregarSaldosTr(),
   pcGrupo: () => pcGrupoMudou(),
   cadOrdSel: el => { const o = (S.cadOrd[S.cadTab] ||= { i: 0, desc: false }); o.i = Number(el.value); o.desc = false; renderCadastros(); },
   impArquivo: el => impArquivo(el.files?.[0]),
