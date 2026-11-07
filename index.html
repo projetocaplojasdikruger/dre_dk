@@ -1439,7 +1439,7 @@ class SupaStore {
 
 /* ============================== ESTADO ============================== */
 // nome exibido para cada usuário de login (saudação, topo da tela e relatórios). O login continua o mesmo.
-const NOMES_USUARIO = { caplojasdk: 'Lucio' };
+const NOMES_USUARIO = { caplojasdk: 'Lúcio' };
 const nomeUsuario = () => { const u = String(S.usuario || '').toLowerCase(); return NOMES_USUARIO[u] || (u ? u.charAt(0).toUpperCase() + u.slice(1) : ''); };
 let store, sb;
 const hoje = new Date(), HOJE = isoData(hoje);
