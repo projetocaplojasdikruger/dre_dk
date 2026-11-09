@@ -1076,6 +1076,30 @@ table.ls.imp td input[type=checkbox],table.ls.imp th input[type=checkbox]{width:
   #toast{left:10px;right:10px;bottom:10px;max-width:none}
 }
 @media (max-width:400px){ .tiles,.kpis,.kpis-d,.kpis-4,.cards{grid-template-columns:1fr} .kp.hero{grid-column:auto} .lf-grid,.lf-grid.lf-fixo,.lf-grid.lf-parc{grid-template-columns:1fr} }
+/* ---- plano de contas: nova conta, edição direto na tabela, filtros, importação ---- */
+.modal-bg.modal2{z-index:120;background:rgba(32,33,36,.35)}
+.cb-nova{position:sticky;bottom:-5px;margin:4px -5px -5px;padding:9px 12px;background:var(--orange-l);color:var(--orange-d);font-weight:700;font-size:12.5px;border-top:1px solid #f8c6a5;cursor:pointer}
+.cb-nova:hover{background:#ffe2cc}
+.cb-nova b{font-weight:800}
+td.pc-edt{cursor:cell}
+td.pc-edt:hover{outline:1px dashed var(--orange);outline-offset:-2px}
+td.pc-edt.emedicao{padding:3px 4px}
+.pc-ied{width:100%;min-width:120px;padding:5px 7px;border:1px solid var(--orange);border-radius:5px;font:inherit;font-size:13px;background:#fff}
+.pc-filtro{max-width:240px}
+.pc-filtro.on{border-color:var(--orange);background:var(--orange-l);font-weight:600}
+.pc-ferr{margin-bottom:6px}
+.pc-dica{margin:-4px 0 8px;font-size:12px}
+td.bk-ed{cursor:pointer}
+td.bk-ed:hover{color:var(--orange-d);text-decoration:underline dotted}
+.bk-ed-i{opacity:0;font-size:11px}
+td.bk-ed:hover .bk-ed-i{opacity:1}
+.pci-op{display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center;padding:10px 18px;border-bottom:1px solid #eee;font-size:13px}
+.pci-op label:not(.chk){display:flex;align-items:center;gap:6px}
+.pci-op .pci-alerta{color:#c62828;font-weight:700}
+.pci-gn{flex-basis:100%;font-size:12.5px;color:#7a4a00;background:#fff6e0;border:1px solid #f5d48a;border-radius:6px;padding:6px 10px}
+.pci-st{display:inline-block;font-size:11px;font-weight:700;padding:2px 8px;border-radius:10px;white-space:nowrap}
+.pci-st.ok{background:#e3f4e2;color:#2e7d32}.pci-st.at{background:#e3eefb;color:#1667b7}.pci-st.ig{background:#eeeef0;color:#74757b}.pci-st.er{background:#fde4e2;color:#c62828}
+.pci-novo{color:#7a4a00;font-weight:700}
 </style>
 </head>
 <body>
@@ -1455,7 +1479,7 @@ const S = {
   cf: { emp: 'all', lista: [], sel: null, lancs: {} },
   pers: null, usuario: '',
   dash: { per: 'ano', tabelas: new Set(), dados: null },
-  buscaCad: '', cadOrd: {}, colFiltro: {},
+  buscaCad: '', cadOrd: {}, colFiltro: {}, pcF: { grupo: '', tipo: '', dre: '' },
   fluxo: { ocultarVazios: false, abertos: new Set() },
   dre: { pct: true, abertos: new Set(), dados: null },
   bk: { sel: 'all', ini: null, fim: null, empresa: '', tipo: '', busca: '' },
@@ -1776,7 +1800,7 @@ function renderLancamentos() {
         <label class="chk"><input type="checkbox" data-chg="fAj" ${S.filtro.aj ? 'checked' : ''}> Só ajustados${nAj ? ` <span class="cont-aj">${nAj}</span>` : ''}</label>
         <button class="mini imp-btn" data-act="impAbrir" title="Importar lançamentos de uma planilha Excel (.xlsx) ou CSV">⬆ Importar planilha</button>
         <input type="file" id="imp_arq" accept=".xlsx,.xls,.xlsm,.csv" data-chg="impArquivo" hidden>
-        ${botaoPers('lancamentos')}
+        ${botaoPers('lancamentos')}${botoesPDF()}
       </div>
     </div>
     <div class="tabwrap congela">
@@ -1833,7 +1857,7 @@ function renderLinhas() {
       forma: celEd('lanc', l, 'forma', 'c mut', l.forma_pagamento ? esc(l.forma_pagamento) : '—'),
       status: `<td class="c st">${seloSituacao(l)}</td>`,
       data: celEd('lanc', l, 'data', 'c mut', fmtData(l.data_lancamento)),
-      grupo: `<td class="grupo"><span class="pill ${'plano_conta_id' in A ? 'aj-b' : ''}" style="--c:${esc(corGrupo(g))}">${esc(g?.nome ?? '')}</span></td>`,
+      grupo: celEd('lanc', l, 'plano', 'grupo', `<span class="pill ${'plano_conta_id' in A ? 'aj-b' : ''}" style="--c:${esc(corGrupo(g))}">${esc(g?.nome ?? '')}</span>`),
       plano: celEd('lanc', l, 'plano', 'plano', `<span class="cod">${esc(M.plano[l.plano_conta_id]?.codigo ?? '')}</span> ${esc(M.plano[l.plano_conta_id]?.nome ?? '')}`),
       item: celEd('lanc', l, 'item', 'item', esc(l.item) || '<span class="mut">—</span>'),
       valor: celEd('lanc', l, 'valor', 'r valor', `<span class="${s > 0 ? 'pos' : 'neg'}">${s > 0 ? '+' : '−'} ${num2(l.valor)}</span>`),
@@ -2565,7 +2589,7 @@ function renderCustos() {
   $('main').innerHTML = `
     <div class="dtop">
       <div><h2 class="tit">Custos Fixos</h2><p class="sub">Despesas recorrentes com vigência. Cada mês vira um lançamento em aberto, pago depois pelo botão <b>Pagar</b>.</p></div>
-      <div class="filtros"><button class="btn" data-act="cfNovo">+ Novo custo fixo</button></div>
+      <div class="filtros">${botoesPDF()}<button class="btn" data-act="cfNovo">+ Novo custo fixo</button></div>
     </div>
     <div class="barra">${abasEmpresa(emp, 'cfEmp', true, 'CUSTOS FIXOS')}</div>
     <div class="kpis kpis-4">
@@ -2940,7 +2964,7 @@ function renderMarkup() {
     <h2 class="tit">Markup de Venda</h2>
     <p class="sub">${S.ano} · calculado com os percentuais da DRE de cada mês. Os parâmetros ficam salvos por empresa e ano.</p>
     <div class="barra">${abasEmpresa(S.empresaVis, 'empresaVis', true)}</div>
-    <div class="barra">${barraAno()}</div>
+    <div class="barra">${barraAno()}<span class="sp"></span>${botoesPDF()}</div>
     <div class="mk-topo">
       <div class="mk-par">
         <div class="pt">Parâmetros</div>
@@ -3277,6 +3301,7 @@ function renderDash() {
       <div class="dh-f">
         ${barraAno()}
         <select class="dper" data-chg="dashPer">${PERIODOS.map(([k, r], i) => `${i === 7 ? '<optgroup label="Mês">' : ''}<option value="${k}" ${k === P.k ? 'selected' : ''}>${r}</option>`).join('')}</optgroup></select>
+        ${botoesPDF()}
       </div>
     </div>
     <div class="barra">${abasEmpresa(S.empresaVis, 'empresaVis', true, 'DASHBOARD')}</div>
@@ -3474,7 +3499,7 @@ async function viewBancos() {
     if (!pagoNoBanco(l)) continue;                     // em aberto: ainda não passou por nenhum banco
     const v = sinal(l) * Number(l.valor);
     if (mv[l.banco_id]) mv[l.banco_id][v > 0 ? 'ent' : 'sai'] += Math.abs(v);
-    movs.push({ data: l.data_lancamento, ord: l.id, banco: l.banco_id, emp: l.planilha_id, desc: l.item, conta: planoLabel(l.plano_conta_id), valor: v, tipo: v > 0 ? 'E' : 'S', aj: !!(l.ajustes && Object.keys(l.ajustes).length) });
+    movs.push({ lanc: l, data: l.data_lancamento, ord: l.id, banco: l.banco_id, emp: l.planilha_id, desc: l.item, conta: planoLabel(l.plano_conta_id), valor: v, tipo: v > 0 ? 'E' : 'S', aj: !!(l.ajustes && Object.keys(l.ajustes).length) });
   }
   for (const t of transfs) {
     const v = Number(t.valor), aj = !!(t.ajustes && Object.keys(t.ajustes).length);
@@ -3521,7 +3546,7 @@ function renderBancos() {
     banco: `<td>${bancoTag(M.banco[m.banco], 16)}</td>`,
     empresa: `<td class="c">${m.emp ? `<span class="tag tag-emp">${esc((M.planilha[m.emp]?.nome ?? '').replace('LANÇAMENTOS ', ''))}</span>` : '<span class="tag tag-tr">TRANSF.</span>'}</td>`,
     desc: `<td style="white-space:normal">${esc(m.desc)}${m.aj ? ' <span class="leg-aj mini-aj" title="Lançamento ajustado depois de lançado">ajustado</span>' : ''}</td>`,
-    conta: `<td style="white-space:normal" class="mut">${esc(m.conta)}</td>`,
+    conta: m.lanc ? `<td style="white-space:normal" class="mut bk-ed" data-act="bkEditLanc" data-id="${m.ord}" title="Clique para alterar a conta ou o lançamento">${esc(m.conta)} <span class="bk-ed-i">✎</span></td>` : `<td style="white-space:normal" class="mut">${esc(m.conta)}</td>`,
     ent: `<td class="r pos">${m.valor > 0 ? num2(m.valor) : ''}</td>`,
     sai: `<td class="r neg">${m.valor < 0 ? num2(-m.valor) : ''}</td>`,
     saldo: `<td class="r ${m.saldo < 0 ? 'neg' : ''}" style="font-weight:600">${num2(m.saldo)}</td>`,
@@ -3690,7 +3715,7 @@ function renderTransferencias() {
   $('main').innerHTML = `
     <h2 class="tit">Transferências entre contas</h2>
     <p class="sub">Movimentam dinheiro de um banco para outro sem afetar receitas, despesas ou a DRE.</p>
-    <div class="barra">${barraAno()}${barraMeses()}<div class="filtros">${nAj ? `<span class="leg-aj">${nAj} ajustada(s)</span>` : ''}${botaoPers('transferencias')}<button class="btn tr-nova" data-act="novaTransf">⇄ Nova transferência</button></div></div>
+    <div class="barra">${barraAno()}${barraMeses()}<div class="filtros">${nAj ? `<span class="leg-aj">${nAj} ajustada(s)</span>` : ''}${botaoPers('transferencias')}${botoesPDF()}<button class="btn tr-nova" data-act="novaTransf">⇄ Nova transferência</button></div></div>
     <div class="tabwrap congela"><table class="zebra ${cfg.compacto ? 'compacto' : ''}">
       <thead><tr>${cfg.cols.map(k => `<th ${['origem', 'destino', 'desc'].includes(k) ? 'style="text-align:left"' : ''}>${colDef('transferencias', k).h}</th>`).join('')}<th></th></tr></thead>
       <tbody>${exib.map(t => {
@@ -4224,6 +4249,10 @@ function infoRelatorio() {
   if (v === 'bancos' && S.bk.aba === 'fluxo') return { t: 'Bancos - Fluxo de Caixa Diário', emp: S.bk.fxDados?.V.rot, per: fmtMes(S.bk.fx?.mes) };
   if (v === 'bancos') return { t: 'Bancos e Extrato', emp: S.bk.sel === 'all' ? 'Todos os bancos' : M.banco[S.bk.sel]?.nome, per: `${fmtData(S.bk.ini)} a ${fmtData(S.bk.fim)}` };
   if (v === 'transferencias') return { t: 'Transferências entre contas', per };
+  if (v === 'cadastros' && S.cadTab === 'plano_contas') {
+    const F = S.pcF, f = [F.grupo && M.grupo[F.grupo]?.nome, F.tipo && (F.tipo === 'RECEITA' ? 'Só receitas' : 'Só despesas'), F.dre && (F.dre === 'sem' ? 'Sem grupo DRE' : 'DRE: ' + (M.gdre[F.dre]?.nome ?? '')), S.buscaCad.trim() && `Busca: "${S.buscaCad.trim()}"`].filter(Boolean);
+    return { t: 'Cadastro - Plano de Contas', emp: f.length ? 'Filtro: ' + f.join(' · ') : 'Todas as contas', per: `${document.querySelectorAll('#main .tabwrap tbody tr td.pc-edt:first-child').length} conta(s)` };
+  }
   return { t: 'Cadastro - ' + (CAD_TABS.find(c => c[0] === S.cadTab)?.[1] ?? '') };
 }
 // tabela da estrutura de grupos DRE (essa tela não é uma tabela)
@@ -4475,9 +4504,9 @@ const CAD = {
       { k: 'grupo_id', l: 'Grupo (classificação)', t: 'select', req: true, num: true, opts: () => gruposOrdenados().map(g => [g.id, g.nome]) },
       { k: 'grupo_dre_id', l: 'Grupo DRE', t: 'select', num: true, opts: () => S.grupos_dre.map(g => [g.id, g.nome]) },
     ],
-    cols: [['Código', r => esc(r.codigo)], ['Conta', r => esc(r.nome)],
-           ['Classificação', r => { const g = M.grupo[r.grupo_id]; return g ? `<span class="tag" style="background:${esc(corGrupo(g))}">${esc(g.nome)}</span>` : ''; }],
-           ['Grupo DRE', r => M.gdre[r.grupo_dre_id] ? esc(M.gdre[r.grupo_dre_id].nome) : '<span class="neg">— sem grupo —</span>']],
+    cols: [['Código', r => esc(r.codigo), 'codigo'], ['Conta', r => esc(r.nome), 'nome'],
+           ['Classificação', r => { const g = M.grupo[r.grupo_id]; return g ? `<span class="tag" style="background:${esc(corGrupo(g))}">${esc(g.nome)}</span>` : '<span class="neg">— sem grupo —</span>'; }, 'grupo_id'],
+           ['Grupo DRE', r => M.gdre[r.grupo_dre_id] ? esc(M.gdre[r.grupo_dre_id].nome) : '<span class="neg">— sem grupo —</span>', 'grupo_dre_id']],
     busca: r => `${r.codigo} ${r.nome} ${M.grupo[r.grupo_id]?.nome ?? ''} ${M.gdre[r.grupo_dre_id]?.nome ?? ''}`,
     ord: [r => r.codigo, r => r.nome, r => M.grupo[r.grupo_id]?.nome ?? '', r => M.gdre[r.grupo_dre_id]?.nome ?? ''],
     modal: true,
@@ -4501,7 +4530,12 @@ function renderCadastros() {
   const t = S.cadTab, cfg = CAD[t];
   const ed = S.cadEdit ? S[t].find(r => r.id === S.cadEdit) : null;
   const q = S.buscaCad.trim().toLowerCase();
-  const lista = S[t].filter(r => !q || cfg.busca(r).toLowerCase().includes(q));
+  const F = S.pcF, ePC = t === 'plano_contas';
+  const lista = S[t].filter(r => (!q || cfg.busca(r).toLowerCase().includes(q)) && (!ePC || (
+    (!F.grupo || String(r.grupo_id) === F.grupo) &&
+    (!F.tipo || M.grupo[r.grupo_id]?.tipo === F.tipo) &&
+    (!F.dre || (F.dre === 'sem' ? !M.gdre[r.grupo_dre_id] : String(r.grupo_dre_id) === F.dre)))));
+  const filtroPC = ePC && !!(F.grupo || F.tipo || F.dre);
   const ord = cfg.ord ? (S.cadOrd[t] ||= { i: 0, desc: false }) : null;
   if (ord) {
     const f = cfg.ord[ord.i], cmp = (a, b) => String(a ?? '').localeCompare(String(b ?? ''), 'pt-BR', { numeric: true, sensitivity: 'base' });
@@ -4517,14 +4551,25 @@ function renderCadastros() {
         <button class="btn" type="submit">${ed ? 'Salvar alteração' : '+ Adicionar'}</button>
         ${ed ? '<button class="btn sec" type="button" data-act="cadCancelar">Cancelar</button>' : ''}
       </form>`}
-      <div class="barra"><input class="busca" id="cadBusca" placeholder="Pesquisar…" value="${esc(S.buscaCad)}"><span class="mut">${lista.length} registro(s)</span>
+      ${ePC ? `<div class="barra pc-ferr">
+        <button class="mini" data-act="pcImpAbrir" title="Importar contas de uma planilha Excel (.xlsx) ou CSV">⬆ Importar plano de contas</button>
+        <input type="file" id="pc_imp_arq" accept=".xlsx,.xls,.xlsm,.csv,.txt" data-chg="pcImpArquivo" hidden>
+        <button class="mini" data-act="pcExportar" title="Baixa o plano de contas (com os filtros atuais) em CSV — serve de modelo para a importação">⇩ Exportar / modelo CSV</button>
+        <span class="sp"></span>${botoesPDF()}</div>` : ''}
+      <div class="barra"><input class="busca" id="cadBusca" placeholder="Pesquisar…" value="${esc(S.buscaCad)}">
+        ${ePC ? `<select class="pc-filtro ${F.grupo ? 'on' : ''}" data-chg="pcFiltro" data-k="grupo" title="Filtrar por classificação"><option value="">Todas as classificações</option>${gruposOrdenados().map(g => `<option value="${g.id}" ${String(g.id) === F.grupo ? 'selected' : ''}>${esc(g.nome)} (${S.plano_contas.filter(p => p.grupo_id === g.id).length})</option>`).join('')}</select>
+        <select class="pc-filtro ${F.tipo ? 'on' : ''}" data-chg="pcFiltro" data-k="tipo" title="Filtrar por tipo"><option value="">Receitas e despesas</option><option value="RECEITA" ${F.tipo === 'RECEITA' ? 'selected' : ''}>Só receitas</option><option value="DESPESA" ${F.tipo === 'DESPESA' ? 'selected' : ''}>Só despesas</option></select>
+        <select class="pc-filtro ${F.dre ? 'on' : ''}" data-chg="pcFiltro" data-k="dre" title="Filtrar por grupo DRE"><option value="">Todos os grupos DRE</option><option value="sem" ${F.dre === 'sem' ? 'selected' : ''}>— sem grupo DRE —</option>${DRE_POS.map(([k, l]) => { const gs = S.grupos_dre.filter(g => g.posicao === k); return gs.length ? `<optgroup label="${esc(l)}">${gs.map(g => `<option value="${g.id}" ${String(g.id) === F.dre ? 'selected' : ''}>${esc(g.nome)}</option>`).join('')}</optgroup>` : ''; }).join('')}</select>
+        ${filtroPC ? '<button class="mini" data-act="pcFiltroLimpar">✕ Limpar filtros</button>' : ''}` : ''}
+        <span class="mut">${lista.length}${filtroPC || q ? ` de ${S[t].length}` : ''} registro(s)</span>
         ${cfg.modal ? `<span class="sp"></span>
         <label class="ord-sel">Ordenar por<select data-chg="cadOrdSel">${cfg.cols.map(([h], i) => `<option value="${i}" ${ord.i === i ? 'selected' : ''}>${esc(h)}</option>`).join('')}</select></label>
         <button class="mini" data-act="cadOrdInv" title="Inverter a ordem">${ord.desc ? '▼ Decrescente' : '▲ Crescente'}</button>
-        <button class="btn" data-act="pcNovo">+ Nova conta</button>` : ''}</div>
+        <button class="btn" data-act="pcNovo">+ Nova conta</button>` : `<span class="sp"></span>${botoesPDF()}`}</div>
+      ${ePC ? '<p class="dica pc-dica">Dica: clique no código, no nome, na classificação ou no grupo DRE para alterar direto na tabela (Enter salva, Esc cancela). O ✎ abre a janela completa.</p>' : ''}
       <div class="tabwrap"><table class="zebra ${ord ? 'ordenavel' : ''}">
         <thead><tr>${cfg.cols.map(([h], i) => th(h, i)).join('')}<th style="width:80px"></th></tr></thead>
-        <tbody>${lista.length ? lista.map(r => `<tr class="${r.id === S.cadEdit ? 'editando' : ''}">${cfg.cols.map(([, f]) => `<td>${f(r)}</td>`).join('')}
+        <tbody>${lista.length ? lista.map(r => `<tr class="${r.id === S.cadEdit ? 'editando' : ''}">${cfg.cols.map(([, f, ek]) => ek ? `<td class="pc-edt" data-pk="${ek}" data-id="${r.id}" title="Clique para alterar">${f(r)}</td>` : `<td>${f(r)}</td>`).join('')}
           <td class="acoes"><button class="ib" title="Editar" data-act="cadEditar" data-id="${r.id}">✎</button><button class="ib del" title="Excluir" data-act="cadExcluir" data-id="${r.id}">✕</button></td></tr>`).join('')
           : `<tr><td colspan="${cfg.cols.length + 1}" class="vazio">Nada encontrado.</td></tr>`}</tbody>
       </table></div>
@@ -4613,38 +4658,61 @@ function dreDoGrupo(gid, exceto = null) {
   const m = Object.entries(cont).sort((a, b) => b[1] - a[1])[0];
   return m ? Number(m[0]) : null;
 }
-function abrirConta(id = null) {
+// opções de Grupo DRE agrupadas pela linha da DRE
+function optsDRE(sel) {
+  return DRE_POS.map(([k, l]) => {
+    const gs = S.grupos_dre.filter(g => g.posicao === k).sort((a, b) => a.ordem - b.ordem);
+    return gs.length ? `<optgroup label="${esc(l)}">${gs.map(g => `<option value="${g.id}" ${g.id === sel ? 'selected' : ''}>${esc(g.nome)}</option>`).join('')}</optgroup>` : '';
+  }).join('');
+}
+// janela por cima de outra janela (ex.: cadastrar conta durante a edição de um lançamento)
+function abrirModal2(html, cls = '') {
+  $('modal2')?.remove();
+  const w = document.createElement('div');
+  w.className = 'modal-bg modal2'; w.id = 'modal2';
+  w.innerHTML = `<div class="modal ${cls}" role="dialog" aria-modal="true">${html}</div>`;
+  w.addEventListener('pointerdown', e => { if (e.target === w) fecharConta(); });
+  document.body.appendChild(w);
+  setTimeout(() => (w.querySelector('[autofocus]') || w.querySelector('select,input'))?.focus(), 30);
+}
+function fecharConta() {
+  const emp = PCF?.emp; PCF = null;
+  if (emp) $('modal2')?.remove(); else fecharModal();
+}
+// o = { empilhado, nome, depois(idCriado) }
+function abrirConta(id = null, o = {}) {
   const r = id ? M.plano[id] : null;
-  PCF = { id: r?.id ?? null, grupoOrig: r?.grupo_id ?? null, codOrig: r?.codigo ?? '', sug: null };
-  abrirModal(`
+  PCF = { id: r?.id ?? null, grupoOrig: r?.grupo_id ?? null, codOrig: r?.codigo ?? '', sug: null, emp: !!o.empilhado, depois: o.depois || null, dreMexido: false };
+  const html = `
     <div class="mh" id="pc_mh" style="--ec:${esc(r ? corGrupo(M.grupo[r.grupo_id]) : '#f37021')}">
       <div><small>Plano de contas</small><b>${r ? 'Editar conta' : 'Nova conta'}</b></div>
-      <button class="ib x" data-act="fecharModal" title="Fechar (Esc)">✕</button>
+      <button class="ib x" data-act="pcFechar" title="Fechar (Esc)">✕</button>
     </div>
     <div class="mcorpo pc-grid">
       <label class="span2"><span>Grupo (classificação) <i>*</i></span>
         <select id="pc_grupo" data-chg="pcGrupo" ${r ? '' : 'autofocus'}><option value="">Selecione o grupo…</option>${gruposOrdenados().map(g => `<option value="${g.id}" ${g.id === r?.grupo_id ? 'selected' : ''}>${esc(g.nome)} · ${g.tipo === 'RECEITA' ? 'Receita' : 'Despesa'}</option>`).join('')}</select></label>
       <label><span>Código <i>*</i></span><input id="pc_cod" value="${esc(r?.codigo ?? '')}" placeholder="automático" inputmode="decimal" autocomplete="off"></label>
-      <label><span>Nome da conta <i>*</i></span><input id="pc_nome" value="${esc(r?.nome ?? '')}" placeholder="Ex.: VENDAS DE MERCADORIAS" autocomplete="off" ${r ? 'autofocus' : ''}></label>
+      <label><span>Nome da conta <i>*</i></span><input id="pc_nome" value="${esc(r?.nome ?? o.nome ?? '')}" placeholder="Ex.: VENDAS DE MERCADORIAS" autocomplete="off" ${r ? 'autofocus' : ''}></label>
+      <label class="span2"><span>Grupo DRE <small class="mut">— linha da DRE onde a conta soma</small></span>
+        <select id="pc_dre" data-chg="pcDre"><option value="">— sem grupo DRE (fica fora da DRE) —</option>${optsDRE(r?.grupo_dre_id)}</select></label>
       <div class="pc-info span2" id="pc_info"></div>
     </div>
     <div class="mf">
       ${r ? '<button class="btn sec perigo" data-act="pcExcluir">✕ Excluir</button>' : ''}
       <span class="sp"></span>
-      <button class="btn sec" data-act="fecharModal">Cancelar</button>
+      <button class="btn sec" data-act="pcFechar">Cancelar</button>
       <button class="btn" data-primary data-act="pcSalvar">${r ? 'Salvar alteração' : '+ Cadastrar conta'}</button>
-    </div>`, 'm-ed m-pc');
+    </div>`;
+  if (PCF.emp) abrirModal2(html, 'm-ed m-pc'); else abrirModal(html, 'm-ed m-pc');
   infoConta();
 }
 function infoConta() {
   const el = $('pc_info'); if (!el || !PCF) return;
   const gid = Number($('pc_grupo').value) || null, g = M.grupo[gid];
-  if (!g) { el.innerHTML = '<span class="mut">Escolha o grupo: o próximo código da sequência é preenchido automaticamente.</span>'; return; }
+  if (!g) { el.innerHTML = '<span class="mut">Escolha o grupo: o próximo código da sequência e o Grupo DRE são sugeridos automaticamente.</span>'; return; }
   const irmas = S.plano_contas.filter(p => p.grupo_id === gid && p.id !== PCF.id).sort((a, b) => String(a.codigo).localeCompare(String(b.codigo), 'pt-BR', { numeric: true }));
-  const dre = PCF.id && gid === PCF.grupoOrig ? M.plano[PCF.id]?.grupo_dre_id : dreDoGrupo(gid, PCF.id);
   el.innerHTML = `<span class="tag" style="background:${esc(corGrupo(g))}">${esc(g.nome)}</span>
     <span class="pc-tp ${g.tipo === 'RECEITA' ? 'rec' : 'desp'}">${g.tipo === 'RECEITA' ? 'Receita · soma' : 'Despesa · subtrai'}</span>
-    <span class="mut">DRE: <b>${M.gdre[dre] ? esc(M.gdre[dre].nome) : 'definir em Grupos DRE'}</b></span>
     ${irmas.length ? `<span class="mut pc-ult">Últimas do grupo: ${irmas.slice(-3).map(p => `<b>${esc(p.codigo)}</b> ${esc(p.nome)}`).join(' · ')}</span>` : '<span class="mut pc-ult">Primeira conta deste grupo.</span>'}`;
   $('pc_mh')?.style.setProperty('--ec', corGrupo(g));
 }
@@ -4657,6 +4725,10 @@ function pcGrupoMudou() {
     if (PCF.id && gid === PCF.grupoOrig && atual === PCF.sug) { cod.value = PCF.codOrig; PCF.sug = null; }
     else if (trocar) { PCF.sug = proximoCodigo(gid, PCF.id); cod.value = PCF.sug; }
     cod.classList.remove('pc-auto'); void cod.offsetWidth; cod.classList.add('pc-auto');
+    if (!PCF.dreMexido) {                      // sugere o Grupo DRE usado pelas outras contas do grupo
+      const d = PCF.id && gid === PCF.grupoOrig ? M.plano[PCF.id]?.grupo_dre_id : dreDoGrupo(gid, PCF.id);
+      $('pc_dre').value = M.gdre[d] ? String(d) : '';
+    }
   }
   infoConta();
   setTimeout(() => $('pc_nome')?.focus(), 0);
@@ -4669,20 +4741,255 @@ async function salvarConta() {
   if (!nome) return toast('Informe o nome da conta.', true), $('pc_nome').focus();
   const dup = S.plano_contas.find(p => p.id !== PCF.id && String(p.codigo).trim() === codigo);
   if (dup) return toast(`O código ${codigo} já é usado por "${dup.nome}".`, true), $('pc_cod').focus();
-  const row = { codigo, nome, grupo_id: gid };
-  if (!PCF.id || gid !== PCF.grupoOrig) { const d = dreDoGrupo(gid, PCF.id); if (d || !PCF.id) row.grupo_dre_id = d; }
+  const row = { codigo, nome, grupo_id: gid, grupo_dre_id: Number($('pc_dre').value) || null };
+  let salvo;
   try {
-    if (PCF.id) await store.update('plano_contas', PCF.id, row); else await store.insert('plano_contas', row);
+    salvo = PCF.id ? await store.update('plano_contas', PCF.id, row) : await store.insert('plano_contas', row);
   } catch (e) { return toast(e.message, true); }
-  const novo = !PCF.id;
-  fecharModal(true); PCF = null;
-  await recarregarCadastros(); renderCadastros();
+  const { id, emp, depois } = PCF, novo = !id;
+  if (emp) $('modal2')?.remove(); else fecharModal(true);
+  PCF = null;
+  await recarregarCadastros();
   toast(novo ? `Conta ${codigo} ${nome} cadastrada.` : 'Alteração salva.');
+  const novoId = id || salvo?.id || S.plano_contas.find(p => String(p.codigo).trim() === codigo)?.id;
+  if (depois) await depois(novoId);
+  else if (S.view === 'cadastros') renderCadastros();
 }
 async function excluirConta() {
   if (!PCF?.id) return;
   const id = PCF.id; fecharModal(true); PCF = null;
   await excluirCadastro('plano_contas', id);
+}
+// "+ Cadastrar nova conta" na lista de contas (lançamento, edição, célula da tabela)
+function novaContaDoCb(sel) {
+  const dig = sel._inp?.value.trim() || '', atual = sel.selectedOptions[0]?.text || '';
+  const nome = dig && dig !== atual && !/^\d+(\.\d+)*$/.test(dig) ? dig.toUpperCase() : '';
+  const td = sel.closest('td.edt'), ctx = td ? { ed: td.dataset.ed, id: Number(td.dataset.id) } : null;
+  const vazioTxt = sel.options[0]?.value === '' ? sel.options[0].text : 'Selecione…';
+  fecharCb(false);
+  if (!td) textoCb(sel);
+  abrirConta(null, { empilhado: !!$('modal'), nome, depois: async id => {
+    if (!id) return;
+    if (ctx) {                                  // célula da tabela: já aplica a conta nova no lançamento
+      const reg = EDIT[ctx.ed]?.get(ctx.id);
+      if (reg) await gravarAjuste(ctx.ed, reg, 'plano_conta_id', id, `Conta ${planoLabel(id)} cadastrada e aplicada.`, () => {});
+      return;
+    }
+    if (!document.body.contains(sel)) return;
+    sel.innerHTML = opcoesPlano(id, vazioTxt);
+    sel.value = String(id);
+    sel.dispatchEvent(new Event('change', { bubbles: true }));
+    if (sel.id === 'e_plano') $('e_item')?.focus();
+  } });
+}
+
+/* ------------------ Plano de contas: edição direto na tabela ------------------ */
+function editarCelPC(td) {
+  const r = M.plano[Number(td.dataset.id)], k = td.dataset.pk; if (!r) return;
+  let ctrl;
+  if (k === 'grupo_id') ctrl = `<select class="pc-ied">${gruposOrdenados().map(g => `<option value="${g.id}" ${g.id === r.grupo_id ? 'selected' : ''}>${esc(g.nome)}</option>`).join('')}</select>`;
+  else if (k === 'grupo_dre_id') ctrl = `<select class="pc-ied"><option value="">— sem grupo —</option>${optsDRE(r.grupo_dre_id)}</select>`;
+  else ctrl = `<input class="pc-ied" value="${esc(r[k] ?? '')}" autocomplete="off">`;
+  td.classList.add('emedicao'); td.innerHTML = ctrl;
+  const el = td.firstElementChild; el.focus(); el.select?.();
+  let feito = false;
+  const y = window.scrollY, redesenhar = () => { renderCadastros(); window.scrollTo(0, y); };
+  const fim = async salvar => {
+    if (feito) return; feito = true;
+    if (!salvar) return redesenhar();
+    let v = el.value.trim();
+    if (k === 'grupo_id' || k === 'grupo_dre_id') v = v ? Number(v) : null;
+    if (k === 'codigo') {
+      if (!codValido(v)) { toast('Código inválido (use números e pontos, ex.: 2.4.20).', true); return redesenhar(); }
+      const dup = S.plano_contas.find(p => p.id !== r.id && String(p.codigo).trim() === v);
+      if (dup) { toast(`O código ${v} já é usado por "${dup.nome}".`, true); return redesenhar(); }
+    }
+    if ((k === 'nome' || k === 'grupo_id') && !v) { toast('Campo obrigatório.', true); return redesenhar(); }
+    if (mesmoValor(r[k], v)) return redesenhar();
+    const row = { [k]: v };
+    if (k === 'grupo_id' && !M.gdre[r.grupo_dre_id]) { const d = dreDoGrupo(v, r.id); if (d) row.grupo_dre_id = d; }
+    try { await store.update('plano_contas', r.id, row); toast(`Conta ${r.codigo} atualizada.`); }
+    catch (e) { toast(e.message, true); }
+    await recarregarCadastros(); redesenhar();
+  };
+  el.addEventListener('keydown', e => {
+    if (e.key === 'Enter') { e.preventDefault(); e.stopPropagation(); fim(true); }
+    else if (e.key === 'Escape') { e.preventDefault(); e.stopPropagation(); fim(false); }
+  });
+  if (el.tagName === 'SELECT') el.addEventListener('change', () => fim(true));
+  el.addEventListener('blur', () => setTimeout(() => fim(true), 120));
+}
+
+
+/* ------------------ Plano de contas: importar / exportar ------------------ */
+// Lê .xlsx/.csv com as colunas Código | Conta | Classificação | Grupo DRE | Tipo (a ordem pode variar).
+// Contas novas são incluídas; as que já existem (mesmo código) podem ser atualizadas; grupos novos são criados.
+let PCI = null;
+const PCI_COLS = [['dre', /DRE/], ['codigo', /^COD|^CONTA CONTABIL$/], ['tipo', /^TIPO|NATUREZA|RECEITA DESPESA/], ['grupo', /CLASSIFICA|GRUPO|CATEGORIA/], ['nome', /CONTA|NOME|DESCRI|PLANO/]];
+function lerCSV(txt) {
+  const l1 = txt.split(/\r?\n/)[0] || '';
+  const sep = [';', '\t', ','].map(c => [c, l1.split(c).length]).sort((a, b) => b[1] - a[1])[0][0];
+  const out = []; let row = [], cel = '', aspas = false;
+  for (let i = 0; i < txt.length; i++) {
+    const c = txt[i];
+    if (aspas) { if (c === '"') { if (txt[i + 1] === '"') { cel += '"'; i++; } else aspas = false; } else cel += c; }
+    else if (c === '"') aspas = true;
+    else if (c === sep) { row.push(cel); cel = ''; }
+    else if (c === '\n' || c === '\r') { if (c === '\r' && txt[i + 1] === '\n') i++; row.push(cel); out.push(row); row = []; cel = ''; }
+    else cel += c;
+  }
+  if (cel || row.length) { row.push(cel); out.push(row); }
+  return out.filter(r => r.some(x => String(x).trim()));
+}
+async function pcImpArquivo(arq) {
+  if (!arq) return;
+  toast('Lendo o arquivo…');
+  let linhas;
+  try {
+    if (/\.(csv|txt)$/i.test(arq.name)) {
+      const buf = await arq.arrayBuffer();
+      let txt = new TextDecoder('utf-8').decode(buf);
+      if (txt.includes('�')) txt = new TextDecoder('windows-1252').decode(buf);
+      linhas = lerCSV(txt.replace(/^﻿/, ''));
+    } else {
+      const X = await libXLSX();
+      const wb = X.read(await arq.arrayBuffer(), { type: 'array' });
+      const abas = wb.SheetNames.map(n => X.utils.sheet_to_json(wb.Sheets[n], { header: 1, raw: false, defval: '', blankrows: false }));
+      linhas = abas.find(a => pcImpColunas(a).achou) || abas[0] || [];
+    }
+  } catch (e) { return toast(e.message || 'Não foi possível ler o arquivo.', true); }
+  const { col, ini } = pcImpColunas(linhas);
+  const v = (r, k) => col[k] == null ? '' : String(r[col[k]] ?? '').trim();
+  const lidas = [];
+  for (const r of linhas.slice(ini)) {
+    let cod = v(r, 'codigo').replace(/\.$/, ''), nome = v(r, 'nome');
+    if (!cod) { const m = nome.match(/^(\d+(?:\.\d+)*)\.?\s*[-–]?\s+(.+)$/); if (m) { cod = m[1]; nome = m[2]; } }   // "2.4.2 SALÁRIOS" numa coluna só
+    if (!cod && !nome) continue;
+    lidas.push({ cod, nome: nome.replace(/\s+/g, ' '), gTxt: v(r, 'grupo'), dTxt: v(r, 'dre'), tTxt: v(r, 'tipo') });
+  }
+  if (!lidas.length) return toast('Nenhuma conta encontrada no arquivo. Use as colunas: Código, Conta, Classificação, Grupo DRE, Tipo.', true);
+  PCI = { arq: arq.name, linhas: lidas, atualizar: true, grupoPadrao: '', filtro: '', salvando: false };
+  desenharPcImp();
+}
+function pcImpColunas(linhas) {
+  for (let i = 0; i < Math.min(15, linhas.length); i++) {
+    const col = {};
+    (linhas[i] || []).forEach((h, j) => {
+      const n = normTxt(h); if (!n) return;
+      const k = PCI_COLS.find(([k, re]) => !(k in col) && re.test(n));
+      if (k) col[k[0]] = j;
+    });
+    if ('nome' in col && ('codigo' in col || 'grupo' in col)) return { col, ini: i + 1, achou: true };
+  }
+  return { col: { codigo: 0, nome: 1, grupo: 2, dre: 3, tipo: 4 }, ini: 0, achou: false };
+}
+const tipoImp = (t, g) => /RECEIT|ENTRADA|CREDITO|^R$|^C$/.test(normTxt(t)) ? 'RECEITA' : /DESPES|SAIDA|DEBITO|^D$/.test(normTxt(t)) ? 'DESPESA' : /RECEIT/.test(normTxt(g)) ? 'RECEITA' : 'DESPESA';
+function pcImpResolver() {
+  const porCod = new Map(S.plano_contas.map(p => [String(p.codigo).trim(), p]));
+  const vistos = new Set();
+  return PCI.linhas.map(l => {
+    const r = { l, st: 'novo', msg: '' };
+    if (!l.cod) return { ...r, st: 'erro', msg: 'sem código' };
+    if (!codValido(l.cod)) return { ...r, st: 'erro', msg: 'código inválido' };
+    if (!l.nome) return { ...r, st: 'erro', msg: 'sem nome da conta' };
+    if (vistos.has(l.cod)) return { ...r, st: 'erro', msg: 'código repetido no arquivo' };
+    vistos.add(l.cod);
+    const ex = porCod.get(l.cod);
+    let g = null, gNovo = null;
+    if (l.gTxt) { g = S.grupos.find(x => normTxt(x.nome) === normTxt(l.gTxt)) || null; if (!g) gNovo = { nome: l.gTxt.replace(/\s+/g, ' ').trim(), tipo: tipoImp(l.tTxt, l.gTxt) }; }
+    else if (ex) g = M.grupo[ex.grupo_id] || null;
+    else {
+      const pre = prefixoCod(l.cod), irma = pre && S.plano_contas.find(p => prefixoCod(p.codigo) === pre);
+      g = M.grupo[Number(PCI.grupoPadrao)] || (irma ? M.grupo[irma.grupo_id] : null) || null;
+    }
+    if (!g && !gNovo) return { ...r, st: 'erro', msg: 'sem classificação — escolha o grupo padrão acima' };
+    let d = null;
+    if (l.dTxt) { d = S.grupos_dre.find(x => normTxt(x.nome) === normTxt(l.dTxt)) || null; if (!d) r.msg = `Grupo DRE "${l.dTxt}" não existe: fica o sugerido pelo grupo`; }
+    Object.assign(r, { g, gNovo, d, ex });
+    if (ex) {
+      const mud = ex.nome !== l.nome || gNovo || (g && g.id !== ex.grupo_id) || (d && d.id !== ex.grupo_dre_id);
+      r.st = !mud ? 'igual' : PCI.atualizar ? 'atualiza' : 'ignora';
+    }
+    return r;
+  });
+}
+const PCI_ST = { novo: ['Nova', 'ok'], atualiza: ['Atualiza', 'at'], igual: ['Já existe igual', 'ig'], ignora: ['Já existe (não altera)', 'ig'], erro: ['Erro', 'er'] };
+function desenharPcImp() {
+  if (!PCI) return;
+  const R = pcImpResolver(), n = k => R.filter(r => r.st === k).length;
+  const gNovos = [...new Set(R.filter(r => r.gNovo && (r.st === 'novo' || r.st === 'atualiza')).map(r => r.gNovo.nome))];
+  const vis = PCI.filtro ? R.filter(r => r.st === PCI.filtro) : R;
+  const total = n('novo') + n('atualiza');
+  const semGrupo = R.some(r => r.st === 'erro' && /classifica/.test(r.msg));
+  abrirModal(`
+    <div class="mh"><div><small>Plano de contas · ${esc(PCI.arq)}</small><b>Importar plano de contas</b></div>
+      <button class="ib x" data-act="fecharModal" title="Fechar (Esc)">✕</button></div>
+    <div class="ls-tot">
+      <div><span>Linhas lidas</span><b>${R.length}</b></div>
+      <div class="e"><span>Contas novas</span><b>${n('novo')}</b></div>
+      <div class="r"><span>Atualizações</span><b>${n('atualiza')}</b></div>
+      <div class="s"><span>Com erro</span><b>${n('erro')}</b></div>
+    </div>
+    <div class="pci-op">
+      <label class="chk"><input type="checkbox" data-chg="pcImpAtualizar" ${PCI.atualizar ? 'checked' : ''}> Atualizar contas que já existem (mesmo código): nome, classificação e grupo DRE</label>
+      <label class="${semGrupo ? 'pci-alerta' : ''}">Grupo para linhas sem classificação
+        <select data-chg="pcImpGrupo"><option value="">— pelo código das contas vizinhas —</option>${gruposOrdenados().map(g => `<option value="${g.id}" ${String(g.id) === PCI.grupoPadrao ? 'selected' : ''}>${esc(g.nome)}</option>`).join('')}</select></label>
+      <label>Mostrar <select data-chg="pcImpFiltro"><option value="">Todas as linhas</option>${Object.entries(PCI_ST).filter(([k]) => n(k)).map(([k, [t]]) => `<option value="${k}" ${PCI.filtro === k ? 'selected' : ''}>${t} (${n(k)})</option>`).join('')}</select></label>
+      ${gNovos.length ? `<div class="pci-gn">Serão criados ${gNovos.length} grupo(s) de classificação: ${gNovos.map(g => `<b>${esc(g)}</b>`).join(', ')}</div>` : ''}
+    </div>
+    <div class="ls-tab"><table class="ls pci"><thead><tr><th>Situação</th><th>Código</th><th style="text-align:left">Conta</th><th style="text-align:left">Classificação</th><th style="text-align:left">Grupo DRE</th><th style="text-align:left">Observação</th></tr></thead>
+      <tbody>${vis.map(r => { const [t, c] = PCI_ST[r.st], g = r.g || r.gNovo;
+        return `<tr class="pci-${c}"><td class="c"><span class="pci-st ${c}">${t}</span></td><td class="c">${esc(r.l.cod)}</td><td>${esc(r.l.nome)}${r.ex && r.ex.nome !== r.l.nome ? `<small class="mut"> (era ${esc(r.ex.nome)})</small>` : ''}</td>
+          <td>${g ? `<span class="tag" style="background:${esc(r.g ? corGrupo(r.g) : corPadrao(r.gNovo.tipo))}">${esc(g.nome)}</span>${r.gNovo ? ' <small class="pci-novo">novo grupo</small>' : ''}` : '<span class="mut">—</span>'}</td>
+          <td>${r.d ? esc(r.d.nome) : r.ex && M.gdre[r.ex.grupo_dre_id] ? `<span class="mut">${esc(M.gdre[r.ex.grupo_dre_id].nome)}</span>` : '<span class="mut">sugerido pelo grupo</span>'}</td>
+          <td class="mut">${esc(r.msg)}</td></tr>`; }).join('') || '<tr><td colspan="6" class="vazio">Nada aqui.</td></tr>'}</tbody></table></div>
+    <div class="mf"><span class="mut">Colunas reconhecidas: Código · Conta · Classificação · Grupo DRE · Tipo (Receita/Despesa)</span><span class="sp"></span>
+      <button class="btn sec" data-act="fecharModal">Cancelar</button>
+      <button class="btn" data-primary data-act="pcImpConfirmar" ${total && !PCI.salvando ? '' : 'disabled'}>${PCI.salvando ? 'Importando…' : `⬆ Importar ${total} conta(s)`}</button></div>`,
+    'm-lista m-pci', () => { PCI = null; });
+}
+async function pcImpConfirmar() {
+  if (!PCI || PCI.salvando) return;
+  const R = pcImpResolver().filter(r => r.st === 'novo' || r.st === 'atualiza');
+  if (!R.length) return toast('Nada para importar.', true);
+  PCI.salvando = true; desenharPcImp();
+  let nNovos = 0, nAt = 0, nG = 0;
+  try {
+    const gMap = {};
+    for (const r of R) if (r.gNovo) {
+      const k = normTxt(r.gNovo.nome);
+      if (!gMap[k]) { gMap[k] = await store.insert('grupos', { nome: r.gNovo.nome, tipo: r.gNovo.tipo, cor: corPadrao(r.gNovo.tipo) }); nG++; }
+    }
+    if (nG) await recarregarCadastros();
+    const gid = r => r.g?.id ?? gMap[normTxt(r.gNovo.nome)]?.id ?? S.grupos.find(x => normTxt(x.nome) === normTxt(r.gNovo.nome))?.id;
+    const novos = R.filter(r => r.st === 'novo').map(r => ({ codigo: r.l.cod, nome: r.l.nome, grupo_id: gid(r), grupo_dre_id: r.d?.id ?? dreDoGrupo(gid(r)) }));
+    if (novos.length) { await store.insertMany('plano_contas', novos); nNovos = novos.length; }
+    for (const r of R.filter(r => r.st === 'atualiza')) {
+      const row = { nome: r.l.nome, grupo_id: gid(r) };
+      if (r.d) row.grupo_dre_id = r.d.id;
+      else if (row.grupo_id !== r.ex.grupo_id && !M.gdre[r.ex.grupo_dre_id]) row.grupo_dre_id = dreDoGrupo(row.grupo_id, r.ex.id);
+      await store.update('plano_contas', r.ex.id, row); nAt++;
+    }
+  } catch (e) {
+    toast(e.message, true);
+    if (PCI) { PCI.salvando = false; await recarregarCadastros(); desenharPcImp(); }
+    return;
+  }
+  fecharModal(true); PCI = null;
+  await recarregarCadastros(); renderCadastros();
+  toast(`Importação concluída: ${nNovos} conta(s) nova(s), ${nAt} atualizada(s)${nG ? `, ${nG} grupo(s) criado(s)` : ''}.`);
+}
+// exporta o plano (com os filtros da tela) no mesmo formato aceito pela importação
+function pcExportarCSV() {
+  const F = S.pcF, q = S.buscaCad.trim().toLowerCase(), cfg = CAD.plano_contas;
+  const lista = S.plano_contas.filter(r => (!q || cfg.busca(r).toLowerCase().includes(q)) && (!F.grupo || String(r.grupo_id) === F.grupo) && (!F.tipo || M.grupo[r.grupo_id]?.tipo === F.tipo) && (!F.dre || (F.dre === 'sem' ? !M.gdre[r.grupo_dre_id] : String(r.grupo_dre_id) === F.dre)))
+    .sort((a, b) => String(a.codigo).localeCompare(String(b.codigo), 'pt-BR', { numeric: true }));
+  const c = v => /[;"\n]/.test(String(v ?? '')) ? `"${String(v).replace(/"/g, '""')}"` : String(v ?? '');
+  const linhas = [['Código', 'Conta', 'Classificação', 'Grupo DRE', 'Tipo'], ...lista.map(p => { const g = M.grupo[p.grupo_id]; return [p.codigo, p.nome, g?.nome ?? '', M.gdre[p.grupo_dre_id]?.nome ?? '', g?.tipo === 'RECEITA' ? 'Receita' : 'Despesa']; })];
+  const blob = new Blob(['﻿' + linhas.map(l => l.map(c).join(';')).join('\r\n')], { type: 'text/csv;charset=utf-8' });
+  const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = `plano_de_contas_${HOJE}.csv`; a.click();
+  setTimeout(() => URL.revokeObjectURL(a.href), 2000);
+  toast(`${lista.length} conta(s) exportada(s).`);
 }
 
 /* ------------------------------ Grupos DRE ------------------------------ */
@@ -4750,6 +5057,7 @@ function renderGruposDRE(sub) {
       <div class="barra">
         <div class="seg"><button class="${G.modo === 'estrutura' ? 'on' : ''}" data-act="gdreModo" data-v="estrutura">Estrutura da DRE</button><button class="${G.modo === 'contas' ? 'on' : ''}" data-act="gdreModo" data-v="contas">Contas × Grupo DRE</button></div>
         ${sem.length ? `<span class="neg" style="font-weight:600">⚠ ${sem.length} conta(s) sem grupo DRE</span>` : '<span class="pos" style="font-weight:600">✓ Todas as contas classificadas</span>'}
+        <span class="sp"></span>${botoesPDF()}
       </div>
       ${corpo}
     </section>`;
@@ -4910,6 +5218,7 @@ const ACOES = {
     viewBancos();
   },
   bkCsv: () => exportarCSV(),
+  bkEditLanc: d => { const m = S.bk.dados?.movs.find(x => x.lanc && x.ord === Number(d.id)); if (m) editarNaJanela(m.lanc, null, viewBancos); },
   bkAba: d => { S.bk.aba = d.v; viewBancos(); },
   bkFxMes: d => { const F = S.bk.fx; F.mes = Number(d.d) > 0 ? proxMes(F.mes) : antMes(F.mes); bkFxIrMes(F.mes); },
   bkFxCel: d => {
@@ -4934,6 +5243,11 @@ const ACOES = {
   cadOrd: d => { const o = (S.cadOrd[S.cadTab] ||= { i: 0, desc: false }), i = Number(d.i); if (o.i === i) o.desc = !o.desc; else { o.i = i; o.desc = false; } renderCadastros(); },
   cadOrdInv: () => { const o = (S.cadOrd[S.cadTab] ||= { i: 0, desc: false }); o.desc = !o.desc; renderCadastros(); },
   pcNovo: () => abrirConta(),
+  pcFechar: () => fecharConta(),
+  pcFiltroLimpar: () => { S.pcF = { grupo: '', tipo: '', dre: '' }; renderCadastros(); },
+  pcImpAbrir: () => { const i = $('pc_imp_arq'); if (i) { i.value = ''; i.click(); } },
+  pcExportar: () => pcExportarCSV(),
+  pcImpConfirmar: () => pcImpConfirmar(),
   pcSalvar: () => salvarConta(),
   pcExcluir: () => excluirConta(),
   cadCancelar: () => { S.cadEdit = null; renderCadastros(); },
@@ -4976,6 +5290,12 @@ const MUDANCAS = {
   tfAtualizar: () => atualizarTr(),
   tfData: () => carregarSaldosTr(),
   pcGrupo: () => pcGrupoMudou(),
+  pcDre: () => { if (PCF) PCF.dreMexido = true; },
+  pcFiltro: el => { S.pcF[el.dataset.k] = el.value; renderCadastros(); },
+  pcImpArquivo: el => pcImpArquivo(el.files?.[0]),
+  pcImpAtualizar: el => { if (PCI) { PCI.atualizar = el.checked; desenharPcImp(); } },
+  pcImpGrupo: el => { if (PCI) { PCI.grupoPadrao = el.value; desenharPcImp(); } },
+  pcImpFiltro: el => { if (PCI) { PCI.filtro = el.value; desenharPcImp(); } },
   cadOrdSel: el => { const o = (S.cadOrd[S.cadTab] ||= { i: 0, desc: false }); o.i = Number(el.value); o.desc = false; renderCadastros(); },
   impArquivo: el => impArquivo(el.files?.[0]),
   impBanco: el => impMapear('b', el.dataset.k, el.value),
@@ -5025,6 +5345,8 @@ document.addEventListener('click', e => {
   if (b) { e.preventDefault(); ACOES[b.dataset.act]?.(b.dataset, b); return; }
   const cel = e.target.closest('td.edt');
   if (cel && !e.target.closest('.ied-w')) iniciarEdicao(cel);
+  const pce = e.target.closest('td.pc-edt');
+  if (pce && !pce.classList.contains('emedicao')) editarCelPC(pce);
 });
 document.addEventListener('submit', e => {
   if (e.target.id === 'cadForm') { e.preventDefault(); salvarCadastro(e.target.dataset.t); }
@@ -5094,7 +5416,7 @@ function abrirCb(sel, q) {
   if (!pop) {
     pop = document.createElement('div'); pop.className = 'bsel-pop cb-pop'; pop.setAttribute('role', 'listbox');
     pop.addEventListener('pointerdown', e => e.preventDefault());
-    pop.addEventListener('click', e => { const o = e.target.closest('.bsel-op'); if (o) escolherCb(sel, o.dataset.v); });
+    pop.addEventListener('click', e => { if (e.target.closest('.cb-nova')) return novaContaDoCb(sel); const o = e.target.closest('.bsel-op'); if (o) escolherCb(sel, o.dataset.v); });
     document.body.appendChild(pop);
   }
   const opcoesV = itens.filter(i => i.v);
@@ -5102,6 +5424,7 @@ function abrirCb(sel, q) {
     ? `<div class="cb-g"><i style="background:${esc(corGrupo(S.grupos.find(g => g.nome === i.g)))}"></i>${esc(i.g)}</div>`
     : `<div class="bsel-op ${i.v === sel.value ? 'on' : ''}" role="option" data-v="${esc(i.v)}"><span class="cod">${esc(i.t.split(' ')[0])}</span><span class="n">${esc(i.t.split(' ').slice(1).join(' '))}</span></div>`).join('')
     : '<div class="cb-vazio">Nenhuma conta encontrada</div>';
+  pop.insertAdjacentHTML('beforeend', `<div class="cb-nova" title="Abre o cadastro de conta sem sair desta tela">＋ Cadastrar nova conta no plano${q.trim() && !/^\d+(\.\d+)*$/.test(q.trim()) ? ` <b>“${esc(q.trim().toUpperCase())}”</b>` : ''}</div>`);
   const r = sel._inp.getBoundingClientRect(), w = Math.max(r.width, 380);
   pop.style.minWidth = w + 'px'; pop.style.left = Math.max(8, Math.min(r.left, innerWidth - w - 8)) + 'px';
   let top = r.bottom + 4;
@@ -5122,7 +5445,7 @@ function teclaCb(sel, e) {
   if (e.key === 'ArrowDown' || e.key === 'ArrowUp') { e.preventDefault(); if (!c) abrirCb(sel, ''); else marcarCb(c.ativo + (e.key === 'ArrowDown' ? 1 : -1)); }
   else if (e.key === 'Enter' && c) {
     e.preventDefault(); e.stopPropagation();
-    if (c.ops.length) escolherCb(sel, c.ops[c.ativo].dataset.v);
+    if (c.ops.length) escolherCb(sel, c.ops[c.ativo].dataset.v); else novaContaDoCb(sel);
   }
   else if (e.key === 'Tab' && c && sel._inp.value.trim() && c.ops.length && sel._inp.value !== sel.selectedOptions[0]?.text) escolherCb(sel, c.ops[c.ativo].dataset.v, false);
   else if (e.key === 'Escape' && c) { e.preventDefault(); e.stopPropagation(); fecharCb(false); textoCb(sel); }
@@ -5264,6 +5587,11 @@ document.addEventListener('input', e => {
   if (id === 'bk_busca') { S.bk.busca = e.target.value; clearTimeout(bkT); bkT = setTimeout(buscaBancos, 250); }
 });
 document.addEventListener('keydown', e => {
+  if ($('modal2')) {                                         // janela por cima de outra janela
+    if (e.key === 'Escape') { e.preventDefault(); fecharConta(); }
+    else if (e.key === 'Enter' && e.target.closest('#modal2') && !e.target.matches('button, textarea')) { e.preventDefault(); $('modal2').querySelector('[data-primary]')?.click(); }
+    return;
+  }
   if ($('modal')) {                                          // janela aberta: Enter confirma, Esc fecha
     if (e.key === 'Escape') { e.preventDefault(); if (!$('modal').classList.contains('fixo')) fecharModal(); }
     else if (e.key === 'Enter' && e.target.closest('#modal') && !e.target.matches('button, textarea')) { e.preventDefault(); document.querySelector('#modal [data-primary]')?.click(); }
