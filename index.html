@@ -804,6 +804,10 @@ table.ordenavel th.th-ord{text-align:left;cursor:pointer;user-select:none}
 table.ordenavel th.th-ord:hover{background:#6a6b70}
 table.ordenavel th.th-ord.on{box-shadow:inset 0 -3px 0 var(--orange)}
 .seta-ord{margin-left:6px;font-size:10px;opacity:.55}.th-ord.on .seta-ord{opacity:1;color:#ffb27d}
+table.lanc th.th-ord{cursor:pointer;user-select:none}table.lanc th.th-ord:hover{background:#6a6b70}
+table.lanc th.th-ord.on{box-shadow:inset 0 -3px 0 var(--orange)}
+table.lanc tr.lin.lanc-flash td{animation:lancFlash 2.2s ease-out}
+@keyframes lancFlash{0%,35%{background:#ffe6d2}100%{background:transparent}}
 .barra .sp{flex:1}
 .ord-sel{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:600;color:var(--muted)}
 .ord-sel select{border:1px solid #bfc8ce;border-radius:4px;padding:6px 8px;background:#fff;color:var(--text);font-weight:600}
@@ -1751,7 +1755,7 @@ async function salvarCelula(ed, reg, k, bruto, desfazer) {
   let msg = `Ajustado: ${fmtCampo(f.t, reg[f.c])} → ${fmtCampo(f.t, v)}`;
   if (f.t === 'date' && f.req && v && v.slice(0, 7) !== `${S.ano}-${pad(S.mes + 1)}`) msg += ` (movido para ${MESES_NOME[Number(v.slice(5, 7)) - 1]}/${v.slice(0, 4)})`;
   // data de pagamento num lançamento sem banco: abre a janela para escolher o banco e a forma
-  if (ed === 'lanc' && f.c === 'data_pagamento' && v && !reg.banco_id) { desfazer(); return abrirPagamento({ ...reg, data_pagamento: null }, viewLancamentos, null, v); }
+  if (ed === 'lanc' && f.c === 'data_pagamento' && v && !reg.banco_id) { desfazer(); return abrirPagamento({ ...reg, data_pagamento: null }, () => { S.lancFoco = { id: reg.id }; return viewLancamentos(); }, null, v); }
   if (ed === 'lanc' && f.c === 'data_pagamento' && !v) msg += ' · voltou a ficar em aberto';
   await gravarAjuste(ed, reg, f.c, v, msg, desfazer);
 }
@@ -1759,7 +1763,8 @@ async function gravarAjuste(ed, reg, campo, v, msg, desfazer, extra = null) {
   const cfg = EDIT[ed], y = window.scrollY;
   try {
     await store.update(cfg.tab, reg.id, { ...comAjuste(reg, { [campo]: v }), ...(extra || {}) });
-    toast(msg); await cfg.reload(); window.scrollTo(0, y);
+    if (ed === 'lanc') S.lancFoco = { id: reg.id };
+    toast(msg); await cfg.reload(); if (ed !== 'lanc') window.scrollTo(0, y);
   } catch (e) { toast(e.message, true); desfazer(); }
 }
 const qtdAjustados = lista => lista.filter(r => r.ajustes && Object.keys(r.ajustes).length).length;
@@ -1779,6 +1784,10 @@ async function viewLancamentos() {
 
 function renderLancamentos() {
   fecharCf();
+  // guarda a posição da tela (página e tabela) para não voltar ao topo ao lançar/editar
+  const chave = `${S.planilhaId}|${S.ano}|${S.mes}`, twAnt = document.querySelector('#main .tabwrap.congela table.lanc')?.closest('.tabwrap');
+  const pos = twAnt && S.lancChave === chave ? { y: window.scrollY, t: twAnt.scrollTop } : null;
+  S.lancChave = chave;
   const cfg = cfgTela('lancamentos');
   const dataPadrao = (hoje.getFullYear() === S.ano && hoje.getMonth() === S.mes) ? HOJE : `${S.ano}-${pad(S.mes + 1)}-01`;
   const nAj = qtdAjustados(S.lancs), cor = corEmpresa(S.planilhaId);
@@ -1805,7 +1814,7 @@ function renderLancamentos() {
     </div>
     <div class="tabwrap congela">
       <table class="lanc ${cfg.compacto ? 'compacto' : ''}">
-        <thead><tr>${cfg.cols.map(k => `<th class="c-${k} ${S.colFiltro[k] ? 'cf-on' : ''}">${colDef('lancamentos', k).h}${CF_VAL[k] ? `<button class="cf-btn" data-act="cfAbrir" data-k="${k}" title="${S.colFiltro[k] ? 'Filtro ativo — clique para alterar' : 'Filtrar esta coluna'}">${ICO_FUNIL}</button>` : ''}</th>`).join('')}<th class="c-acoes"></th></tr></thead>
+        <thead><tr>${cfg.cols.map(k => { const o = thOrdLanc(k); return `<th class="c-${k} ${S.colFiltro[k] ? 'cf-on' : ''} ${o.cls}" ${o.act}>${colDef('lancamentos', k).h}${o.seta ? `<span class="seta-ord">${o.seta}</span>` : ''}${CF_VAL[k] ? `<button class="cf-btn" data-act="cfAbrir" data-k="${k}" title="${S.colFiltro[k] ? 'Filtro ativo — clique para alterar' : 'Filtrar esta coluna'}">${ICO_FUNIL}</button>` : ''}</th>`; }).join('')}<th class="c-acoes"></th></tr></thead>
         <tbody id="linhas"></tbody>
       </table>
     </div>
@@ -1813,13 +1822,80 @@ function renderLancamentos() {
       <span class="leg-aj">célula ajustada</span> = alterada depois de lançada; passe o mouse para ver o valor original.</p>`;
   renderLinhas(); renderPainel();
   if (S.lf.modo === 'parcelado') desenharParcelas();
+  const tw = document.querySelector('#main .tabwrap.congela');
+  if (pos) { window.scrollTo(0, pos.y); if (tw) tw.scrollTop = pos.t; }
+  else if (tw && hoje.getFullYear() === S.ano && hoje.getMonth() === S.mes) {
+    // ao abrir o mês atual, a tabela já começa no dia de hoje (ou no último dia com lançamento antes de hoje)
+    const dias = [...tw.querySelectorAll('tr.dia-sep[data-dia]')].filter(r => r.dataset.dia <= HOJE);
+    const alvo = cfg.desc ? dias[0] : dias.at(-1);
+    if (alvo && tw.scrollHeight > tw.clientHeight) tw.scrollTop = alvo.offsetTop - (tw.querySelector('thead')?.offsetHeight || 0);
+  }
+  if (S.lancFoco) { const f = S.lancFoco; S.lancFoco = null; focarLanc(f); }
+}
+
+// rola até o lançamento (ou até o dia dele) sem mexer no resto da tela, e destaca a linha
+function focarLanc({ id, dia }) {
+  const tw = document.querySelector('#main .tabwrap.congela'); if (!tw) return;
+  const alvo = (id != null && tw.querySelector(`tr.lin[data-id="${id}"]`)) || (dia && tw.querySelector(`tr.dia-sep[data-dia="${dia}"]`));
+  if (!alvo) return;
+  const thh = tw.querySelector('thead')?.offsetHeight || 0;
+  if (tw.scrollHeight > tw.clientHeight) {
+    const r = alvo.getBoundingClientRect(), w = tw.getBoundingClientRect();
+    if (r.top < w.top + thh || r.bottom > w.bottom) tw.scrollTop += r.top - w.top - thh - (tw.clientHeight - thh - r.height) / 2;
+  }
+  const r = alvo.getBoundingClientRect();
+  if (r.top < 0 || r.bottom > innerHeight) window.scrollBy(0, r.top - innerHeight / 2 + r.height / 2);
+  if (alvo.classList.contains('lin')) { alvo.classList.remove('lanc-flash'); void alvo.offsetWidth; alvo.classList.add('lanc-flash'); }
+}
+
+/* ---------- classificação ao clicar no cabeçalho (sempre dentro de cada dia) ---------- */
+const ORD_LANC = {
+  banco: l => M.banco[l.banco_id]?.nome ?? '',
+  grupo: l => grupoDoPlano(l.plano_conta_id)?.nome ?? '',
+  plano: l => M.plano[l.plano_conta_id]?.codigo ?? '',
+  item: l => String(l.item ?? '').trim(),
+  valor: l => sinal(l) * Number(l.valor),
+  status: l => ({ vencido: 0, aberto: 1, pago: 2 })[situacao(l)],
+  dprog: l => l.data_programada || '',
+  dpag: l => l.data_pagamento || '',
+  forma: l => l.forma_pagamento || '',
+};
+const ordLanc = () => (VIS.lancOrd && ORD_LANC[VIS.lancOrd.k]) ? VIS.lancOrd : null;
+function ordenarLancs(lista) {
+  const o = ordLanc(); if (!o) return lista;
+  const f = ORD_LANC[o.k], dir = o.desc ? -1 : 1;
+  const cmp = (a, b) => {
+    const va = f(a), vb = f(b), za = va === '' || va == null, zb = vb === '' || vb == null;
+    if (za || zb) return za - zb;                                   // vazios sempre no fim
+    return dir * (typeof va === 'number' && typeof vb === 'number' ? va - vb : String(va).localeCompare(String(vb), 'pt-BR', { numeric: true, sensitivity: 'base' }));
+  };
+  return lista.map((l, i) => [l, i]).sort(([a, i], [b, j]) => a.data_lancamento.localeCompare(b.data_lancamento) || cmp(a, b) || i - j).map(x => x[0]);
+}
+function thOrdLanc(k) {
+  if (k === 'data') { const d = cfgTela('lancamentos').desc; return { cls: 'th-ord on', act: `data-act="lancOrd" data-k="data" title="Ordem dos dias: ${d ? 'mais novo → mais antigo' : 'mais antigo → mais novo'} (clique para inverter)"`, seta: d ? '▼' : '▲' }; }
+  if (!ORD_LANC[k]) return { cls: '', act: '', seta: '' };
+  const o = ordLanc(), on = o?.k === k;
+  return { cls: `th-ord ${on ? 'on' : ''}`, act: `data-act="lancOrd" data-k="${k}" title="${on ? (o.desc ? 'Clique para voltar à ordem normal' : 'Clique para ordem decrescente') : 'Classificar dentro de cada dia'}"`, seta: on ? (o.desc ? '▼' : '▲') : '↕' };
+}
+function lancOrd(k) {
+  if (k === 'data') { VIS.lancamentos = { ...(VIS.lancamentos || {}), ordem: cfgTela('lancamentos').desc ? 'asc' : 'desc' }; }
+  else { const o = ordLanc(); VIS.lancOrd = o?.k !== k ? { k, desc: false } : !o.desc ? { k, desc: true } : null; }
+  salvarVis(); fecharCf(); renderLinhas(); atualizarThOrd();
+}
+function atualizarThOrd() {
+  document.querySelectorAll('table.lanc thead th[data-k]').forEach(th => {
+    const o = thOrdLanc(th.dataset.k), s = th.querySelector('.seta-ord');
+    th.className = th.className.replace(/\bth-ord\b|\bon\b/g, '').trim() + ' ' + o.cls;
+    if (s) s.textContent = o.seta;
+    const t = o.act.match(/title="([^"]*)"/); if (t) th.title = t[1];
+  });
 }
 
 function renderLinhas() {
   const cfg = cfgTela('lancamentos');
   let acum = 0;
   // o acumulado só soma o que já foi pago/recebido (com data de pagamento); em aberto não entra
-  const comAcum = S.lancs.map(l => (acum += emAberto(l) ? 0 : sinal(l) * Number(l.valor), { ...l, acum }));
+  const comAcum = ordenarLancs(S.lancs).map(l => (acum += emAberto(l) ? 0 : sinal(l) * Number(l.valor), { ...l, acum }));
   const fimDoDia = {};                                   // acumulado ao fim de cada dia (sempre cronológico)
   for (const l of comAcum) fimDoDia[l.data_lancamento] = l.acum;
   const f = S.filtro, t = f.texto.trim().toLowerCase();
@@ -1833,7 +1909,8 @@ function renderLinhas() {
     if (!passaCF(l)) return false;
     return true;
   });
-  if (cfg.desc) vis = vis.reverse();
+  // ordem decrescente: inverte os dias; com classificação ativa, mantém a ordem escolhida dentro de cada dia
+  if (cfg.desc) vis = ordLanc() ? [...vis].sort((a, b) => b.data_lancamento.localeCompare(a.data_lancamento)) : vis.reverse();
   const filtrado = !!(f.banco || f.grupo || f.aj || f.sit || t || cfAtivos().length);
   if ($('lt-cont')) $('lt-cont').textContent = `· ${vis.length} ${vis.length === 1 ? 'lançamento' : 'lançamentos'}${filtrado ? ` (de ${S.lancs.length})` : ''}`;
   const nCol = cfg.cols.length + 1;
@@ -1845,7 +1922,7 @@ function renderLinhas() {
     if (l.data_lancamento !== ultimo) {
       ultimo = l.data_lancamento;
       const d = dia[ultimo], [a, m, dd] = ultimo.split('-').map(Number), dow = new Date(a, m - 1, dd).getDay();
-      html += `<tr class="dia-sep"><td colspan="${nCol}"><div>
+      html += `<tr class="dia-sep" data-dia="${ultimo}"><td colspan="${nCol}"><div>
         <b>${pad(dd)}/${pad(m)}</b><span class="dsem">${['domingo', 'segunda', 'terça', 'quarta', 'quinta', 'sexta', 'sábado'][dow]}</span>
         <span class="dn">${d.n} ${d.n === 1 ? 'lançamento' : 'lançamentos'}</span>
         ${d.ent ? `<span class="pos">entradas ${num2(d.ent)}</span>` : ''}${d.sai ? `<span class="neg">saídas ${num2(d.sai)}</span>` : ''}
@@ -1865,7 +1942,7 @@ function renderLinhas() {
       dpag: celEd('lanc', l, 'dpag', 'c mut', fmtData(l.data_pagamento) || '—'),
       acum: `<td class="r acc ${l.acum < 0 ? 'neg' : ''} ${emAberto(l) ? 'acc-ab' : ''}" ${emAberto(l) ? 'title="Em aberto: não entra no acumulado"' : ''}>${l.acum < 0 ? '−' : ''}${num2(Math.abs(l.acum))}</td>`,
     };
-    html += `<tr class="lin ${S.editId === l.id ? 'editando' : ''} ${Object.keys(A).length ? 'tem-aj' : ''} ${s > 0 ? 'rec' : 'desp'} ${situacao(l) !== 'pago' ? 'aberto' : ''} ${situacao(l) === 'vencido' ? 'vencido' : ''}">${cfg.cols.map(k => C[k]).join('')}
+    html += `<tr data-id="${l.id}" class="lin ${S.editId === l.id ? 'editando' : ''} ${Object.keys(A).length ? 'tem-aj' : ''} ${s > 0 ? 'rec' : 'desp'} ${situacao(l) !== 'pago' ? 'aberto' : ''} ${situacao(l) === 'vencido' ? 'vencido' : ''}">${cfg.cols.map(k => C[k]).join('')}
       <td class="acoes"><button class="ib" title="Editar todos os campos" data-act="editarLancJanela" data-id="${l.id}">✎</button><button class="ib del" title="Excluir" data-act="excluirLanc" data-id="${l.id}">✕</button></td></tr>`;
   }
   $('linhas').innerHTML = html || `<tr><td colspan="${nCol}" class="vazio">Nenhum lançamento ${f.aj ? 'ajustado ' : ''}${f.sit ? 'nessa situação ' : ''}${cfAtivos().length ? 'com os filtros das colunas ' : ''}em ${MESES_NOME[S.mes]} de ${S.ano}.${cfAtivos().length ? ' <button class="mini" data-act="cfLimparTudo">Limpar filtros das colunas</button>' : ''}</td></tr>`;
@@ -2080,6 +2157,7 @@ async function salvarLanc() {
   if (row.data_pagamento && !row.banco_id) return toast('Para marcar como pago/recebido, escolha também o banco.', true), abrirBsel($('e_banco'));
   if (!row.plano_conta_id) return toast('Selecione o plano de contas.', true), $('e_plano').focus();
   if (!(row.valor > 0)) return toast('Informe um valor maior que zero.', true), $('e_valor').focus();
+  let novoId = null;
   try {
     if (S.editId) {
       const orig = S.lancs.find(x => x.id === S.editId);
@@ -2090,7 +2168,7 @@ async function salvarLanc() {
       await store.update('lancamentos', S.editId, comAjuste(orig, row));
     } else {
       if (!row.data_programada) row.data_programada = row.data_lancamento;   // vencimento padrão = data do lançamento
-      await store.insert('lancamentos', row);
+      novoId = (await store.insert('lancamentos', row))?.id ?? null;
     }
   } catch (e) { return toast(e.message, true); }
   const [a, m] = row.data_lancamento.split('-').map(Number);
@@ -2098,11 +2176,13 @@ async function salvarLanc() {
   toast(S.editId ? 'Lançamento ajustado.' : foraDoMes ? `Lançamento salvo em ${MESES_NOME[m - 1]}/${a}.` : row.data_pagamento ? 'Lançamento adicionado como ' + (sinal(row) > 0 ? 'recebido.' : 'pago.') : 'Lançado em aberto — pague/receba quando quiser.');
   const manter = { banco: row.banco_id ?? '', data: row.data_lancamento, edit: S.editId };
   S.editId = null;
+  // depois de lançar fica no dia do lançamento; depois de editar volta para a linha editada
+  if (!foraDoMes) S.lancFoco = { id: manter.edit || novoId, dia: row.data_lancamento };
   await viewLancamentos();
   if (!manter.edit) {
     $('e_banco').value = manter.banco;
     if (!foraDoMes) $('e_data').value = manter.data;
-    $('e_plano').focus();
+    $('e_plano').focus({ preventScroll: true });
   }
 }
 
@@ -2454,7 +2534,7 @@ async function lancarParcelas() {
 async function excluirLanc(id) {
   const l = S.lancs.find(x => x.id === id);
   if (!l || !confirm(`Excluir o lançamento "${l.item || 'sem descrição'}" de ${brl(l.valor)}?`)) return;
-  try { await store.remove('lancamentos', id); toast('Lançamento excluído.'); await viewLancamentos(); }
+  try { await store.remove('lancamentos', id); toast('Lançamento excluído.'); S.lancFoco = { dia: l.data_lancamento }; await viewLancamentos(); }
   catch (e) { toast(e.message, true); }
 }
 
@@ -5096,7 +5176,7 @@ const ACOES = {
   filtroSit: d => { S.filtro.sit = S.filtro.sit === d.v ? '' : d.v; renderLancamentos(); },
   pagar: d => {
     const id = Number(d.id), l = (S.view === 'dash' ? S.dash.dados?.abertos : S.lancs)?.find(x => x.id === id);
-    abrirPagamento(l, S.view === 'dash' ? viewDash : viewLancamentos);
+    abrirPagamento(l, S.view === 'dash' ? viewDash : () => { S.lancFoco = { id }; return viewLancamentos(); });
   },
   fecharModal: () => fecharModal(),
   lsPagar: d => { const l = LST?.lancs.find(x => x.id === Number(d.id)); abrirPagamento(l, mudouLista, voltarLista); },
@@ -5196,9 +5276,10 @@ const ACOES = {
     } catch (e) { toast(e.message, true); }
     await viewCustos();
   },
-  cancelarLanc: () => { S.editId = null; renderLancamentos(); },
+  cancelarLanc: () => { S.lancFoco = { id: S.editId }; S.editId = null; renderLancamentos(); },
   editarLanc: d => editarLanc(Number(d.id)),
-  editarLancJanela: d => editarNaJanela(S.lancs.find(x => x.id === Number(d.id)), null, viewLancamentos),
+  editarLancJanela: d => editarNaJanela(S.lancs.find(x => x.id === Number(d.id)), null, () => { S.lancFoco = { id: Number(d.id) }; return viewLancamentos(); }),
+  lancOrd: d => lancOrd(d.k),
   excluirLanc: d => excluirLanc(Number(d.id)),
   fluxoDia: d => { const a = S.fluxo.abertos; a.has(d.d) ? a.delete(d.d) : a.add(d.d); renderFluxo(); },
   dreAbrir: d => { const a = S.dre.abertos; a.has(d.k) ? a.delete(d.k) : a.add(d.k); renderDRE(); },
@@ -5601,7 +5682,7 @@ document.addEventListener('keydown', e => {
     e.preventDefault();
     if (S.view === 'transferencias') salvarTransf(); else salvarLanc();
   }
-  if (e.key === 'Escape' && S.editId) { S.editId = null; renderLancamentos(); }
+  if (e.key === 'Escape' && S.editId) { S.lancFoco = { id: S.editId }; S.editId = null; renderLancamentos(); }
 });
 
 /* ============================== LOGIN ============================== */
